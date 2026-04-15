@@ -3,144 +3,331 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fab Academy - 日常作业</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Fab Academy 2026 - 日常作业</title>
+    <link rel="stylesheet" href="style-premium.css">
 </head>
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo">Fab Academy 2026</div>
+            <div class="logo">✦ Fab Academy</div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="daily.html" class="active">Daily</a></li>
-                <li><a href="final.html">Final</a></li>
+                <li><a href="index.html">首页</a></li>
+                <li><a href="daily.html" class="active">日常作业</a></li>
+                <li><a href="final.html">最终项目</a></li>
+                <li><a href="team.html">团队</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- 页面头部 -->
+    <header class="page-header">
+        <div class="container">
+            <h1>日常作业</h1>
+            <p>每周一个挑战，掌握数字制造的核心技能。从设计到实现，循序渐进地构建你的技术栈。</p>
+        </div>
+    </header>
+
     <!-- 主要内容 -->
     <main>
         <div class="container">
-            <h1 class="page-title">日常作业 (Daily Assignments)</h1>
-            
-            <section class="content-section">
-                <h2>作业说明</h2>
-                <p>日常作业是 Fab Academy 课程的核心部分，每周都会有不同的主题和技能要求。请按时完成每个作业，并在下方提交你的作品。</p>
-                <p>每个作业都包含详细的要求、参考资源和提交指南。确保在截止日期前完成所有必要的文档和文件上传。</p>
+            <!-- 作业概览 -->
+            <section class="section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">20</div>
+                        <div class="stat-label">总作业数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">已完成</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12</div>
+                        <div class="stat-label">进行中</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">40%</div>
+                        <div class="stat-label">完成进度</div>
+                    </div>
+                </div>
             </section>
 
-            <section class="content-section">
-                <h2>作业列表</h2>
-                <div class="assignment-grid">
-                    <!-- 作业卡片 1 -->
-                    <div class="assignment-card">
+            <!-- 作业列表 -->
+            <section class="section">
+                <h2 class="section-title">作业清单</h2>
+                <div class="card-grid">
+                    <!-- Week 1 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 1: Principles and Practices</h3>
+                            <span class="card-badge">Week 1</span>
+                            <h3 style="margin-top: 1rem;">Principles and Practices</h3>
                         </div>
                         <div class="card-body">
-                            <p>学习数字制造的基本原理，了解工作流程和安全规范。</p>
-                            <p><strong>截止日期：</strong>2026-02-15</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>学习数字制造的基本原理、工作流程和安全规范。建立正确的工程思维和方法论。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-02-15</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 10 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
 
-                    <!-- 作业卡片 2 -->
-                    <div class="assignment-card">
+                    <!-- Week 2 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 2: Computer-Aided Design</h3>
+                            <span class="card-badge" style="background: var(--gradient-2);">Week 2</span>
+                            <h3 style="margin-top: 1rem;">Computer-Aided Design</h3>
                         </div>
                         <div class="card-body">
-                            <p>使用CAD软件进行2D和3D设计，掌握参数化建模技术。</p>
-                            <p><strong>截止日期：</strong>2026-02-22</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>掌握 CAD 软件的使用，学习 2D 和 3D 设计技巧。理解参数化设计和建模方法。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-02-22</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 15 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
 
-                    <!-- 作业卡片 3 -->
-                    <div class="assignment-card">
+                    <!-- Week 3 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 3: Computer-Controlled Cutting</h3>
+                            <span class="card-badge" style="background: var(--gradient-3);">Week 3</span>
+                            <h3 style="margin-top: 1rem;">Computer-Controlled Cutting</h3>
                         </div>
                         <div class="card-body">
-                            <p>学习激光切割和CNC加工技术，制作精确的零件。</p>
-                            <p><strong>截止日期：</strong>2026-03-01</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>学习激光切割和 CNC 加工技术。掌握矢量图形处理和刀具路径规划。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-03-01</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 12 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
 
-                    <!-- 作业卡片 4 -->
-                    <div class="assignment-card">
+                    <!-- Week 4 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 4: Electronics Production</h3>
+                            <span class="card-badge">Week 4</span>
+                            <h3 style="margin-top: 1rem;">Electronics Production</h3>
                         </div>
                         <div class="card-body">
-                            <p>设计和制作电路板，学习PCB设计和焊接技术。</p>
-                            <p><strong>截止日期：</strong>2026-03-08</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>设计和制作电路板。学习 PCB 设计、 milling 技术和焊接工艺。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-03-08</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 18 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
 
-                    <!-- 作业卡片 5 -->
-                    <div class="assignment-card">
+                    <!-- Week 5 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 5: 3D Scanning and Printing</h3>
+                            <span class="card-badge" style="background: var(--gradient-2);">Week 5</span>
+                            <h3 style="margin-top: 1rem;">3D Scanning and Printing</h3>
                         </div>
                         <div class="card-body">
-                            <p>探索3D扫描技术和增材制造方法。</p>
-                            <p><strong>截止日期：</strong>2026-03-15</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>探索 3D 扫描技术和增材制造方法。学习模型修复和打印优化技巧。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-03-15</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 14 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
 
-                    <!-- 作业卡片 6 -->
-                    <div class="assignment-card">
+                    <!-- Week 6 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 6: Electronics Design</h3>
+                            <span class="card-badge" style="background: var(--gradient-3);">Week 6</span>
+                            <h3 style="margin-top: 1rem;">Electronics Design</h3>
                         </div>
                         <div class="card-body">
-                            <p>设计自定义电路板，学习EDA工具和元器件选择。</p>
-                            <p><strong>截止日期：</strong>2026-03-22</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>使用 EDA 工具设计自定义电路板。学习元器件选型和电路仿真。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-03-22</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 16 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
 
-                    <!-- 作业卡片 7 -->
-                    <div class="assignment-card">
+                    <!-- Week 7 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 7: Computer-Controlled Machining</h3>
+                            <span class="card-badge">Week 7</span>
+                            <h3 style="margin-top: 1rem;">Computer-Controlled Machining</h3>
                         </div>
                         <div class="card-body">
-                            <p>使用CNC机床进行大型零件加工和装配。</p>
-                            <p><strong>截止日期：</strong>2026-03-29</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>使用大型 CNC 机床进行零件加工。学习 CAM 软件和装配技术。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-03-29</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 20 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
 
-                    <!-- 作业卡片 8 -->
-                    <div class="assignment-card">
+                    <!-- Week 8 -->
+                    <div class="card">
                         <div class="card-header">
-                            <h3>Week 8: Embedded Programming</h3>
+                            <span class="card-badge" style="background: var(--gradient-2);">Week 8</span>
+                            <h3 style="margin-top: 1rem;">Embedded Programming</h3>
                         </div>
                         <div class="card-body">
-                            <p>学习微控制器编程，实现基本的输入输出功能。</p>
-                            <p><strong>截止日期：</strong>2026-04-05</p>
-                            <a href="#" class="btn">查看详情</a>
+                            <p>学习微控制器编程。实现传感器读取、执行器控制和通信协议。</p>
+                        </div>
+                        <div class="card-meta">
+                            <div class="card-meta-item">
+                                <span>📅</span>
+                                <span>截止: 2026-04-05</span>
+                            </div>
+                            <div class="card-meta-item">
+                                <span>⏱️</span>
+                                <span>预计 18 小时</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary">查看详情</a>
+                            <a href="#" class="btn btn-secondary">提交作业</a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="content-section">
-                <h2>提交流程</h2>
-                <ol style="margin-left: 2rem; margin-bottom: 1rem;">
-                    <li>点击作业卡片中的"查看详情"按钮查看完整要求</li>
-                    <li>完成作业后，准备所有必要的文件和文档</li>
-                    <li>通过GitHub仓库提交你的作业代码和设计文件</li>
-                    <li>在对应的作业页面添加项目说明和演示视频链接</li>
-                    <li>确认提交成功后，通知导师进行审核</li>
-                </ol>
-                <p><strong>注意：</strong>请确保所有提交的文件都符合格式要求，并包含清晰的文档说明。</p>
+            <!-- 提交流程 -->
+            <section class="section">
+                <h2 class="section-title">提交流程</h2>
+                <div class="card">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h3>1. 查看要求</h3>
+                            <p>点击作业卡片查看详细的任务说明、技术要求和评估标准。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h3>2. 完成作业</h3>
+                            <p>按照要求完成设计和制作，记录整个过程并拍摄照片或视频。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h3>3. 准备文档</h3>
+                            <p>编写详细的项目文档，包括设计思路、制作步骤、遇到的问题和解决方案。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <h3>4. 提交审核</h3>
+                            <p>通过 GitHub 提交所有文件，并在系统中更新作业状态为"已完成"。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 资源链接 -->
+            <section class="section">
+                <h2 class="section-title">学习资源</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>📚 官方文档</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>Fab Academy 官方课程资料、教程和技术文档。</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary">访问</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>🎥 视频教程</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>每周课程的录播视频和操作演示。</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary">观看</a>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>💬 社区论坛</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>与其他学员交流经验，寻求帮助和反馈。</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-secondary">加入</a>
+                        </div>
+                    </div>
+                </div>
             </section>
         </div>
     </main>
@@ -148,8 +335,30 @@
     <!-- 页脚 -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Fab Academy. All rights reserved.</p>
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2026 Aether Studio. All rights reserved. ✦</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">首页</a>
+                    <a href="daily.html">作业</a>
+                    <a href="final.html">项目</a>
+                    <a href="team.html">团队</a>
+                </div>
+            </div>
         </div>
     </footer>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
