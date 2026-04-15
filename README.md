@@ -9,6 +9,8 @@ zwu2026-1-004/
 ├── index.html          # 主页
 ├── daily.html          # 日常作业页面
 ├── final.html          # 最终项目页面
+├── team.html           # 团队介绍页面
+├── process.html        # 网站制作过程页面
 ├── style.css           # 样式文件
 └── .github/
     └── workflows/
