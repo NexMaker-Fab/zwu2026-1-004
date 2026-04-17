@@ -10,11 +10,12 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #F5F5DC;
-            --text-primary: #2D3436;
-            --text-secondary: #636E72;
-            --accent-green: #6AB04C;
-            --accent-gold: #B8A9FF;
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --accent-purple: #B8A9FF;
+            --border-light: rgba(255, 255, 255, 0.1);
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -37,11 +38,11 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 400;
-            color: var(--accent-green);
+            color: var(--text-primary);
             text-decoration: none;
             letter-spacing: 0.1em;
         }
-        .logo span { color: var(--text-primary); }
+        .logo span { color: var(--accent-purple); }
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a {
             color: var(--text-primary);
@@ -50,7 +51,7 @@
             font-weight: 400;
             transition: color 0.3s ease;
         }
-        .nav-links a:hover { color: var(--accent-green); }
+        .nav-links a:hover { color: var(--accent-purple); }
         .profile-container {
             display: flex;
             align-items: center;
@@ -70,7 +71,7 @@
             display: inline-block;
             width: 3px;
             height: 3rem;
-            background: var(--text-primary);
+            background: var(--accent-purple);
             margin-left: 5px;
             animation: blink 1s infinite;
             vertical-align: middle;
@@ -107,8 +108,8 @@
             display: inline-block;
             margin-top: 2rem;
             padding: 0.8rem 2rem;
-            border: 2px solid var(--accent-green);
-            color: var(--accent-green);
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
             text-decoration: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -116,8 +117,8 @@
             transition: all 0.3s ease;
         }
         .btn-return:hover {
-            background: var(--accent-green);
-            color: white;
+            background: var(--accent-purple);
+            color: var(--bg-primary);
         }
         @media (max-width: 768px) {
             .navbar { padding: 1.5rem 2rem; }
@@ -135,7 +136,7 @@
 </head>
 <body>
     <nav class="navbar">
-        <a href="index.html" class="logo">Eco<span>Bloom</span></a>
+        <a href="index.html" class="logo">Aether<span>Studio</span></a>
         <div class="nav-links">
             <a href="index.html">Home</a>
             <a href="about.html">About US</a>

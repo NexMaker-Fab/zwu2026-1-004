@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -10,10 +10,10 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #F5F5DC;
-            --text-primary: #2D3436;
-            --text-secondary: #636E72;
-            --accent-green: #6AB04C;
+            --bg-primary: #000000;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --accent-purple: #B8A9FF;
             --accent-gold: #B8A9FF;
         }
         body {
@@ -37,11 +37,11 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 400;
-            color: var(--accent-green);
+            color: var(--accent-purple);
             text-decoration: none;
             letter-spacing: 0.1em;
         }
-        .logo span { color: var(--text-primary); }
+        .logo span { color: var(--accent-purple); }
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a {
             color: var(--text-primary);
@@ -50,7 +50,7 @@
             font-weight: 400;
             transition: color 0.3s ease;
         }
-        .nav-links a:hover { color: var(--accent-green); }
+        .nav-links a:hover { color: var(--accent-purple); }
         .profile-container {
             display: flex;
             align-items: center;
@@ -107,8 +107,8 @@
             display: inline-block;
             margin-top: 2rem;
             padding: 0.8rem 2rem;
-            border: 2px solid var(--accent-green);
-            color: var(--accent-green);
+            border: 2px solid var(--accent-purple);
+            color: var(--accent-purple);
             text-decoration: none;
             border-radius: 8px;
             font-size: 1rem;
@@ -116,8 +116,7 @@
             transition: all 0.3s ease;
         }
         .btn-return:hover {
-            background: var(--accent-green);
-            color: white;
+            background: var(--accent-purple); color: var(--bg-primary);
         }
         @media (max-width: 768px) {
             .navbar { padding: 1.5rem 2rem; }
