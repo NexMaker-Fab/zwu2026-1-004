@@ -1,21 +1,28 @@
-# Fab Academy 2026 - 数字制造创新平台
+# Aether Studio - 创意技术课程展示
 
-这是一个现代化、高端设计的 Fab Academy 2026 课程作业提交系统，采用玻璃态设计、渐变效果和流畅动画，提供卓越的用户体验。
+这是一个圣罗兰风格的高端课程作业展示网站，采用深色背景、极简设计、流畅动画和视频背景，完美展示嵌入式开发、物联网和老年人情感机器人项目。
 
 ## 📁 项目结构
 
 ```
 zwu2026-1-004/
-├── index.html          # 主页
-├── daily.html          # 日常作业页面
-├── final.html          # 最终项目页面
-├── team.html           # 团队介绍页面
-├── process.html        # 网站制作过程页面
-├── style.css           # 样式文件
+├── aether-brand.html     # 主网站 - 课程作业展示（圣罗兰风格）
+├── index.html            # Fab Academy 主页
+├── daily.html            # 日常作业页面
+├── final.html            # 最终项目页面
+├── team.html             # 团队介绍页面
+├── process.html          # 网站制作过程页面
+├── style.css             # 样式文件
+├── 26effea5eebe759563d88b21ca812014_raw.mp4  # Hero视频背景
 └── .github/
     └── workflows/
-        └── deploy.yml  # GitHub Actions 部署配置
+        └── deploy.yml    # GitHub Actions 部署配置
 ```
+
+## 🌐 在线访问
+
+- **主网站（课程展示）**: `https://你的用户名.github.io/zwu2026-1-004/aether-brand.html`
+- **Fab Academy 网站**: `https://你的用户名.github.io/zwu2026-1-004/`
 
 ## 🚀 部署到 GitHub Pages
 
@@ -39,7 +46,9 @@ git push origin main
 
 1. 推送后，GitHub Actions 会自动运行
 2. 进入 **Actions** 标签页查看部署进度
-3. 部署成功后，访问 `https://你的用户名.github.io/zwu2026-1-004/`
+3. 部署成功后，访问：
+   - 主网站：`https://你的用户名.github.io/zwu2026-1-004/aether-brand.html`
+   - Fab Academy：`https://你的用户名.github.io/zwu2026-1-004/`
 
 ### 手动触发部署
 
@@ -49,42 +58,66 @@ git push origin main
 
 ## 🎨 设计特色
 
-- ✨ **玻璃态设计**：现代化的毛玻璃效果，提升视觉层次
-- 🌈 **渐变配色**：精心调配的渐变色方案，营造高端氛围
-- 🎭 **流畅动画**：平滑的过渡效果和微交互，增强用户体验
-- 📱 **响应式布局**：完美适配各种屏幕尺寸
-- 🌙 **深色主题**：优雅的深色背景，减少视觉疲劳
-- ⚡ **性能优化**：轻量级代码，快速加载
+### 主网站（aether-brand.html）
+- 🖤 **圣罗兰风格**：深色背景 (#000000)，极简主义美学
+- 🎬 **动态视频背景**：Hero区域全屏视频，营造沉浸感
+- ✨ **鼠标光晕效果**：跟随鼠标的紫色光效
+- 🎯 **交互式模拟**：流水灯、LED调光、环境监测等真实交互
+- 📱 **完全响应式**：移动端汉堡菜单，自适应布局
+- 🌊 **流畅动画**：滚动淡入、悬停效果、平滑过渡
 
-## 🎨 自定义内容
+### Fab Academy 网站
+- 💎 **玻璃态设计**：现代化的毛玻璃效果
+- 🌈 **渐变配色**：清新明亮的色彩方案
+- 🎭 **艺术装饰**：浮动几何图形、流动线条
+- 📸 **照片画廊**：hover放大和overlay效果
 
-### 修改作业信息
+## 📚 课程内容（主网站）
 
-编辑 `daily.html` 文件中的作业卡片，更新：
-- 作业标题和描述
-- 截止日期
-- 链接地址
+### 板块1：首页
+- Hero视频背景 + 课程概览
+- 三列卡片：基础学习、设备控制、综合应用
 
-### 修改最终项目阶段
+### 板块2：作业一 - Arduino基础
+- Arduino UNO介绍
+- 流水灯动画模拟（8个LED循环点亮）
+- 硬件清单标签
 
-编辑 `final.html` 文件，调整：
-- 项目要求
-- 阶段划分
-- 评估标准
+### 板块3：作业二 - 输出设备
+- LED调光滑块控制
+- 电机正反转控制
+- OLED屏幕显示模拟
 
-### 修改样式
+### 板块4：作业三 - 输入设备
+- 环境监测仪表盘（温度/湿度/光照）
+- 按键控制LED亮灭
+- 传感器类型说明
 
-编辑 `style.css` 文件来自定义：
-- 颜色方案
-- 字体大小
-- 布局和间距
+### 板块5：作业四 - IoT物联网
+- NodeMCU + 阿里云IoT介绍
+- 云端数据实时监控
+- MQTT协议数据上报模拟
+
+### 板块6：大作业 - 老年人情感机器人
+- 四大功能模块展示
+- 硬件配置清单
+- 系统架构图
+- 设计理念阐述
 
 ## 🛠️ 技术栈
 
-- HTML5
-- CSS3 (Flexbox & Grid)
-- GitHub Actions
-- GitHub Pages
+### 主网站
+- HTML5 (单文件)
+- CSS3 (Flexbox & Grid, 自定义动画)
+- Vanilla JavaScript (无框架依赖)
+- Font Awesome 图标库
+- Google Fonts (Inter字体)
+
+### Fab Academy 网站
+- HTML5 语义化结构
+- CSS3 (Variables, Animations, Transitions)
+- 响应式设计
+- GitHub Actions CI/CD
 
 ## 📄 许可证
 
