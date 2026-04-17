@@ -888,65 +888,147 @@
         /* Team Section */
         .team-section {
             padding: 8rem 4rem;
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             border-top: 1px solid var(--border-light);
         }
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 3rem;
             margin-top: 4rem;
+            justify-items: center;
         }
 
         .team-member {
             text-align: center;
-            padding: 3rem 2rem;
-            border: 1px solid var(--border-light);
-            transition: all 0.4s ease;
-            background: var(--bg-secondary);
+            transition: transform 0.3s ease;
         }
 
         .team-member:hover {
-            border-color: var(--accent-purple);
-            transform: translateY(-8px);
-            box-shadow: 0 10px 30px rgba(184, 169, 255, 0.15);
+            transform: translateY(-5px);
         }
 
         .member-avatar {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            margin: 0 auto 1.5rem;
+            background: var(--gradient-purple);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            background: linear-gradient(135deg, var(--accent-purple) 0%, #764ba2 100%);
-            box-shadow: 0 8px 20px rgba(184, 169, 255, 0.3);
+            font-weight: 600;
+            color: var(--bg-dark);
+            margin: 0 auto 1rem;
+            box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3);
         }
 
         .member-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
             color: var(--text-primary);
+            font-weight: 500;
+            margin: 0;
         }
 
-        .member-role {
-            font-size: 0.85rem;
+        /* Homework Section */
+        .homework-section {
+            padding: 8rem 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .homework-list {
+            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .homework-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .homework-item:hover {
+            background: rgba(184, 169, 255, 0.05);
+            border-color: var(--accent-purple);
+            transform: translateX(5px);
+        }
+
+        .homework-bullet {
+            font-size: 1.5rem;
             color: var(--accent-purple);
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
+            line-height: 1;
         }
 
-        .member-bio {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
+        .homework-link {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .homework-link:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 8rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+            justify-items: center;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem 1rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            background: var(--gradient-purple);
+            box-shadow: 0 4px 15px rgba(184, 169, 255, 0.3);
+        }
+
+        .member-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+            color: var(--text-primary);
         }
 
         /* Process Section */
@@ -1252,22 +1334,21 @@
     <nav class="navbar" id="navbar">
         <a href="#" class="logo">AETHER</a>
         <ul class="nav-menu" id="navMenu">
-            <li><a href="#home">首页</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#team">About US</a></li>
             <li class="nav-item-dropdown">
-                <a href="#assignment1" class="dropdown-toggle">
-                    作业展示
+                <a href="#daily-homework" class="dropdown-toggle">
+                    Daily homework
                     <i class="fas fa-chevron-down"></i>
                 </a>
                 <div class="dropdown-menu">
-                    <a href="#assignment1">作业一 · Arduino基础</a>
-                    <a href="#assignment2">作业二 · 输出设备</a>
-                    <a href="#assignment3">作业三 · 输入设备</a>
-                    <a href="#assignment4">作业四 · IoT物联网</a>
-                    <a href="#final">大作业 · 情感机器人</a>
+                    <a href="#assignment1">Assignment 01 - Arduino基础</a>
+                    <a href="#assignment2">Assignment 02 - 输出设备</a>
+                    <a href="#assignment3">Assignment 03 - 输入设备</a>
+                    <a href="#assignment4">Assignment 04 - IoT物联网</a>
                 </div>
             </li>
-            <li><a href="#team">团队介绍</a></li>
-            <li><a href="#process">制作过程</a></li>
+            <li><a href="#final">Finalwork</a></li>
         </ul>
         <div class="hamburger" id="hamburger">
             <span></span>
@@ -1642,7 +1723,7 @@
     <!-- Team Section -->
     <section class="team-section fade-in" id="team">
         <div class="section-header">
-            <h2 class="section-title">OUR TEAM</h2>
+            <h2 class="section-title">ABOUT US</h2>
             <h3 class="section-heading">团队介绍</h3>
             <div class="section-line"></div>
         </div>
@@ -1650,44 +1731,57 @@
             <div class="team-member">
                 <div class="member-avatar">陈</div>
                 <h4 class="member-name">陈梓琦</h4>
-                <p class="member-role">团队成员</p>
-                <p class="member-bio">热爱创新与设计，专注于嵌入式开发和物联网技术。</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">王</div>
                 <h4 class="member-name">王琦琦</h4>
-                <p class="member-role">团队成员</p>
-                <p class="member-bio">擅长前端开发，追求完美的用户体验和界面设计。</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">李</div>
                 <h4 class="member-name">李琳</h4>
-                <p class="member-role">团队成员</p>
-                <p class="member-bio">对硬件编程充满热情，善于解决技术难题。</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">章</div>
                 <h4 class="member-name">章悦</h4>
-                <p class="member-role">团队成员</p>
-                <p class="member-bio">创意无限，负责项目的美术设计和视觉呈现。</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">朱</div>
                 <h4 class="member-name">朱诗瑶</h4>
-                <p class="member-role">团队成员</p>
-                <p class="member-bio">细心严谨，负责代码优化和系统测试。</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">何</div>
                 <h4 class="member-name">何昱璇</h4>
-                <p class="member-role">团队成员</p>
-                <p class="member-bio">逻辑思维强，专注于算法设计和数据处理。</p>
             </div>
             <div class="team-member">
                 <div class="member-avatar">徐</div>
                 <h4 class="member-name">徐思瑜</h4>
-                <p class="member-role">团队成员</p>
-                <p class="member-bio">沟通协调能力强，负责项目管理和文档编写。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Homework Section -->
+    <section class="homework-section fade-in" id="daily-homework">
+        <div class="section-header">
+            <h2 class="section-title">DAILY HOMEWORK</h2>
+            <h3 class="section-heading">作业列表</h3>
+            <div class="section-line"></div>
+        </div>
+        <div class="homework-list">
+            <div class="homework-item">
+                <span class="homework-bullet">•</span>
+                <a href="#assignment1" class="homework-link">Assignment 01 - Arduino基础</a>
+            </div>
+            <div class="homework-item">
+                <span class="homework-bullet">•</span>
+                <a href="#assignment2" class="homework-link">Assignment 02 - 输出设备</a>
+            </div>
+            <div class="homework-item">
+                <span class="homework-bullet">•</span>
+                <a href="#assignment3" class="homework-link">Assignment 03 - 输入设备</a>
+            </div>
+            <div class="homework-item">
+                <span class="homework-bullet">•</span>
+                <a href="#assignment4" class="homework-link">Assignment 04 - IoT物联网</a>
             </div>
         </div>
     </section>
