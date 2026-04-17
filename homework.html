@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Homework | Aether Studio</title>
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --accent-purple: #B8A9FF;
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Homework Page */
+        .homework-page {
+            padding-top: 100px;
+            min-height: 100vh;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 4rem;
+            padding-right: 4rem;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 200;
+            letter-spacing: 0.3em;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .homework-list {
+            list-style: none;
+            margin-bottom: 4rem;
+        }
+
+        .homework-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .homework-item:hover {
+            border-color: var(--accent-purple);
+            transform: translateX(5px);
+        }
+
+        .homework-link {
+            display: block;
+            padding: 2rem;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .homework-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .homework-number {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            font-weight: 400;
+        }
+
+        .homework-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .homework-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .homework-arrow {
+            font-size: 1.5rem;
+            color: var(--accent-purple);
+            transition: transform 0.3s ease;
+        }
+
+        .homework-item:hover .homework-arrow {
+            transform: translateX(5px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+
+            .hamburger span {
+                width: 25px;
+                height: 2px;
+                background: var(--text-primary);
+                transition: all 0.3s ease;
+            }
+
+            .homework-page {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">AETHER</a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About US</a></li>
+            <li><a href="homework.html">Daily homework</a></li>
+            <li><a href="final.html">Finalwork</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Homework Page Content -->
+    <div class="homework-page">
+        <h1 class="page-title">DAILY HOMEWORK</h1>
+        
+        <ul class="homework-list">
+            <li class="homework-item">
+                <a href="homework1.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">01</span>
+                            <h3 class="homework-title">Project Management</h3>
+                            <p class="homework-desc">项目规划与时间管理</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework2.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">02</span>
+                            <h3 class="homework-title">Arduino Output</h3>
+                            <p class="homework-desc">LED调光、电机控制、OLED显示</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework3.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">03</span>
+                            <h3 class="homework-title">Arduino Input</h3>
+                            <p class="homework-desc">温湿度传感器、光敏电阻、按键输入</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework4.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">04</span>
+                            <h3 class="homework-title">Interface Application Program</h3>
+                            <p class="homework-desc">串口通信、数据可视化</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework5.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">05</span>
+                            <h3 class="homework-title">CAD</h3>
+                            <p class="homework-desc">3D建模与设计</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework6.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">06</span>
+                            <h3 class="homework-title">Material and Tool</h3>
+                            <p class="homework-desc">材料认知与工具使用</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework7.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">07</span>
+                            <h3 class="homework-title">3D Printer</h3>
+                            <p class="homework-desc">3D打印实践</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework8.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">08</span>
+                            <h3 class="homework-title">LASER CUTTING & CNC</h3>
+                            <p class="homework-desc">激光切割与数控加工</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+
+            <li class="homework-item">
+                <a href="homework9.html" class="homework-link">
+                    <div class="homework-header">
+                        <div>
+                            <span class="homework-number">09</span>
+                            <h3 class="homework-title">IOT AND INTERACTION</h3>
+                            <p class="homework-desc">物联网数据上报、云端交互</p>
+                        </div>
+                        <i class="fas fa-arrow-right homework-arrow"></i>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aether Studio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

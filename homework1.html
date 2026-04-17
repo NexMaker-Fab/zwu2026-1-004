@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 1 | Aether Studio</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --accent-purple: #B8A9FF;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --success: #2ed573;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .nav-menu { display: flex; list-style: none; gap: 3rem; }
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
+        .nav-menu a:hover { color: var(--accent-purple); }
+        .homework-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 4rem 4rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-purple);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: gap 0.3s ease;
+        }
+        .back-link:hover { gap: 1rem; }
+        .homework-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .homework-number {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+        }
+        .homework-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        .homework-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .section-title i { color: var(--accent-purple); }
+        .upload-area {
+            border: 2px dashed var(--border-light);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.05);
+        }
+        .upload-area.dragover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.1);
+        }
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+        .upload-text { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .upload-hint { font-size: 0.85rem; color: var(--text-secondary); }
+        input[type="file"] { display: none; }
+        .file-list { margin-top: 2rem; }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .file-info { display: flex; align-items: center; gap: 1rem; }
+        .file-icon { color: var(--accent-purple); font-size: 1.2rem; }
+        .file-name { font-size: 0.9rem; }
+        .file-size { font-size: 0.75rem; color: var(--text-secondary); }
+        .file-remove {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        .file-remove:hover { color: #ff4757; }
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-purple);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3);
+        }
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .submission-list { margin-top: 1.5rem; }
+        .submission-item {
+            padding: 1.2rem;
+            background: rgba(46, 213, 115, 0.05);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .submission-name { font-size: 0.9rem; font-weight: 400; }
+        .submission-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--success);
+        }
+        .submission-time {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        @media (max-width: 768px) {
+            .navbar { padding: 1.5rem 2rem; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+            }
+            .nav-menu.active { display: flex; }
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+            .hamburger span {
+                width: 25px;
+                height: 2px;
+                background: var(--text-primary);
+            }
+            .homework-detail { padding: 100px 2rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">AETHER</a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About US</a></li>
+            <li><a href="homework.html">Daily homework</a></li>
+            <li><a href="final.html">Finalwork</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <div class="homework-detail">
+        <a href="homework.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Homework List
+        </a>
+
+        <div class="homework-header">
+            <p class="homework-number">HOMEWORK 01</p>
+            <h1 class="homework-title">Project Management</h1>
+            <p class="homework-desc">
+                项目规划与时间管理。学习如何有效地管理项目进度，制定合理的时间计划，
+                并确保按时完成任务。
+            </p>
+        </div>
+
+        <!-- Submit Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-upload"></i>
+                Submit Your Work
+            </h2>
+            <div class="upload-area" id="uploadArea">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <p class="upload-text">Drag & Drop files here or click to upload</p>
+                <p class="upload-hint">Support: Code, Images, Documents, PDF (Max 10MB)</p>
+                <input type="file" id="fileInput" multiple>
+            </div>
+            <div class="file-list" id="fileList"></div>
+            <button class="btn-submit" id="submitBtn" disabled>
+                <i class="fas fa-paper-plane"></i> Submit Files
+            </button>
+        </div>
+
+        <!-- Submitted Files Section -->
+        <div class="section">
+            <h2 class="section-title">
+                <i class="fas fa-check-circle"></i>
+                Submitted Files
+            </h2>
+            <div id="submissionList" class="submission-list">
+                <div class="empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <p>No files submitted yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Aether Studio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('active'));
+        });
+
+        // File upload
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        const submitBtn = document.getElementById('submitBtn');
+        const submissionList = document.getElementById('submissionList');
+        let selectedFiles = [];
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(`File "${file.name}" exceeds 10MB limit`);
+                    return;
+                }
+                selectedFiles.push(file);
+                addFileToList(file);
+            });
+            updateSubmitButton();
+        }
+
+        function addFileToList(file) {
+            const fileId = `file-${Date.now()}-${Math.random()}`;
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            fileItem.id = fileId;
+            fileItem.innerHTML = `
+                <div class="file-info">
+                    <i class="fas fa-file file-icon"></i>
+                    <div>
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${formatSize(file.size)}</div>
+                    </div>
+                </div>
+                <button class="file-remove" onclick="removeFile('${fileId}')">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            fileList.appendChild(fileItem);
+        }
+
+        function removeFile(fileId) {
+            const fileItem = document.getElementById(fileId);
+            if (fileItem) {
+                fileItem.remove();
+                selectedFiles = selectedFiles.filter(f => f.name !== fileItem.querySelector('.file-name').textContent);
+                updateSubmitButton();
+            }
+        }
+
+        function updateSubmitButton() {
+            submitBtn.disabled = selectedFiles.length === 0;
+        }
+
+        function formatSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        submitBtn.addEventListener('click', () => {
+            if (selectedFiles.length === 0) return;
+
+            // Simulate submission
+            selectedFiles.forEach(file => {
+                const submission = document.createElement('div');
+                submission.className = 'submission-item';
+                const now = new Date();
+                submission.innerHTML = `
+                    <div class="submission-header">
+                        <span class="submission-name">
+                            <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
+                            ${file.name}
+                        </span>
+                        <span class="submission-status">
+                            <i class="fas fa-check"></i>
+                            Submitted
+                        </span>
+                    </div>
+                    <p class="submission-time">${now.toLocaleString()}</p>
+                `;
+
+                // Remove empty state if exists
+                const emptyState = submissionList.querySelector('.empty-state');
+                if (emptyState) emptyState.remove();
+
+                submissionList.insertBefore(submission, submissionList.firstChild);
+            });
+
+            // Clear selected files
+            selectedFiles = [];
+            fileList.innerHTML = '';
+            updateSubmitButton();
+            fileInput.value = '';
+
+            // Show success message
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!';
+            submitBtn.style.background = 'var(--success)';
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Files';
+                submitBtn.style.background = '';
+            }, 3000);
+        });
+
+        // Load submitted files from localStorage
+        function loadSubmissions() {
+            const key = 'homework1_submissions';
+            const submissions = JSON.parse(localStorage.getItem(key) || '[]');
+            
+            if (submissions.length > 0) {
+                submissionList.innerHTML = '';
+                submissions.forEach(sub => {
+                    const item = document.createElement('div');
+                    item.className = 'submission-item';
+                    item.innerHTML = `
+                        <div class="submission-header">
+                            <span class="submission-name">
+                                <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
+                                ${sub.name}
+                            </span>
+                            <span class="submission-status">
+                                <i class="fas fa-check"></i>
+                                Submitted
+                            </span>
+                        </div>
+                        <p class="submission-time">${sub.time}</p>
+                    `;
+                    submissionList.appendChild(item);
+                });
+            }
+        }
+
+        // Save submission to localStorage
+        function saveSubmission(fileName) {
+            const key = 'homework1_submissions';
+            const submissions = JSON.parse(localStorage.getItem(key) || '[]');
+            submissions.unshift({
+                name: fileName,
+                time: new Date().toLocaleString()
+            });
+            localStorage.setItem(key, JSON.stringify(submissions));
+        }
+
+        // Override submit to save to localStorage
+        const originalSubmit = submitBtn.onclick;
+        submitBtn.addEventListener('click', () => {
+            selectedFiles.forEach(file => saveSubmission(file.name));
+        }, true);
+
+        loadSubmissions();
+    </script>
+</body>
+</html>

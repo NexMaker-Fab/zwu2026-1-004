@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈梓琦 | Aether Studio</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #F5F5DC;
+            --text-primary: #2D3436;
+            --text-secondary: #636E72;
+            --accent-green: #6AB04C;
+            --accent-gold: #B8A9FF;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--accent-green);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+        .logo span { color: var(--text-primary); }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--accent-green); }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            gap: 4rem;
+        }
+        .profile-text { flex: 1; max-width: 600px; }
+        .typing-text {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            min-height: 4rem;
+        }
+        .typing-text .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 3rem;
+            background: var(--text-primary);
+            margin-left: 5px;
+            animation: blink 1s infinite;
+            vertical-align: middle;
+        }
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        .profile-info {
+            margin-top: 2rem;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        .profile-info p { margin-bottom: 0.5rem; }
+        .profile-avatar {
+            flex-shrink: 0;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .avatar-emoji {
+            font-size: 15rem;
+            animation: wave 2s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(20deg); }
+            75% { transform: rotate(-15deg); }
+        }
+        .btn-return {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--accent-green);
+            color: var(--accent-green);
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+        .btn-return:hover {
+            background: var(--accent-green);
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .navbar { padding: 1.5rem 2rem; }
+            .nav-links { display: none; }
+            .profile-container {
+                flex-direction: column-reverse;
+                gap: 2rem;
+                text-align: center;
+            }
+            .typing-text { font-size: 2rem; }
+            .profile-avatar { width: 200px; height: 200px; }
+            .avatar-emoji { font-size: 10rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Eco<span>Bloom</span></a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About US</a>
+            <a href="homework.html">Daily homework</a>
+            <a href="final.html">Finalwork</a>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <div class="profile-text">
+            <h1 class="typing-text" id="typingText"></h1>
+            <div class="profile-info">
+                <p>Welcome to my personal introduction.</p>
+                <p><strong>Name:</strong> 陈梓琦</p>
+                <p><strong>Student ID:</strong> 2024XXXXXX</p>
+                <p><strong>Email:</strong> chenzq@example.com</p>
+                <p><strong>Role:</strong> Team Leader & Developer</p>
+                <p><strong>Bio:</strong> 热爱创新与设计，专注于嵌入式开发和物联网技术。</p>
+            </div>
+            <a href="about.html" class="btn-return">Return</a>
+        </div>
+        <div class="profile-avatar">
+            <div class="avatar-emoji">👨‍💻</div>
+        </div>
+    </div>
+
+    <script>
+        // Typing animation
+        const texts = ["I'm 陈梓琦", "I'm ZWU 学生"];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typingText');
+
+        function type() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typingElement.innerHTML = currentText.substring(0, charIndex - 1) + '<span class="cursor"></span>';
+                charIndex--;
+            } else {
+                typingElement.innerHTML = currentText.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(type, typeSpeed);
+        }
+
+        // Start typing animation
+        type();
+    </script>
+</body>
+</html>

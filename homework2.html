@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finalwork | Aether Studio</title>
+    <title>Homework 2 | Aether Studio</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,12 +21,13 @@
         .nav-menu { display: flex; list-style: none; gap: 3rem; }
         .nav-menu a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; font-weight: 300; transition: color 0.3s ease; }
         .nav-menu a:hover { color: var(--accent-purple); }
-        .final-detail { padding: 100px 4rem 4rem; min-height: 100vh; max-width: 1000px; margin: 0 auto; }
+        .homework-detail { padding: 100px 4rem 4rem; min-height: 100vh; max-width: 1000px; margin: 0 auto; }
         .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-purple); text-decoration: none; margin-bottom: 2rem; font-size: 0.9rem; transition: gap 0.3s ease; }
         .back-link:hover { gap: 1rem; }
-        .final-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light); }
-        .final-title { font-size: 3rem; font-weight: 300; margin-bottom: 1rem; }
-        .final-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; }
+        .homework-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light); }
+        .homework-number { font-size: 0.85rem; color: var(--accent-purple); margin-bottom: 0.5rem; }
+        .homework-title { font-size: 2.5rem; font-weight: 300; margin-bottom: 1rem; }
+        .homework-desc { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; }
         .section { background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; }
         .section-title { font-size: 1.3rem; font-weight: 400; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
         .section-title i { color: var(--accent-purple); }
@@ -64,7 +65,7 @@
             .nav-menu.active { display: flex; }
             .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 5px; }
             .hamburger span { width: 25px; height: 2px; background: var(--text-primary); }
-            .final-detail { padding: 100px 2rem 2rem; }
+            .homework-detail { padding: 100px 2rem 2rem; }
         }
     </style>
 </head>
@@ -80,28 +81,24 @@
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </nav>
 
-    <div class="final-detail">
-        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Home</a>
-        <div class="final-header">
-            <h1 class="final-title">Elderly Emotional Robot</h1>
-            <p class="final-desc">
-                基于Arduino的老年人情感陪伴机器人项目。集成语音交互、情绪识别、远程控制等功能，
-                为老年人提供贴心的情感陪伴服务。
-            </p>
+    <div class="homework-detail">
+        <a href="homework.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Homework List</a>
+        <div class="homework-header">
+            <p class="homework-number">HOMEWORK 02</p>
+            <h1 class="homework-title">Arduino Output</h1>
+            <p class="homework-desc">LED调光、电机控制、OLED屏幕显示。学习如何控制各种输出设备。</p>
         </div>
-
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-upload"></i> Submit Final Project</h2>
+            <h2 class="section-title"><i class="fas fa-upload"></i> Submit Your Work</h2>
             <div class="upload-area" id="uploadArea">
                 <i class="fas fa-cloud-upload-alt upload-icon"></i>
                 <p class="upload-text">Drag & Drop files here or click to upload</p>
-                <p class="upload-hint">Support: Code, Images, Videos, Documents, PDF (Max 10MB)</p>
+                <p class="upload-hint">Support: Code, Images, Documents, PDF (Max 10MB)</p>
                 <input type="file" id="fileInput" multiple>
             </div>
             <div class="file-list" id="fileList"></div>
             <button class="btn-submit" id="submitBtn" disabled><i class="fas fa-paper-plane"></i> Submit Files</button>
         </div>
-
         <div class="section">
             <h2 class="section-title"><i class="fas fa-check-circle"></i> Submitted Files</h2>
             <div id="submissionList" class="submission-list">
@@ -134,7 +131,8 @@
         function handleFiles(files) {
             Array.from(files).forEach(file => {
                 if (file.size > 10 * 1024 * 1024) { alert(`File "${file.name}" exceeds 10MB limit`); return; }
-                selectedFiles.push(file); addFileToList(file);
+                selectedFiles.push(file);
+                addFileToList(file);
             });
             updateSubmitButton();
         }
@@ -142,7 +140,8 @@
         function addFileToList(file) {
             const fileId = `file-${Date.now()}-${Math.random()}`;
             const fileItem = document.createElement('div');
-            fileItem.className = 'file-item'; fileItem.id = fileId;
+            fileItem.className = 'file-item';
+            fileItem.id = fileId;
             fileItem.innerHTML = `<div class="file-info"><i class="fas fa-file file-icon"></i><div><div class="file-name">${file.name}</div><div class="file-size">${formatSize(file.size)}</div></div></div><button class="file-remove" onclick="removeFile('${fileId}')"><i class="fas fa-times"></i></button>`;
             fileList.appendChild(fileItem);
         }
@@ -175,7 +174,7 @@
                 const emptyState = submissionList.querySelector('.empty-state');
                 if (emptyState) emptyState.remove();
                 submissionList.insertBefore(submission, submissionList.firstChild);
-                const key = 'finalwork_submissions';
+                const key = 'homework2_submissions';
                 const submissions = JSON.parse(localStorage.getItem(key) || '[]');
                 submissions.unshift({ name: file.name, time: now.toLocaleString() });
                 localStorage.setItem(key, JSON.stringify(submissions));
@@ -187,7 +186,7 @@
         });
 
         function loadSubmissions() {
-            const key = 'finalwork_submissions';
+            const key = 'homework2_submissions';
             const submissions = JSON.parse(localStorage.getItem(key) || '[]');
             if (submissions.length > 0) {
                 submissionList.innerHTML = '';
