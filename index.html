@@ -706,6 +706,276 @@
             color: var(--bg-primary);
         }
 
+        /* File Upload Area */
+        .upload-area {
+            border: 2px dashed var(--border-light);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: var(--bg-secondary);
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.05);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.1);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .file-list {
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .file-item:hover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.05);
+        }
+
+        .file-info {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .file-icon {
+            color: var(--accent-purple);
+            font-size: 1.2rem;
+        }
+
+        .file-name {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .file-size {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        .file-remove {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            padding: 0.3rem;
+        }
+
+        .file-remove:hover {
+            color: #ff6b6b;
+        }
+
+        .upload-progress {
+            width: 100%;
+            height: 4px;
+            background: var(--border-light);
+            border-radius: 2px;
+            margin-top: 1rem;
+            overflow: hidden;
+            display: none;
+        }
+
+        .upload-progress.active {
+            display: block;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--gradient-purple);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 3rem 2rem;
+            border: 1px solid var(--border-light);
+            transition: all 0.4s ease;
+            background: var(--bg-secondary);
+        }
+
+        .team-member:hover {
+            border-color: var(--accent-purple);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(184, 169, 255, 0.15);
+        }
+
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            background: linear-gradient(135deg, var(--accent-purple) 0%, #764ba2 100%);
+            box-shadow: 0 8px 20px rgba(184, 169, 255, 0.3);
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .member-role {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 8rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .process-timeline {
+            position: relative;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--accent-purple);
+            opacity: 0.3;
+        }
+
+        .process-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .process-content {
+            width: 45%;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .process-content:hover {
+            border-color: var(--accent-purple);
+            transform: translateX(5px);
+        }
+
+        .process-item:nth-child(even) .process-content:hover {
+            transform: translateX(-5px);
+        }
+
+        .process-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 3px var(--accent-purple);
+        }
+
+        .process-phase {
+            font-size: 0.8rem;
+            color: var(--accent-purple);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .process-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
         /* Architecture Diagram */
         .architecture-diagram {
             background: var(--bg-secondary);
@@ -928,6 +1198,8 @@
             <li><a href="#assignment3">作业三</a></li>
             <li><a href="#assignment4">作业四</a></li>
             <li><a href="#final">大作业</a></li>
+            <li><a href="#team">团队</a></li>
+            <li><a href="#process">制作过程</a></li>
         </ul>
         <div class="hamburger" id="hamburger">
             <span></span>
@@ -1022,6 +1294,18 @@
                     <i class="fas fa-hand-pointer" style="margin-right: 0.5rem;"></i>
                     鼠标悬停减慢速度
                 </p>
+            </div>
+        </div>
+        
+        <!-- Upload Area for Assignment 1 -->
+        <div class="upload-area" id="uploadArea1">
+            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+            <p class="upload-text">拖拽文件到此处或点击上传</p>
+            <p class="upload-hint">支持代码文件、图片、文档（最大10MB）</p>
+            <input type="file" id="fileInput1" multiple style="display: none;">
+            <div class="file-list" id="fileList1"></div>
+            <div class="upload-progress" id="progress1">
+                <div class="progress-bar" id="progressBar1"></div>
             </div>
         </div>
     </section>
@@ -1239,6 +1523,118 @@
         </div>
     </section>
 
+    <!-- Team Section -->
+    <section class="team-section fade-in" id="team">
+        <div class="section-header">
+            <h2 class="section-title">OUR TEAM</h2>
+            <h3 class="section-heading">团队介绍</h3>
+            <div class="section-line"></div>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-avatar">陈</div>
+                <h4 class="member-name">陈梓琦</h4>
+                <p class="member-role">团队成员</p>
+                <p class="member-bio">热爱创新与设计，专注于嵌入式开发和物联网技术。</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">王</div>
+                <h4 class="member-name">王琦琦</h4>
+                <p class="member-role">团队成员</p>
+                <p class="member-bio">擅长前端开发，追求完美的用户体验和界面设计。</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">李</div>
+                <h4 class="member-name">李琳</h4>
+                <p class="member-role">团队成员</p>
+                <p class="member-bio">对硬件编程充满热情，善于解决技术难题。</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">章</div>
+                <h4 class="member-name">章悦</h4>
+                <p class="member-role">团队成员</p>
+                <p class="member-bio">创意无限，负责项目的美术设计和视觉呈现。</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">朱</div>
+                <h4 class="member-name">朱诗瑶</h4>
+                <p class="member-role">团队成员</p>
+                <p class="member-bio">细心严谨，负责代码优化和系统测试。</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">何</div>
+                <h4 class="member-name">何昱璇</h4>
+                <p class="member-role">团队成员</p>
+                <p class="member-bio">逻辑思维强，专注于算法设计和数据处理。</p>
+            </div>
+            <div class="team-member">
+                <div class="member-avatar">徐</div>
+                <h4 class="member-name">徐思瑜</h4>
+                <p class="member-role">团队成员</p>
+                <p class="member-bio">沟通协调能力强，负责项目管理和文档编写。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section fade-in" id="process">
+        <div class="section-header">
+            <h2 class="section-title">DEVELOPMENT PROCESS</h2>
+            <h3 class="section-heading">制作过程</h3>
+            <div class="section-line"></div>
+        </div>
+        <div class="process-timeline">
+            <div class="process-item">
+                <div class="process-content">
+                    <div class="process-phase">阶段 1</div>
+                    <h4 class="process-title">需求分析与规划</h4>
+                    <p class="process-desc">明确网站目标用户和功能需求，制定详细的项目计划和时间表。确定采用圣罗兰风格的极简设计理念，打造高端艺术氛围。</p>
+                </div>
+                <div class="process-dot"></div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <div class="process-phase">阶段 2</div>
+                    <h4 class="process-title">设计与原型</h4>
+                    <p class="process-desc">完成网站的视觉设计，包括配色方案、字体选择和布局规划。使用Figma制作交互原型，确保用户体验流畅自然。</p>
+                </div>
+                <div class="process-dot"></div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <div class="process-phase">阶段 3</div>
+                    <h4 class="process-title">前端开发</h4>
+                    <p class="process-desc">使用HTML5、CSS3和JavaScript实现页面结构和样式。添加视频背景、鼠标光晕、滚动动画等高级特效，确保响应式设计。</p>
+                </div>
+                <div class="process-dot"></div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <div class="process-phase">阶段 4</div>
+                    <h4 class="process-title">交互功能实现</h4>
+                    <p class="process-desc">开发所有交互式模拟功能：流水灯动画、LED调光、环境监测、IoT数据上报等。确保每个功能都能真实演示课程所学内容。</p>
+                </div>
+                <div class="process-dot"></div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <div class="process-phase">阶段 5</div>
+                    <h4 class="process-title">测试与优化</h4>
+                    <p class="process-desc">在多种浏览器和设备上进行全面测试，修复兼容性问题。优化加载速度，压缩资源文件，提升用户体验。</p>
+                </div>
+                <div class="process-dot"></div>
+            </div>
+            <div class="process-item">
+                <div class="process-content">
+                    <div class="process-phase">阶段 6</div>
+                    <h4 class="process-title">部署与发布</h4>
+                    <p class="process-desc">配置GitHub Actions自动部署流程，将网站发布到GitHub Pages。编写完整的项目文档和使用说明，正式对外展示。</p>
+                </div>
+                <div class="process-dot"></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-left">
@@ -1254,6 +1650,7 @@
         </div>
     </footer>
 
+    <script src="upload.js"></script>
     <script>
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
