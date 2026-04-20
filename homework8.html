@@ -1,70 +1,382 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 2 | Aether Studio</title>
+    <title>Homework 1 | Aether Studio</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #000000; --bg-secondary: #0A0A0A;
-            --text-primary: #FFFFFF; --text-secondary: #999999;
-            --accent-purple: #B8A9FF; --border-light: rgba(255, 255, 255, 0.1);
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --accent-purple: #B8A9FF;
+            --border-light: rgba(255, 255, 255, 0.1);
             --success: #2ed573;
         }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; }
-        .navbar { position: fixed; top: 0; left: 0; width: 100%; padding: 2rem 4rem; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px); }
-        .logo { font-size: 1.3rem; font-weight: 300; letter-spacing: 0.3em; color: var(--text-primary); text-decoration: none; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
         .nav-menu { display: flex; list-style: none; gap: 3rem; }
-        .nav-menu a { color: var(--text-primary); text-decoration: none; font-size: 0.85rem; font-weight: 300; transition: color 0.3s ease; }
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            transition: color 0.3s ease;
+        }
         .nav-menu a:hover { color: var(--accent-purple); }
-        .homework-detail { padding: 100px 4rem 4rem; min-height: 100vh; max-width: 1000px; margin: 0 auto; }
-        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-purple); text-decoration: none; margin-bottom: 2rem; font-size: 0.9rem; transition: gap 0.3s ease; }
+        .homework-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 100px 4rem 4rem;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-purple);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: gap 0.3s ease;
+        }
         .back-link:hover { gap: 1rem; }
-        .homework-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border-light); }
-        .homework-number { font-size: 0.85rem; color: var(--accent-purple); margin-bottom: 0.5rem; }
-        .homework-title { font-size: 2.5rem; font-weight: 300; margin-bottom: 1rem; }
-        .homework-desc { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; }
-        .section { background: var(--bg-secondary); border: 1px solid var(--border-light); border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; }
-        .section-title { font-size: 1.3rem; font-weight: 400; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.8rem; }
+        .homework-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .homework-number {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+        }
+        .homework-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        .homework-desc {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        /* Markdown Content Section */
+        .markdown-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .markdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .markdown-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        .btn-copy {
+            padding: 0.5rem 1.2rem;
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-copy:hover {
+            background: var(--accent-purple);
+            color: var(--bg-primary);
+        }
+        .btn-copy.copied {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+        .markdown-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        .markdown-content h1, .markdown-content h2, .markdown-content h3,
+        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+            margin: 1.5rem 0 1rem;
+            font-weight: 400;
+            color: var(--accent-purple);
+        }
+        .markdown-content h1 { font-size: 2rem; }
+        .markdown-content h2 { font-size: 1.75rem; }
+        .markdown-content h3 { font-size: 1.5rem; }
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+        .markdown-content code {
+            background: rgba(184, 169, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-purple);
+            font-size: 0.9em;
+        }
+        .markdown-content pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--border-light);
+        }
+        .markdown-content pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-primary);
+        }
+        .markdown-content blockquote {
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .markdown-content ul, .markdown-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+        .markdown-content a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .markdown-content a:hover {
+            border-bottom-color: var(--accent-purple);
+        }
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .markdown-content th, .markdown-content td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            text-align: left;
+        }
+        .markdown-content th {
+            background: rgba(184, 169, 255, 0.1);
+            color: var(--accent-purple);
+        }
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: 2rem 0;
+        }
+        .section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
         .section-title i { color: var(--accent-purple); }
-        .upload-area { border: 2px dashed var(--border-light); border-radius: 8px; padding: 3rem 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; }
-        .upload-area:hover { border-color: var(--accent-purple); background: rgba(184, 169, 255, 0.05); }
-        .upload-area.dragover { border-color: var(--accent-purple); background: rgba(184, 169, 255, 0.1); }
-        .upload-icon { font-size: 3rem; color: var(--accent-purple); margin-bottom: 1rem; }
+        .upload-area {
+            border: 2px dashed var(--border-light);
+            border-radius: 8px;
+            padding: 3rem 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .upload-area:hover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.05);
+        }
+        .upload-area.dragover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.1);
+        }
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--accent-purple);
+            margin-bottom: 1rem;
+        }
         .upload-text { font-size: 1.1rem; margin-bottom: 0.5rem; }
         .upload-hint { font-size: 0.85rem; color: var(--text-secondary); }
         input[type="file"] { display: none; }
         .file-list { margin-top: 2rem; }
-        .file-item { display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-light); border-radius: 6px; margin-bottom: 0.8rem; animation: slideIn 0.3s ease; }
-        @keyframes slideIn { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            margin-bottom: 0.8rem;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
         .file-info { display: flex; align-items: center; gap: 1rem; }
         .file-icon { color: var(--accent-purple); font-size: 1.2rem; }
         .file-name { font-size: 0.9rem; }
         .file-size { font-size: 0.75rem; color: var(--text-secondary); }
-        .file-remove { background: none; border: none; color: var(--text-secondary); cursor: pointer; padding: 0.5rem; transition: color 0.3s ease; }
+        .file-remove {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+        }
         .file-remove:hover { color: #ff4757; }
-        .btn-submit { width: 100%; padding: 1rem; background: var(--accent-purple); color: var(--bg-primary); border: none; border-radius: 8px; font-size: 1rem; font-weight: 500; cursor: pointer; margin-top: 1.5rem; transition: all 0.3s ease; }
-        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3); }
-        .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-purple);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3);
+        }
+        .btn-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
         .submission-list { margin-top: 1.5rem; }
-        .submission-item { padding: 1.2rem; background: rgba(46, 213, 115, 0.05); border: 1px solid rgba(46, 213, 115, 0.2); border-radius: 8px; margin-bottom: 0.8rem; }
-        .submission-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .submission-item {
+            padding: 1.2rem;
+            background: rgba(46, 213, 115, 0.05);
+            border: 1px solid rgba(46, 213, 115, 0.2);
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+        .submission-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
         .submission-name { font-size: 0.9rem; font-weight: 400; }
-        .submission-status { display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: var(--success); }
-        .submission-time { font-size: 0.75rem; color: var(--text-secondary); }
-        .empty-state { text-align: center; padding: 3rem; color: var(--text-secondary); }
-        .empty-state i { font-size: 3rem; margin-bottom: 1rem; opacity: 0.3; }
-        footer { text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--border-light); color: var(--text-secondary); font-size: 0.85rem; }
+        .submission-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--success);
+        }
+        .submission-time {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
         @media (max-width: 768px) {
             .navbar { padding: 1.5rem 2rem; }
-            .nav-menu { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: rgba(0, 0, 0, 0.98); flex-direction: column; padding: 2rem; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+            }
             .nav-menu.active { display: flex; }
-            .hamburger { display: flex; flex-direction: column; cursor: pointer; gap: 5px; }
-            .hamburger span { width: 25px; height: 2px; background: var(--text-primary); }
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+            .hamburger span {
+                width: 25px;
+                height: 2px;
+                background: var(--text-primary);
+            }
             .homework-detail { padding: 100px 2rem 2rem; }
         }
     </style>
@@ -78,18 +390,48 @@
             <li><a href="homework.html">Daily homework</a></li>
             <li><a href="final.html">Finalwork</a></li>
         </ul>
-        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
     </nav>
 
     <div class="homework-detail">
-        <a href="homework.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Homework List</a>
+        <a href="homework.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Homework List
+        </a>
+
         <div class="homework-header">
             <p class="homework-number">HOMEWORK 08</p>
-            <h1 class="homework-title">LASER CUTTING & CNC</h1>
-            <p class="homework-desc">LED调光、电机控制、OLED屏幕显示。学习如何控制各种输出设备�?/p>
+            <h1 class="homework-title">Machine Design</h1>
+            <p class="homework-desc">
+                学习机器设计和自动化。
+            </p>
         </div>
+
+        <!-- Markdown Content Section -->
+        <div class="markdown-section">
+            <div class="markdown-header">
+                <h2 class="markdown-title">
+                    <i class="fas fa-file-alt" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
+                    Homework Content
+                </h2>
+                <button class="btn-copy" id="copyBtn" onclick="copyContent()">
+                    <i class="fas fa-copy"></i>
+                    <span>Copy</span>
+                </button>
+            </div>
+            <div class="markdown-content" id="markdownContent"></div>
+            <!-- Raw markdown for copying -->
+            <textarea id="rawMarkdown" style="display: none;"></textarea>
+        </div>
+
+        <!-- Submit Section -->
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-upload"></i> Submit Your Work</h2>
+            <h2 class="section-title">
+                <i class="fas fa-upload"></i>
+                Submit Your Work
+            </h2>
             <div class="upload-area" id="uploadArea">
                 <i class="fas fa-cloud-upload-alt upload-icon"></i>
                 <p class="upload-text">Drag & Drop files here or click to upload</p>
@@ -97,24 +439,40 @@
                 <input type="file" id="fileInput" multiple>
             </div>
             <div class="file-list" id="fileList"></div>
-            <button class="btn-submit" id="submitBtn" disabled><i class="fas fa-paper-plane"></i> Submit Files</button>
+            <button class="btn-submit" id="submitBtn" disabled>
+                <i class="fas fa-paper-plane"></i> Submit Files
+            </button>
         </div>
+
+        <!-- Submitted Files Section -->
         <div class="section">
-            <h2 class="section-title"><i class="fas fa-check-circle"></i> Submitted Files</h2>
+            <h2 class="section-title">
+                <i class="fas fa-check-circle"></i>
+                Submitted Files
+            </h2>
             <div id="submissionList" class="submission-list">
-                <div class="empty-state"><i class="fas fa-inbox"></i><p>No files submitted yet</p></div>
+                <div class="empty-state">
+                    <i class="fas fa-inbox"></i>
+                    <p>No files submitted yet</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer><p>&copy; 2026 Aether Studio. All rights reserved.</p></footer>
+    <footer>
+        <p>&copy; 2026 Aether Studio. All rights reserved.</p>
+    </footer>
 
     <script>
+        // Mobile menu
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('navMenu');
         hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
-        navMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navMenu.classList.remove('active')));
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('active'));
+        });
 
+        // File upload
         const uploadArea = document.getElementById('uploadArea');
         const fileInput = document.getElementById('fileInput');
         const fileList = document.getElementById('fileList');
@@ -123,14 +481,30 @@
         let selectedFiles = [];
 
         uploadArea.addEventListener('click', () => fileInput.click());
+
         fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
-        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.classList.add('dragover'); });
-        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
-        uploadArea.addEventListener('drop', (e) => { e.preventDefault(); uploadArea.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        });
 
         function handleFiles(files) {
             Array.from(files).forEach(file => {
-                if (file.size > 10 * 1024 * 1024) { alert(`File "${file.name}" exceeds 10MB limit`); return; }
+                if (file.size > 10 * 1024 * 1024) {
+                    alert(`File "${file.name}" exceeds 10MB limit`);
+                    return;
+                }
                 selectedFiles.push(file);
                 addFileToList(file);
             });
@@ -142,7 +516,18 @@
             const fileItem = document.createElement('div');
             fileItem.className = 'file-item';
             fileItem.id = fileId;
-            fileItem.innerHTML = `<div class="file-info"><i class="fas fa-file file-icon"></i><div><div class="file-name">${file.name}</div><div class="file-size">${formatSize(file.size)}</div></div></div><button class="file-remove" onclick="removeFile('${fileId}')"><i class="fas fa-times"></i></button>`;
+            fileItem.innerHTML = `
+                <div class="file-info">
+                    <i class="fas fa-file file-icon"></i>
+                    <div>
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${formatSize(file.size)}</div>
+                    </div>
+                </div>
+                <button class="file-remove" onclick="removeFile('${fileId}')">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
             fileList.appendChild(fileItem);
         }
 
@@ -155,50 +540,198 @@
             }
         }
 
-        function updateSubmitButton() { submitBtn.disabled = selectedFiles.length === 0; }
+        function updateSubmitButton() {
+            submitBtn.disabled = selectedFiles.length === 0;
+        }
 
         function formatSize(bytes) {
             if (bytes === 0) return '0 Bytes';
-            const k = 1024; const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
         }
 
         submitBtn.addEventListener('click', () => {
             if (selectedFiles.length === 0) return;
+
+            // Simulate submission
             selectedFiles.forEach(file => {
                 const submission = document.createElement('div');
                 submission.className = 'submission-item';
                 const now = new Date();
-                submission.innerHTML = `<div class="submission-header"><span class="submission-name"><i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>${file.name}</span><span class="submission-status"><i class="fas fa-check"></i>Submitted</span></div><p class="submission-time">${now.toLocaleString()}</p>`;
+                submission.innerHTML = `
+                    <div class="submission-header">
+                        <span class="submission-name">
+                            <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
+                            ${file.name}
+                        </span>
+                        <span class="submission-status">
+                            <i class="fas fa-check"></i>
+                            Submitted
+                        </span>
+                    </div>
+                    <p class="submission-time">${now.toLocaleString()}</p>
+                `;
+
+                // Remove empty state if exists
                 const emptyState = submissionList.querySelector('.empty-state');
                 if (emptyState) emptyState.remove();
+
                 submissionList.insertBefore(submission, submissionList.firstChild);
-                const key = 'homework8_submissions';
-                const submissions = JSON.parse(localStorage.getItem(key) || '[]');
-                submissions.unshift({ name: file.name, time: now.toLocaleString() });
-                localStorage.setItem(key, JSON.stringify(submissions));
             });
-            selectedFiles = []; fileList.innerHTML = ''; updateSubmitButton(); fileInput.value = '';
+
+            // Clear selected files
+            selectedFiles = [];
+            fileList.innerHTML = '';
+            updateSubmitButton();
+            fileInput.value = '';
+
+            // Show success message
             submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!';
             submitBtn.style.background = 'var(--success)';
-            setTimeout(() => { submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Files'; submitBtn.style.background = ''; }, 3000);
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Files';
+                submitBtn.style.background = '';
+            }, 3000);
         });
 
+        // Load submitted files from localStorage
         function loadSubmissions() {
-            const key = 'homework8_submissions';
+            const key = 'homework1_submissions';
             const submissions = JSON.parse(localStorage.getItem(key) || '[]');
+            
             if (submissions.length > 0) {
                 submissionList.innerHTML = '';
                 submissions.forEach(sub => {
                     const item = document.createElement('div');
                     item.className = 'submission-item';
-                    item.innerHTML = `<div class="submission-header"><span class="submission-name"><i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>${sub.name}</span><span class="submission-status"><i class="fas fa-check"></i>Submitted</span></div><p class="submission-time">${sub.time}</p>`;
+                    item.innerHTML = `
+                        <div class="submission-header">
+                            <span class="submission-name">
+                                <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
+                                ${sub.name}
+                            </span>
+                            <span class="submission-status">
+                                <i class="fas fa-check"></i>
+                                Submitted
+                            </span>
+                        </div>
+                        <p class="submission-time">${sub.time}</p>
+                    `;
                     submissionList.appendChild(item);
                 });
             }
         }
+
+        // Save submission to localStorage
+        function saveSubmission(fileName) {
+            const key = 'homework1_submissions';
+            const submissions = JSON.parse(localStorage.getItem(key) || '[]');
+            submissions.unshift({
+                name: fileName,
+                time: new Date().toLocaleString()
+            });
+            localStorage.setItem(key, JSON.stringify(submissions));
+        }
+
+        // Override submit to save to localStorage
+        const originalSubmit = submitBtn.onclick;
+        submitBtn.addEventListener('click', () => {
+            selectedFiles.forEach(file => saveSubmission(file.name));
+        }, true);
+
         loadSubmissions();
+
+        // Markdown Content - Edit your homework content here
+        const homeworkContent = `
+# Homework 8: Machine Design
+
+## Overview
+
+Designing and building automated machines.
+
+## Project: CNC Plotter
+
+Built a 2-axis CNC plotter from scratch.
+
+### Components
+
+- **Frame:** Aluminum extrusion
+- **Motors:** NEMA 17 stepper motors
+- **Controller:** Arduino + GRBL
+- **Belt:** GT2 timing belt
+
+### Specifications
+
+- Working area: 300x200mm
+- Precision: ±0.1mm
+- Speed: 500mm/min
+
+## Challenges
+
+- Belt tension adjustment
+- Motor calibration
+- G-code interpretation
+
+> Successfully built a functional CNC machine.
+
+**Deadline:** End of Week 8
+        `;
+
+        // Render markdown content
+        const markdownContent = document.getElementById('markdownContent');
+        const rawMarkdown = document.getElementById('rawMarkdown');
+        
+        if (marked) {
+            // Configure marked options
+            marked.setOptions({
+                breaks: true,
+                gfm: true
+            });
+            
+            // Render markdown to HTML
+            markdownContent.innerHTML = marked.parse(homeworkContent);
+        } else {
+            // Fallback if marked.js fails to load
+            markdownContent.innerHTML = '<p style="color: var(--text-secondary);">Content loading...</p>';
+        }
+        
+        // Store raw markdown for copying
+        rawMarkdown.value = homeworkContent.trim();
+
+        // Copy content function
+        function copyContent() {
+            const copyBtn = document.getElementById('copyBtn');
+            const textToCopy = rawMarkdown.value;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('span').textContent = 'Copied!';
+                copyBtn.querySelector('i').className = 'fas fa-check';
+                
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('span').textContent = 'Copy';
+                    copyBtn.querySelector('i').className = 'fas fa-copy';
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('span').textContent = 'Copied!';
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('span').textContent = 'Copy';
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>

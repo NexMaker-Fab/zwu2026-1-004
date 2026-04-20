@@ -7,6 +7,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -90,6 +91,133 @@
             font-size: 1rem;
             color: var(--text-secondary);
             line-height: 1.8;
+        }
+        /* Markdown Content Section */
+        .markdown-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .markdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .markdown-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+        .btn-copy {
+            padding: 0.5rem 1.2rem;
+            background: transparent;
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-copy:hover {
+            background: var(--accent-purple);
+            color: var(--bg-primary);
+        }
+        .btn-copy.copied {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+        .markdown-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        .markdown-content h1, .markdown-content h2, .markdown-content h3,
+        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
+            margin: 1.5rem 0 1rem;
+            font-weight: 400;
+            color: var(--accent-purple);
+        }
+        .markdown-content h1 { font-size: 2rem; }
+        .markdown-content h2 { font-size: 1.75rem; }
+        .markdown-content h3 { font-size: 1.5rem; }
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+        .markdown-content code {
+            background: rgba(184, 169, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-purple);
+            font-size: 0.9em;
+        }
+        .markdown-content pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--border-light);
+        }
+        .markdown-content pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-primary);
+        }
+        .markdown-content blockquote {
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .markdown-content ul, .markdown-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+        .markdown-content a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+        .markdown-content a:hover {
+            border-bottom-color: var(--accent-purple);
+        }
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .markdown-content th, .markdown-content td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            text-align: left;
+        }
+        .markdown-content th {
+            background: rgba(184, 169, 255, 0.1);
+            color: var(--accent-purple);
+        }
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: 2rem 0;
         }
         .section {
             background: var(--bg-secondary);
@@ -280,6 +408,23 @@
                 项目规划与时间管理。学习如何有效地管理项目进度，制定合理的时间计划，
                 并确保按时完成任务。
             </p>
+        </div>
+
+        <!-- Markdown Content Section -->
+        <div class="markdown-section">
+            <div class="markdown-header">
+                <h2 class="markdown-title">
+                    <i class="fas fa-file-alt" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
+                    Homework Content
+                </h2>
+                <button class="btn-copy" id="copyBtn" onclick="copyContent()">
+                    <i class="fas fa-copy"></i>
+                    <span>Copy</span>
+                </button>
+            </div>
+            <div class="markdown-content" id="markdownContent"></div>
+            <!-- Raw markdown for copying -->
+            <textarea id="rawMarkdown" style="display: none;"></textarea>
         </div>
 
         <!-- Submit Section -->
@@ -498,6 +643,99 @@
         }, true);
 
         loadSubmissions();
+
+        // Markdown Content - Edit your homework content here
+        const homeworkContent = `
+# Homework 1: Project Management
+
+## Overview
+
+This assignment focuses on project planning and time management skills.
+
+## Requirements
+
+1. **Create a project plan** for your Fab Academy journey
+2. **Set milestones** for each week
+3. **Identify potential risks** and mitigation strategies
+
+## Key Concepts
+
+> Effective project management is the key to successful fabrication.
+
+### Tools Used
+
+- Gantt Charts
+- Kanban Boards
+- Time Tracking
+
+### Timeline
+
+| Week | Task | Status |
+|------|------|--------|
+| 1 | Project Proposal | \u2705 Completed |
+| 2 | Design Phase | \u274c Pending |
+| 3 | Prototyping | \u23f3 In Progress |
+
+## Submission
+
+Please submit your project plan document in PDF format.
+
+**Deadline:** End of Week 1
+        `;
+
+        // Render markdown content
+        const markdownContent = document.getElementById('markdownContent');
+        const rawMarkdown = document.getElementById('rawMarkdown');
+        
+        if (marked) {
+            // Configure marked options
+            marked.setOptions({
+                breaks: true,
+                gfm: true
+            });
+            
+            // Render markdown to HTML
+            markdownContent.innerHTML = marked.parse(homeworkContent);
+        } else {
+            // Fallback if marked.js fails to load
+            markdownContent.innerHTML = '<p style="color: var(--text-secondary);">Content loading...</p>';
+        }
+        
+        // Store raw markdown for copying
+        rawMarkdown.value = homeworkContent.trim();
+
+        // Copy content function
+        function copyContent() {
+            const copyBtn = document.getElementById('copyBtn');
+            const textToCopy = rawMarkdown.value;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('span').textContent = 'Copied!';
+                copyBtn.querySelector('i').className = 'fas fa-check';
+                
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('span').textContent = 'Copy';
+                    copyBtn.querySelector('i').className = 'fas fa-copy';
+                }, 2000);
+            }).catch(err => {
+                // Fallback for older browsers
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                copyBtn.classList.add('copied');
+                copyBtn.querySelector('span').textContent = 'Copied!';
+                setTimeout(() => {
+                    copyBtn.classList.remove('copied');
+                    copyBtn.querySelector('span').textContent = 'Copy';
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
