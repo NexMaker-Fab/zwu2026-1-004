@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陈梓琦 | Chen Ziqi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --blue-muted: #7BA7BC;
+            --green-muted: #8FAE8A;
+            --cream: #F5F1E8;
+            --charcoal: #2C2C2C;
+            --sand: #E8DFD0;
+            --dusty-rose: #C9A9A6;
+        }
+
+        body {
+            font-family: 'Noto Serif SC', serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            line-height: 1.8;
+            overflow-x: hidden;
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="%237BA7BC" opacity="0.6"/></svg>') 12 12, auto;
+        }
+
+        /* Grainy Texture Overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Navigation */
+        .back-nav {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 100;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-family: 'Space Mono', monospace;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border: 1px solid transparent;
+        }
+
+        .back-link:hover {
+            border-color: var(--blue-muted);
+            transform: translateX(-5px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Avatar with quirky frame */
+        .avatar-container {
+            position: relative;
+            justify-self: center;
+        }
+
+        .avatar-frame {
+            width: 280px;
+            height: 350px;
+            position: relative;
+            transform: rotate(-3deg);
+            transition: transform 0.5s ease;
+        }
+
+        .avatar-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .avatar-frame::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 2px solid var(--blue-muted);
+            border-radius: 20px;
+            transform: rotate(6deg);
+            z-index: -1;
+        }
+
+        .avatar-frame::after {
+            content: '✦';
+            position: absolute;
+            top: -30px;
+            right: -20px;
+            font-size: 2rem;
+            color: var(--green-muted);
+            animation: twinkle 3s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            filter: sepia(20%) saturate(80%);
+            transition: filter 0.5s ease;
+        }
+
+        .avatar-frame:hover .avatar {
+            filter: sepia(0%) saturate(100%);
+        }
+
+        /* Intro Text */
+        .intro {
+            position: relative;
+        }
+
+        .name-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--blue-muted);
+            margin-bottom: 1rem;
+            letter-spacing: 0.2em;
+        }
+
+        .main-name {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .main-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-muted), var(--green-muted));
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.6s ease;
+        }
+
+        .main-name:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--green-muted);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .bio-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--charcoal);
+            opacity: 0.85;
+            position: relative;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.4);
+            border-left: 3px solid var(--dusty-rose);
+            border-radius: 0 10px 10px 0;
+            cursor: text;
+            user-select: all;
+            transition: all 0.3s ease;
+        }
+
+        .bio-text:hover {
+            background: rgba(255, 255, 255, 0.7);
+            transform: translateX(5px);
+        }
+
+        .bio-text::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            font-size: 4rem;
+            color: var(--dusty-rose);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        /* Easter Egg Hint */
+        .easter-egg {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            color: var(--blue-muted);
+            opacity: 0.6;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .easter-egg:hover {
+            opacity: 1;
+        }
+
+        /* Floating Elements */
+        .floating-shape {
+            position: absolute;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .shape-1 {
+            top: 10%;
+            right: 5%;
+            width: 100px;
+            height: 100px;
+            border: 3px solid var(--blue-muted);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .shape-2 {
+            bottom: 15%;
+            left: 8%;
+            width: 80px;
+            height: 80px;
+            background: var(--green-muted);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        /* Works Section */
+        .works-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::before {
+            content: '—';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--blue-muted);
+        }
+
+        .section-title::after {
+            content: '—';
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--green-muted);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .work-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+        }
+
+        .work-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 15px 40px rgba(123, 167, 188, 0.2);
+        }
+
+        .work-card:nth-child(even):hover {
+            transform: translateY(-10px) rotate(1deg);
+        }
+
+        .work-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .work-card:hover .work-image {
+            transform: scale(1.1);
+        }
+
+        .work-content {
+            padding: 1.5rem;
+        }
+
+        .work-title {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .work-desc {
+            font-size: 0.9rem;
+            color: var(--charcoal);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        .work-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--sand);
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'Space Mono', monospace;
+            color: var(--charcoal);
+            transition: all 0.3s ease;
+        }
+
+        .tag:hover {
+            background: var(--blue-muted);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(123, 167, 188, 0.1), rgba(143, 174, 138, 0.1));
+        }
+
+        .quote-text {
+            font-size: 1.8rem;
+            font-weight: 300;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .quote-text::before,
+        .quote-text::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--blue-muted);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .quote-text::before {
+            top: -30px;
+            left: -40px;
+        }
+
+        .quote-text::after {
+            bottom: -60px;
+            right: -40px;
+        }
+
+        .quote-author {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--green-muted);
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border: 2px solid var(--charcoal);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--blue-muted);
+            border-color: var(--blue-muted);
+            color: white;
+            transform: rotate(360deg) scale(1.1);
+        }
+
+        .footer-text {
+            font-size: 0.85rem;
+            color: var(--charcoal);
+            opacity: 0.6;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .avatar-frame {
+                width: 220px;
+                height: 280px;
+            }
+
+            .main-name {
+                font-size: 2.5rem;
+            }
+
+            .works-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .quote-text {
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Scroll Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Back Navigation -->
+    <nav class="back-nav">
+        <a href="team.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Team</span>
+        </a>
+    </nav>
+
+    <!-- Floating Shapes -->
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="avatar-container reveal">
+                <div class="avatar-frame">
+                    <!-- 替换这里的头像图片 -->
+                    <img src="https://via.placeholder.com/280x350/7BA7BC/FFFFFF?text=Your+Photo" alt="陈梓琦" class="avatar">
+                </div>
+            </div>
+
+            <div class="intro reveal">
+                <div class="name-tag">HELLO, I'M</div>
+                <h1 class="main-name">陈梓琦</h1>
+                <p class="subtitle">Chen Ziqi · 数字游民 / 代码诗人</p>
+                
+                <div class="bio-text">
+                    热爱用代码编织梦境，在逻辑与创意之间寻找平衡点。<br><br>
+                    喜欢深夜写bug，清晨改bug，周而复始，乐此不疲。<br><br>
+                    相信技术应该像诗一样优雅，像咖啡一样温暖。☕
+                </div>
+
+                <div class="easter-egg">
+                    🎯 提示：试试点击上面的文字，或者把鼠标悬停在名字上~
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Works Section -->
+    <section class="works-section">
+        <h2 class="section-title reveal">精选作品</h2>
+        
+        <div class="works-grid">
+            <!-- 作品卡片 1 -->
+            <article class="work-card">
+                <img src="https://via.placeholder.com/400x220/8FAE8A/FFFFFF?text=Project+1" alt="项目1" class="work-image">
+                <div class="work-content">
+                    <h3 class="work-title">智能物联网机器人</h3>
+                    <p class="work-desc">结合ESP32和传感器的智能家居控制系统，支持语音控制和远程监控。</p>
+                    <div class="work-tags">
+                        <span class="tag">IoT</span>
+                        <span class="tag">Arduino</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 作品卡片 2 -->
+            <article class="work-card">
+                <img src="https://via.placeholder.com/400x220/7BA7BC/FFFFFF?text=Project+2" alt="项目2" class="work-image">
+                <div class="work-content">
+                    <h3 class="work-title">情感交互装置</h3>
+                    <p class="work-desc">通过面部识别和LED矩阵实现的情感表达艺术装置。</p>
+                    <div class="work-tags">
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Art</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 作品卡片 3 -->
+            <article class="work-card">
+                <img src="https://via.placeholder.com/400x220/C9A9A6/FFFFFF?text=Project+3" alt="项目3" class="work-image">
+                <div class="work-content">
+                    <h3 class="work-title">3D打印创新设计</h3>
+                    <p class="work-desc">参数化设计的可变形结构，探索增材制造的可能性。</p>
+                    <div class="work-tags">
+                        <span class="tag">3D Printing</span>
+                        <span class="tag">CAD</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 添加更多作品卡片... -->
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="quote-section reveal">
+        <blockquote class="quote-text">
+            代码是写给机器的情书，<br>
+            而bug是它调皮的回信。
+        </blockquote>
+        <p class="quote-author">— 某位不愿透露姓名的程序员</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#" class="social-link" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="social-link" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="#" class="social-link" title="WeChat">
+                <i class="fab fa-weixin"></i>
+            </a>
+        </div>
+        <p class="footer-text">© 2026 陈梓琦 · Made with ☕ and 💻</p>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all reveal elements
+        document.querySelectorAll('.reveal, .work-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Easter Egg: Click on bio text
+        const bioText = document.querySelector('.bio-text');
+        let clickCount = 0;
+        
+        bioText.addEventListener('click', () => {
+            clickCount++;
+            if (clickCount === 5) {
+                alert('🎉 恭喜你发现了彩蛋！\n\n"人生就像编程，充满了未知的bug和意外的惊喜。"');
+                clickCount = 0;
+            }
+        });
+
+        // Random floating animation delay
+        document.querySelectorAll('.floating-shape').forEach(shape => {
+            shape.style.animationDelay = Math.random() * 5 + 's';
+        });
+
+        // Smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
