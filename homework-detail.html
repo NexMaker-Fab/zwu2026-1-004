@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework Detail | Aether Studio</title>
+    
+    <!-- Cache Control -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --accent-purple: #B8A9FF;
+            --border-light: rgba(255, 255, 255, 0.1);
+            --success: #2ed573;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Detail Page */
+        .detail-page {
+            padding-top: 100px;
+            min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 4rem;
+            padding-right: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-purple);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            transition: gap 0.3s ease;
+        }
+
+        .back-link:hover {
+            gap: 1rem;
+        }
+
+        .homework-header {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .homework-number {
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .homework-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        /* Editor Toggle */
+        .editor-toggle {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-toggle {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-toggle:hover {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple);
+        }
+
+        .btn-toggle.active {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: var(--bg-primary);
+        }
+
+        /* Two Column Layout */
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            min-height: 600px;
+        }
+
+        .editor-container.preview-only {
+            grid-template-columns: 1fr;
+        }
+
+        .editor-container.edit-only {
+            grid-template-columns: 1fr;
+        }
+
+        /* Markdown Editor */
+        .markdown-editor {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .editor-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #markdownInput {
+            width: 100%;
+            min-height: 550px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 1.5rem;
+            color: var(--text-primary);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            resize: vertical;
+            outline: none;
+        }
+
+        #markdownInput:focus {
+            border-color: var(--accent-purple);
+        }
+
+        /* Preview Panel */
+        .preview-panel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 2rem;
+            overflow-y: auto;
+            max-height: 650px;
+        }
+
+        .preview-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Markdown Content Styles */
+        .markdown-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .markdown-content h1, 
+        .markdown-content h2, 
+        .markdown-content h3,
+        .markdown-content h4, 
+        .markdown-content h5, 
+        .markdown-content h6 {
+            margin: 1.5rem 0 1rem;
+            font-weight: 400;
+            color: var(--accent-purple);
+        }
+
+        .markdown-content h1 { font-size: 2rem; }
+        .markdown-content h2 { font-size: 1.75rem; }
+        .markdown-content h3 { font-size: 1.5rem; }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content code {
+            background: rgba(184, 169, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-purple);
+            font-size: 0.9em;
+        }
+
+        .markdown-content pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--border-light);
+        }
+
+        .markdown-content pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-primary);
+        }
+
+        .markdown-content blockquote {
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .markdown-content ul, 
+        .markdown-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .markdown-content a:hover {
+            border-bottom-color: var(--accent-purple);
+        }
+
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .markdown-content th, 
+        .markdown-content td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .markdown-content th {
+            background: rgba(184, 169, 255, 0.1);
+            color: var(--accent-purple);
+        }
+
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: 2rem 0;
+        }
+
+        /* Save Button */
+        .save-section {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-save {
+            padding: 1rem 2rem;
+            background: var(--accent-purple);
+            border: none;
+            color: var(--bg-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3);
+        }
+
+        .btn-save.saved {
+            background: var(--success);
+        }
+
+        .btn-reset {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-reset:hover {
+            border-color: #ff4757;
+            color: #ff4757;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+                flex-direction: column;
+                cursor: pointer;
+                gap: 5px;
+            }
+
+            .hamburger span {
+                width: 25px;
+                height: 2px;
+                background: var(--text-primary);
+                transition: all 0.3s ease;
+            }
+
+            .detail-page {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .editor-container {
+                grid-template-columns: 1fr;
+            }
+
+            .homework-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="logo">AETHER</a>
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About US</a></li>
+            <li><a href="homework.html">Daily homework</a></li>
+            <li><a href="final.html">Finalwork</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Detail Page -->
+    <div class="detail-page">
+        <a href="homework.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Homework List
+        </a>
+
+        <div class="homework-header">
+            <p class="homework-number" id="homeworkNumber">HOMEWORK 01</p>
+            <h1 class="homework-title" id="homeworkTitle">Loading...</h1>
+        </div>
+
+        <!-- View Mode Toggle -->
+        <div class="editor-toggle">
+            <button class="btn-toggle active" onclick="setViewMode('split')" id="btnSplit">
+                <i class="fas fa-columns"></i>
+                Split View
+            </button>
+            <button class="btn-toggle" onclick="setViewMode('preview')" id="btnPreview">
+                <i class="fas fa-eye"></i>
+                Preview Only
+            </button>
+            <button class="btn-toggle" onclick="setViewMode('edit')" id="btnEdit">
+                <i class="fas fa-edit"></i>
+                Edit Only
+            </button>
+        </div>
+
+        <!-- Editor & Preview -->
+        <div class="editor-container" id="editorContainer">
+            <!-- Markdown Editor -->
+            <div class="markdown-editor" id="editorPanel">
+                <div class="editor-label">
+                    <i class="fas fa-pen"></i>
+                    Markdown Editor
+                </div>
+                <textarea id="markdownInput" placeholder="Type your Markdown here..."></textarea>
+            </div>
+
+            <!-- Preview Panel -->
+            <div class="preview-panel" id="previewPanel">
+                <div class="preview-label">
+                    <i class="fas fa-eye"></i>
+                    Live Preview
+                </div>
+                <div class="markdown-content" id="previewContent"></div>
+            </div>
+        </div>
+
+        <!-- Save Section -->
+        <div class="save-section">
+            <button class="btn-reset" onclick="resetContent()">
+                <i class="fas fa-undo"></i> Reset
+            </button>
+            <button class="btn-save" onclick="saveContent()" id="saveBtn">
+                <i class="fas fa-save"></i> Save Changes
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aether Studio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Configure marked
+        marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
+
+        // Get homework ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const homeworkId = urlParams.get('id') || '1';
+
+        // Default content for each homework
+        const defaultContents = {
+            '1': `# Project Management
+
+## Overview
+
+Learn project planning and time management skills.
+
+## Key Points
+
+- Create project timeline
+- Set milestones
+- Risk assessment
+
+## Tools
+
+- Gantt Charts
+- Kanban Boards
+- Time tracking software
+
+> Good planning is half the battle.`,
+            
+            '2': `# Arduino Output
+
+## Overview
+
+Control various output devices with Arduino.
+
+## Components
+
+- LED (PWM control)
+- Buzzer (tone generation)
+- Servo motor
+- OLED display
+
+## Code Example
+
+\`\`\`cpp
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  analogWrite(LED_PIN, 128);
+  delay(1000);
+}
+\`\`\`
+
+## Results
+
+Successfully controlled multiple output devices.`,
+            
+            '3': `# Arduino Input
+
+## Overview
+
+Read signals from sensors and input devices.
+
+## Sensors Used
+
+- DHT11 (Temperature & Humidity)
+- LDR (Light sensor)
+- Push button
+- Potentiometer
+
+## Key Concepts
+
+1. Analog vs Digital inputs
+2. Pull-up resistors
+3. Debouncing techniques
+
+## Code Snippet
+
+\`\`\`cpp
+int value = analogRead(A0);
+float voltage = value * (5.0 / 1023.0);
+\`\`\``,
+            
+            '4': `# Interface Application Program
+
+## Overview
+
+Build GUI applications that communicate with hardware.
+
+## Technologies
+
+- **Processing** - Visual programming
+- **Python** - PySerial communication
+- **Web** - HTML/JS interfaces
+
+## Project: Serial Monitor
+
+Created custom interface for real-time data visualization.
+
+### Features
+
+- Real-time graphing
+- Data logging
+- Custom controls
+
+\`\`\`python
+import serial
+ser = serial.Serial('COM3', 9600)
+data = ser.readline().decode().strip()
+print(f"Sensor: {data}")
+\`\`\``,
+            
+            '5': `# CAD Design
+
+## Overview
+
+3D modeling and design fundamentals.
+
+## Software
+
+- Fusion 360
+- Blender
+- FreeCAD
+
+## Projects
+
+1. Mechanical parts design
+2. Enclosure modeling
+3. Assembly drawings
+
+## Export Formats
+
+- STL (3D printing)
+- STEP (Manufacturing)
+- DXF (Laser cutting)
+
+> Precision is key in CAD design.`,
+            
+            '6': `# Material and Tool
+
+## Overview
+
+Understanding materials and proper tool usage.
+
+## Materials
+
+### Plastics
+- PLA, PETG, ABS
+- Acrylic
+- Polycarbonate
+
+### Metals
+- Aluminum
+- Steel
+- Copper
+
+## Tools
+
+- Calipers
+- Multimeter
+- Soldering iron
+- Hand tools
+
+## Safety
+
+Always wear appropriate PPE and follow safety guidelines.`,
+            
+            '7': `# 3D Printing
+
+## Overview
+
+Additive manufacturing techniques.
+
+## Printer Specs
+
+- **Model:** Prusa i3 MK3S+
+- **Materials:** PLA, PETG
+- **Layer Height:** 0.2mm
+- **Infill:** 20%
+
+## Process
+
+1. Design in CAD
+2. Export as STL
+3. Slice with Cura
+4. Print and post-process
+
+## Tips
+
+- Proper bed leveling
+- Correct temperature settings
+- Support structures when needed`,
+            
+            '8': `# Laser Cutting & CNC
+
+## Overview
+
+Subtractive manufacturing methods.
+
+## Laser Cutter
+
+- **Power:** 60W CO2 laser
+- **Materials:** Wood, acrylic, leather
+- **Precision:** ±0.1mm
+
+## CNC Router
+
+- **Axes:** 3-axis (X, Y, Z)
+- **Bit sizes:** 3mm, 6mm
+- **Materials:** Wood, foam, soft metals
+
+## Design Considerations
+
+- Kerf compensation
+- Tab placement
+- Tool path optimization
+
+> Design for manufacturability.`,
+            
+            '9': `# IoT and Interaction
+
+## Overview
+
+Building connected devices and IoT systems.
+
+## Communication Protocols
+
+- WiFi (ESP8266/ESP32)
+- Bluetooth (BLE)
+- LoRa
+- MQTT
+
+## Project: Smart Monitor
+
+WiFi-enabled sensor system with cloud connectivity.
+
+### Tech Stack
+
+\`\`\`
+Hardware: ESP32 + DHT22
+Backend: Node.js + MongoDB
+Protocol: MQTT
+Frontend: React Native
+\`\`\`
+
+### Features
+
+- Real-time monitoring
+- Cloud dashboard
+- Email alerts
+- Historical data`
+        };
+
+        // Homework info
+        const homeworkInfo = {
+            '1': { number: 'HOMEWORK 01', title: 'Project Management' },
+            '2': { number: 'HOMEWORK 02', title: 'Arduino Output' },
+            '3': { number: 'HOMEWORK 03', title: 'Arduino Input' },
+            '4': { number: 'HOMEWORK 04', title: 'Interface Application Program' },
+            '5': { number: 'HOMEWORK 05', title: 'CAD' },
+            '6': { number: 'HOMEWORK 06', title: 'Material and Tool' },
+            '7': { number: 'HOMEWORK 07', title: '3D Printer' },
+            '8': { number: 'HOMEWORK 08', title: 'LASER CUTTING & CNC' },
+            '9': { number: 'HOMEWORK 09', title: 'IOT AND INTERACTION' }
+        };
+
+        // Elements
+        const markdownInput = document.getElementById('markdownInput');
+        const previewContent = document.getElementById('previewContent');
+        const editorContainer = document.getElementById('editorContainer');
+        const editorPanel = document.getElementById('editorPanel');
+        const previewPanel = document.getElementById('previewPanel');
+        const saveBtn = document.getElementById('saveBtn');
+
+        // Load content
+        function loadContent() {
+            const info = homeworkInfo[homeworkId];
+            if (info) {
+                document.getElementById('homeworkNumber').textContent = info.number;
+                document.getElementById('homeworkTitle').textContent = info.title;
+            }
+
+            // Try to load from localStorage first
+            const saved = localStorage.getItem(`homework_${homeworkId}`);
+            const content = saved || defaultContents[homeworkId] || '# Start writing...';
+            
+            markdownInput.value = content;
+            updatePreview();
+        }
+
+        // Update preview
+        function updatePreview() {
+            const markdown = markdownInput.value;
+            previewContent.innerHTML = marked.parse(markdown);
+        }
+
+        // Real-time preview
+        markdownInput.addEventListener('input', updatePreview);
+
+        // View mode
+        function setViewMode(mode) {
+            // Update buttons
+            document.querySelectorAll('.btn-toggle').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            if (mode === 'split') {
+                document.getElementById('btnSplit').classList.add('active');
+                editorContainer.className = 'editor-container';
+                editorPanel.style.display = 'block';
+                previewPanel.style.display = 'block';
+            } else if (mode === 'preview') {
+                document.getElementById('btnPreview').classList.add('active');
+                editorContainer.className = 'editor-container preview-only';
+                editorPanel.style.display = 'none';
+                previewPanel.style.display = 'block';
+            } else if (mode === 'edit') {
+                document.getElementById('btnEdit').classList.add('active');
+                editorContainer.className = 'editor-container edit-only';
+                editorPanel.style.display = 'block';
+                previewPanel.style.display = 'none';
+            }
+        }
+
+        // Save content
+        function saveContent() {
+            const content = markdownInput.value;
+            localStorage.setItem(`homework_${homeworkId}`, content);
+            
+            // Show saved state
+            saveBtn.classList.add('saved');
+            saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+            
+            setTimeout(() => {
+                saveBtn.classList.remove('saved');
+                saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+            }, 2000);
+        }
+
+        // Reset content
+        function resetContent() {
+            if (confirm('Reset to default content? This will discard all changes.')) {
+                localStorage.removeItem(`homework_${homeworkId}`);
+                loadContent();
+            }
+        }
+
+        // Initialize
+        loadContent();
+    </script>
+</body>
+</html>
