@@ -14,6 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -82,12 +83,13 @@
 
         /* Homework Page */
         .homework-page {
-            padding-top: 100px;
+            padding-top: 120px;
             min-height: 100vh;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             padding-left: 4rem;
             padding-right: 4rem;
+            padding-bottom: 4rem;
         }
 
         .page-title {
@@ -98,11 +100,7 @@
             margin-bottom: 4rem;
         }
 
-        .homework-list {
-            list-style: none;
-            margin-bottom: 4rem;
-        }
-
+        /* Homework Item */
         .homework-item {
             background: var(--bg-secondary);
             border: 1px solid var(--border-light);
@@ -114,49 +112,178 @@
 
         .homework-item:hover {
             border-color: var(--accent-purple);
-            transform: translateX(5px);
         }
 
-        .homework-link {
-            display: block;
-            padding: 2rem;
-            text-decoration: none;
-            color: inherit;
+        .homework-item.active {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 30px rgba(184, 169, 255, 0.1);
         }
 
+        /* Homework Header (Clickable) */
         .homework-header {
+            padding: 2rem;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .homework-header:hover {
+            background: rgba(184, 169, 255, 0.05);
+        }
+
+        .homework-info {
+            flex: 1;
         }
 
         .homework-number {
             font-size: 0.85rem;
             color: var(--accent-purple);
             font-weight: 400;
+            margin-bottom: 0.5rem;
         }
 
         .homework-title {
             font-size: 1.3rem;
             font-weight: 400;
-            margin-bottom: 0.5rem;
         }
 
-        .homework-desc {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-        }
-
-        .homework-arrow {
+        .homework-toggle {
             font-size: 1.5rem;
             color: var(--accent-purple);
             transition: transform 0.3s ease;
         }
 
-        .homework-item:hover .homework-arrow {
-            transform: translateX(5px);
+        .homework-item.active .homework-toggle {
+            transform: rotate(180deg);
+        }
+
+        /* Markdown Content Area */
+        .homework-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .homework-item.active .homework-content {
+            max-height: 5000px;
+            opacity: 1;
+        }
+
+        .markdown-wrapper {
+            padding: 0 2rem 2rem;
+            border-top: 1px solid var(--border-light);
+        }
+
+        /* Markdown Styles */
+        .markdown-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .markdown-content h1, 
+        .markdown-content h2, 
+        .markdown-content h3,
+        .markdown-content h4, 
+        .markdown-content h5, 
+        .markdown-content h6 {
+            margin: 1.5rem 0 1rem;
+            font-weight: 400;
+            color: var(--accent-purple);
+        }
+
+        .markdown-content h1 { font-size: 1.8rem; }
+        .markdown-content h2 { font-size: 1.5rem; }
+        .markdown-content h3 { font-size: 1.2rem; }
+
+        .markdown-content p {
+            margin-bottom: 1rem;
+        }
+
+        .markdown-content code {
+            background: rgba(184, 169, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--accent-purple);
+            font-size: 0.9em;
+        }
+
+        .markdown-content pre {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid var(--border-light);
+        }
+
+        .markdown-content pre code {
+            background: transparent;
+            padding: 0;
+            color: var(--text-primary);
+        }
+
+        .markdown-content blockquote {
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .markdown-content ul, 
+        .markdown-content ol {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .markdown-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .markdown-content a {
+            color: var(--accent-purple);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .markdown-content a:hover {
+            border-bottom-color: var(--accent-purple);
+        }
+
+        .markdown-content img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .markdown-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .markdown-content th, 
+        .markdown-content td {
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            text-align: left;
+        }
+
+        .markdown-content th {
+            background: rgba(184, 169, 255, 0.1);
+            color: var(--accent-purple);
+        }
+
+        .markdown-content hr {
+            border: none;
+            border-top: 1px solid var(--border-light);
+            margin: 2rem 0;
         }
 
         /* Footer */
@@ -208,6 +335,10 @@
                 padding-left: 2rem;
                 padding-right: 2rem;
             }
+
+            .page-title {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -232,124 +363,7 @@
     <div class="homework-page">
         <h1 class="page-title">DAILY HOMEWORK</h1>
         
-        <ul class="homework-list">
-            <li class="homework-item">
-                <a href="homework1.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">01</span>
-                            <h3 class="homework-title">Project Management</h3>
-                            <p class="homework-desc">项目规划与时间管理</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework2.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">02</span>
-                            <h3 class="homework-title">Arduino Output</h3>
-                            <p class="homework-desc">LED调光、电机控制、OLED显示</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework3.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">03</span>
-                            <h3 class="homework-title">Arduino Input</h3>
-                            <p class="homework-desc">温湿度传感器、光敏电阻、按键输入</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework4.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">04</span>
-                            <h3 class="homework-title">Interface Application Program</h3>
-                            <p class="homework-desc">串口通信、数据可视化</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework5.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">05</span>
-                            <h3 class="homework-title">CAD</h3>
-                            <p class="homework-desc">3D建模与设计</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework6.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">06</span>
-                            <h3 class="homework-title">Material and Tool</h3>
-                            <p class="homework-desc">材料认知与工具使用</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework7.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">07</span>
-                            <h3 class="homework-title">3D Printer</h3>
-                            <p class="homework-desc">3D打印实践</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework8.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">08</span>
-                            <h3 class="homework-title">LASER CUTTING & CNC</h3>
-                            <p class="homework-desc">激光切割与数控加工</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-
-            <li class="homework-item">
-                <a href="homework9.html" class="homework-link">
-                    <div class="homework-header">
-                        <div>
-                            <span class="homework-number">09</span>
-                            <h3 class="homework-title">IOT AND INTERACTION</h3>
-                            <p class="homework-desc">物联网数据上报、云端交互</p>
-                        </div>
-                        <i class="fas fa-arrow-right homework-arrow"></i>
-                    </div>
-                </a>
-            </li>
-        </ul>
+        <div id="homeworkList"></div>
     </div>
 
     <!-- Footer -->
@@ -371,6 +385,361 @@
                 navMenu.classList.remove('active');
             });
         });
+
+        // Homework Data with Markdown Content
+        const homeworkData = [
+            {
+                number: "01",
+                title: "Project Management",
+                markdown: `
+# Project Management
+
+## Overview
+
+Learn project planning and time management skills.
+
+## Key Points
+
+- Create project timeline
+- Set milestones
+- Risk assessment
+
+## Tools
+
+- Gantt Charts
+- Kanban Boards
+- Time tracking software
+
+> Good planning is half the battle.
+                `
+            },
+            {
+                number: "02",
+                title: "Arduino Output",
+                markdown: `
+# Arduino Output
+
+## Overview
+
+Control various output devices with Arduino.
+
+## Components
+
+- LED (PWM control)
+- Buzzer (tone generation)
+- Servo motor
+- OLED display
+
+## Code Example
+
+\`\`\`cpp
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  analogWrite(LED_PIN, 128);
+  delay(1000);
+}
+\`\`\`
+
+## Results
+
+Successfully controlled multiple output devices.
+                `
+            },
+            {
+                number: "03",
+                title: "Arduino Input",
+                markdown: `
+# Arduino Input
+
+## Overview
+
+Read signals from sensors and input devices.
+
+## Sensors Used
+
+- DHT11 (Temperature & Humidity)
+- LDR (Light sensor)
+- Push button
+- Potentiometer
+
+## Key Concepts
+
+1. Analog vs Digital inputs
+2. Pull-up resistors
+3. Debouncing techniques
+
+## Code Snippet
+
+\`\`\`cpp
+int value = analogRead(A0);
+float voltage = value * (5.0 / 1023.0);
+\`\`\`
+                `
+            },
+            {
+                number: "04",
+                title: "Interface Application Program",
+                markdown: `
+# Interface Application Program
+
+## Overview
+
+Build GUI applications that communicate with hardware.
+
+## Technologies
+
+- **Processing** - Visual programming
+- **Python** - PySerial communication
+- **Web** - HTML/JS interfaces
+
+## Project: Serial Monitor
+
+Created custom interface for real-time data visualization.
+
+### Features
+
+- Real-time graphing
+- Data logging
+- Custom controls
+
+\`\`\`python
+import serial
+ser = serial.Serial('COM3', 9600)
+data = ser.readline().decode().strip()
+print(f"Sensor: {data}")
+\`\`\`
+                `
+            },
+            {
+                number: "05",
+                title: "CAD",
+                markdown: `
+# CAD Design
+
+## Overview
+
+3D modeling and design fundamentals.
+
+## Software
+
+- Fusion 360
+- Blender
+- FreeCAD
+
+## Projects
+
+1. Mechanical parts design
+2. Enclosure modeling
+3. Assembly drawings
+
+## Export Formats
+
+- STL (3D printing)
+- STEP (Manufacturing)
+- DXF (Laser cutting)
+
+> Precision is key in CAD design.
+                `
+            },
+            {
+                number: "06",
+                title: "Material and Tool",
+                markdown: `
+# Material and Tool
+
+## Overview
+
+Understanding materials and proper tool usage.
+
+## Materials
+
+### Plastics
+- PLA, PETG, ABS
+- Acrylic
+- Polycarbonate
+
+### Metals
+- Aluminum
+- Steel
+- Copper
+
+## Tools
+
+- Calipers
+- Multimeter
+- Soldering iron
+- Hand tools
+
+## Safety
+
+Always wear appropriate PPE and follow safety guidelines.
+                `
+            },
+            {
+                number: "07",
+                title: "3D Printer",
+                markdown: `
+# 3D Printing
+
+## Overview
+
+Additive manufacturing techniques.
+
+## Printer Specs
+
+- **Model:** Prusa i3 MK3S+
+- **Materials:** PLA, PETG
+- **Layer Height:** 0.2mm
+- **Infill:** 20%
+
+## Process
+
+1. Design in CAD
+2. Export as STL
+3. Slice with Cura
+4. Print and post-process
+
+## Tips
+
+- Proper bed leveling
+- Correct temperature settings
+- Support structures when needed
+                `
+            },
+            {
+                number: "08",
+                title: "LASER CUTTING & CNC",
+                markdown: `
+# Laser Cutting & CNC
+
+## Overview
+
+Subtractive manufacturing methods.
+
+## Laser Cutter
+
+- **Power:** 60W CO2 laser
+- **Materials:** Wood, acrylic, leather
+- **Precision:** ±0.1mm
+
+## CNC Router
+
+- **Axes:** 3-axis (X, Y, Z)
+- **Bit sizes:** 3mm, 6mm
+- **Materials:** Wood, foam, soft metals
+
+## Design Considerations
+
+- Kerf compensation
+- Tab placement
+- Tool path optimization
+
+> Design for manufacturability.
+                `
+            },
+            {
+                number: "09",
+                title: "IOT AND INTERACTION",
+                markdown: `
+# IoT and Interaction
+
+## Overview
+
+Building connected devices and IoT systems.
+
+## Communication Protocols
+
+- WiFi (ESP8266/ESP32)
+- Bluetooth (BLE)
+- LoRa
+- MQTT
+
+## Project: Smart Monitor
+
+WiFi-enabled sensor system with cloud connectivity.
+
+### Tech Stack
+
+\`\`\`
+Hardware: ESP32 + DHT22
+Backend: Node.js + MongoDB
+Protocol: MQTT
+Frontend: React Native
+\`\`\`
+
+### Features
+
+- Real-time monitoring
+- Cloud dashboard
+- Email alerts
+- Historical data
+                `
+            }
+        ];
+
+        // Configure marked options
+        marked.setOptions({
+            breaks: true,
+            gfm: true
+        });
+
+        // Render Homework List
+        function renderHomeworkList() {
+            const container = document.getElementById('homeworkList');
+            
+            homeworkData.forEach((hw, index) => {
+                const item = document.createElement('div');
+                item.className = 'homework-item';
+                item.innerHTML = `
+                    <div class="homework-header" onclick="toggleHomework(${index})">
+                        <div class="homework-info">
+                            <div class="homework-number">${hw.number}</div>
+                            <h3 class="homework-title">${hw.title}</h3>
+                        </div>
+                        <i class="fas fa-chevron-down homework-toggle"></i>
+                    </div>
+                    <div class="homework-content">
+                        <div class="markdown-wrapper">
+                            <div class="markdown-content" id="content-${index}"></div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(item);
+                
+                // Render markdown content
+                setTimeout(() => {
+                    document.getElementById(`content-${index}`).innerHTML = marked.parse(hw.markdown.trim());
+                }, 100);
+            });
+        }
+
+        // Toggle Homework Item
+        function toggleHomework(index) {
+            const items = document.querySelectorAll('.homework-item');
+            const clickedItem = items[index];
+            const isActive = clickedItem.classList.contains('active');
+            
+            // Close all items
+            items.forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Toggle clicked item
+            if (!isActive) {
+                clickedItem.classList.add('active');
+                // Smooth scroll to item
+                setTimeout(() => {
+                    clickedItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
+            }
+        }
+
+        // Initialize
+        renderHomeworkList();
     </script>
 </body>
 </html>
