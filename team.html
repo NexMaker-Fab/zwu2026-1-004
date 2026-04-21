@@ -49,7 +49,7 @@
                 <div class="card-grid" style="grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));">
                     
                     <!-- 成员 1 -->
-                    <div class="card member-card" onclick="goToProfile()" style="cursor: pointer; position: relative;">
+                    <div class="card member-card" onclick="window.open('https://cziqi9307-byte.github.io/chenziqi-portfolio/', '_blank')" style="cursor: pointer; position: relative;">
                         <div class="member-avatar">
                             <div class="avatar-placeholder" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                                 <span>陈</span>
@@ -270,27 +270,6 @@
                 navbar.classList.remove('scrolled');
             }
         });
-
-        // 跳转到陈梓琦的个人主页
-        function goToProfile() {
-            console.log('跳转到 profile-chen.html');
-            // 先检查文件是否存在
-            fetch('profile-chen.html')
-                .then(response => {
-                    if (response.ok) {
-                        console.log('文件存在，正在跳转...');
-                        window.location.href = 'profile-chen.html';
-                    } else {
-                        console.error('文件不存在！');
-                        alert('个人主页文件未找到，请稍后再试。');
-                    }
-                })
-                .catch(error => {
-                    console.error('跳转失败:', error);
-                    // 即使检查失败也尝试跳转
-                    window.location.href = 'profile-chen.html';
-                });
-        }
     </script>
 </body>
 </html>
