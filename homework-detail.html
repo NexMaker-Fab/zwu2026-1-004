@@ -5,16 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework Detail | Aether Studio</title>
     
-    <!-- Cache Control -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -29,14 +23,13 @@
             --text-secondary: #999999;
             --accent-purple: #B8A9FF;
             --border-light: rgba(255, 255, 255, 0.1);
-            --success: #2ed573;
         }
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.8;
         }
 
         /* Navigation */
@@ -52,6 +45,7 @@
             z-index: 1000;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
         }
 
         .logo {
@@ -82,568 +76,154 @@
             color: var(--accent-purple);
         }
 
-        /* Detail Page */
-        .detail-page {
-            padding-top: 100px;
-            min-height: 100vh;
-            max-width: 1200px;
+        /* Content */
+        .content-page {
+            padding-top: 120px;
+            max-width: 900px;
             margin: 0 auto;
             padding-left: 4rem;
             padding-right: 4rem;
             padding-bottom: 4rem;
         }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--accent-purple);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            transition: gap 0.3s ease;
-        }
-
-        .back-link:hover {
-            gap: 1rem;
-        }
-
-        .homework-header {
-            margin-bottom: 3rem;
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-light);
         }
 
-        .homework-number {
-            font-size: 0.85rem;
-            color: var(--accent-purple);
-            margin-bottom: 0.5rem;
-        }
-
-        .homework-title {
+        .page-title {
             font-size: 2.5rem;
+            font-weight: 200;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
             font-weight: 300;
-            margin-bottom: 1rem;
         }
 
-        /* Editor Toggle */
-        .editor-toggle {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
         }
 
-        .btn-toggle {
-            padding: 0.8rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--border-light);
-            color: var(--text-primary);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-toggle:hover {
-            border-color: var(--accent-purple);
-            color: var(--accent-purple);
-        }
-
-        .btn-toggle.active {
-            background: var(--accent-purple);
-            border-color: var(--accent-purple);
-            color: var(--bg-primary);
-        }
-
-        /* Two Column Layout */
-        .editor-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            min-height: 600px;
-        }
-
-        .editor-container.preview-only {
-            grid-template-columns: 1fr;
-        }
-
-        .editor-container.edit-only {
-            grid-template-columns: 1fr;
-        }
-
-        /* Markdown Editor */
-        .markdown-editor {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .editor-toolbar {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
-            flex-wrap: wrap;
-        }
-
-        .toolbar-btn {
-            padding: 0.5rem 0.8rem;
-            background: rgba(184, 169, 255, 0.1);
-            border: 1px solid var(--border-light);
-            color: var(--text-primary);
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .toolbar-btn:hover {
-            background: var(--accent-purple);
-            border-color: var(--accent-purple);
-            color: var(--bg-primary);
-        }
-
-        .toolbar-btn i {
-            font-size: 0.9rem;
-        }
-
-        .editor-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        #markdownInput {
-            width: 100%;
-            min-height: 550px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 1.5rem;
-            color: var(--text-primary);
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.8;
-            resize: vertical;
-            outline: none;
-        }
-
-        #markdownInput:focus {
-            border-color: var(--accent-purple);
-        }
-
-        /* Image Upload Area */
-        .image-upload-area {
-            margin-top: 1rem;
-            padding: 1rem;
-            border: 2px dashed var(--border-light);
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .image-upload-area:hover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.05);
-        }
-
-        .image-upload-area.dragover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.1);
-        }
-
-        .upload-icon {
-            font-size: 2rem;
-            color: var(--accent-purple);
-            margin-bottom: 0.5rem;
-        }
-
-        .upload-text {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .upload-hint {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            margin-top: 0.5rem;
-            opacity: 0.7;
-        }
-
-        #imageInput {
-            display: none;
-        }
-
-        /* Uploaded Images List */
-        .uploaded-images {
-            margin-top: 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 0.5rem;
-        }
-
-        .uploaded-image-item {
-            position: relative;
-            aspect-ratio: 1;
-            border-radius: 6px;
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-        }
-
-        .uploaded-image-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .uploaded-image-item:hover .image-overlay {
-            opacity: 1;
-        }
-
-        .image-action-btn {
-            padding: 0.4rem;
-            background: var(--accent-purple);
-            border: none;
-            border-radius: 4px;
-            color: var(--bg-primary);
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: transform 0.2s ease;
-        }
-
-        .image-action-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* Video Upload Area */
-        .video-upload-area {
-            margin-top: 1rem;
-            padding: 1rem;
-            border: 2px dashed var(--border-light);
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .video-upload-area:hover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.05);
-        }
-
-        .video-upload-area.dragover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.1);
-        }
-
-        #videoInput {
-            display: none;
-        }
-
-        /* Uploaded Videos List */
-        .uploaded-videos {
-            margin-top: 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-        }
-
-        .uploaded-video-item {
-            position: relative;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid var(--border-light);
-            background: var(--bg-secondary);
-        }
-
-        .uploaded-video-item video {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-        }
-
-        .video-info {
-            padding: 0.5rem;
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: calc(100% - 30px);
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .uploaded-video-item:hover .video-overlay {
-            opacity: 1;
-        }
-
-        .video-action-btn {
-            padding: 0.4rem 0.8rem;
-            background: var(--accent-purple);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            transition: transform 0.2s ease;
-        }
-
-        .video-action-btn:hover {
-            transform: scale(1.1);
-        }
-
-        /* Preview Panel */
-        .preview-panel {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 2rem;
-            overflow-y: auto;
-            max-height: 650px;
-        }
-
-        .preview-label {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        /* Markdown Content Styles */
-        .markdown-content {
-            color: var(--text-primary);
-            line-height: 1.8;
-        }
-
-        .markdown-content h1, 
-        .markdown-content h2, 
-        .markdown-content h3,
-        .markdown-content h4, 
-        .markdown-content h5, 
-        .markdown-content h6 {
-            margin: 1.5rem 0 1rem;
-            font-weight: 400;
             color: var(--accent-purple);
         }
 
-        .markdown-content h1 { font-size: 2rem; }
-        .markdown-content h2 { font-size: 1.75rem; }
-        .markdown-content h3 { font-size: 1.5rem; }
-
-        .markdown-content p {
-            margin-bottom: 1rem;
-        }
-
-        .markdown-content code {
-            background: rgba(184, 169, 255, 0.1);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            color: var(--accent-purple);
-            font-size: 0.9em;
-        }
-
-        .markdown-content pre {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border: 1px solid var(--border-light);
-        }
-
-        .markdown-content pre code {
-            background: transparent;
-            padding: 0;
+        .content-section h3 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin: 2rem 0 1rem;
             color: var(--text-primary);
         }
 
-        .markdown-content blockquote {
-            border-left: 3px solid var(--accent-purple);
-            padding-left: 1.5rem;
-            margin: 1rem 0;
-            color: var(--text-secondary);
-            font-style: italic;
+        .content-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 2;
         }
 
-        .markdown-content ul, 
-        .markdown-content ol {
-            margin: 1rem 0;
+        .content-section ul,
+        .content-section ol {
+            margin: 1.5rem 0;
             padding-left: 2rem;
         }
 
-        .markdown-content li {
-            margin-bottom: 0.5rem;
+        .content-section li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
         }
 
-        .markdown-content a {
-            color: var(--accent-purple);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-
-        .markdown-content a:hover {
-            border-bottom-color: var(--accent-purple);
-        }
-
-        .markdown-content img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-
-        .markdown-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-
-        .markdown-content th, 
-        .markdown-content td {
-            padding: 0.75rem;
-            border: 1px solid var(--border-light);
-            text-align: left;
-        }
-
-        .markdown-content th {
-            background: rgba(184, 169, 255, 0.1);
-            color: var(--accent-purple);
-        }
-
-        .markdown-content hr {
-            border: none;
-            border-top: 1px solid var(--border-light);
+        /* Images */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             margin: 2rem 0;
         }
 
-        /* Save Button */
-        .save-section {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
-
-        .btn-save {
-            padding: 1rem 2rem;
-            background: var(--accent-purple);
-            border: none;
-            color: var(--bg-primary);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-save:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3);
-        }
-
-        .btn-save.saved {
-            background: var(--success);
-        }
-
-        .btn-reset {
-            padding: 1rem 2rem;
-            background: transparent;
+        .image-item {
+            border-radius: 12px;
+            overflow: hidden;
             border: 1px solid var(--border-light);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Videos */
+        .video-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-caption {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Code Blocks */
+        .content-section pre {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-light);
+        }
+
+        .content-section code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+        }
+
+        .content-section pre code {
             color: var(--text-primary);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
         }
 
-        .btn-reset:hover {
-            border-color: #ff4757;
-            color: #ff4757;
-        }
-
-        .btn-export {
-            padding: 1rem 2rem;
-            background: #3498db;
-            border: none;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-export:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(52, 152, 219, 0.3);
-        }
-
-        .btn-publish {
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            color: white;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-publish:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        /* Blockquote */
+        .content-section blockquote {
+            border-left: 4px solid var(--accent-purple);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
         }
 
         /* Footer */
@@ -662,200 +242,103 @@
             }
 
             .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.98);
-                flex-direction: column;
-                padding: 2rem;
                 gap: 1.5rem;
             }
 
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .hamburger {
-                display: flex;
-                flex-direction: column;
-                cursor: pointer;
-                gap: 5px;
-            }
-
-            .hamburger span {
-                width: 25px;
-                height: 2px;
-                background: var(--text-primary);
-                transition: all 0.3s ease;
-            }
-
-            .detail-page {
+            .content-page {
                 padding-left: 2rem;
                 padding-right: 2rem;
             }
 
-            .editor-container {
-                grid-template-columns: 1fr;
+            .page-title {
+                font-size: 2rem;
             }
 
-            .homework-title {
-                font-size: 2rem;
+            .image-gallery {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <a href="index.html" class="logo">AETHER</a>
-        <ul class="nav-menu" id="navMenu">
+    <nav class="navbar">
+        <a href="index.html" class="logo">AETHER STUDIO</a>
+        <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About US</a></li>
-            <li><a href="homework.html">Daily homework</a></li>
-            <li><a href="final.html">Finalwork</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="homework.html">Homework</a></li>
+            <li><a href="team.html">Team</a></li>
         </ul>
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </nav>
 
-    <!-- Detail Page -->
-    <div class="detail-page">
-        <a href="homework.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Homework List
-        </a>
-
-        <div class="homework-header">
-            <p class="homework-number" id="homeworkNumber">HOMEWORK 01</p>
-            <h1 class="homework-title" id="homeworkTitle">Loading...</h1>
+    <!-- Content -->
+    <div class="content-page">
+        <!-- Header -->
+        <div class="page-header">
+            <h1 class="page-title">HOMEWORK DETAIL</h1>
+            <p class="page-subtitle">Edit this file to add your content</p>
         </div>
 
-        <!-- View Mode Toggle -->
-        <div class="editor-toggle">
-            <button class="btn-toggle active" onclick="setViewMode('split')" id="btnSplit">
-                <i class="fas fa-columns"></i>
-                Split View
-            </button>
-            <button class="btn-toggle" onclick="setViewMode('preview')" id="btnPreview">
-                <i class="fas fa-eye"></i>
-                Preview Only
-            </button>
-            <button class="btn-toggle" onclick="setViewMode('edit')" id="btnEdit">
-                <i class="fas fa-edit"></i>
-                Edit Only
-            </button>
+        <!-- Section 1: Introduction -->
+        <div class="content-section">
+            <h2>项目概述</h2>
+            <p>
+                在这里写下作业的详细介绍。可以包含项目背景、目标、技术栈等信息。
+            </p>
         </div>
 
-        <!-- Editor & Preview -->
-        <div class="editor-container" id="editorContainer">
-            <!-- Markdown Editor -->
-            <div class="markdown-editor" id="editorPanel">
-                <div class="editor-label">
-                    <i class="fas fa-pen"></i>
-                    Markdown Editor
+        <!-- Section 2: Images -->
+        <div class="content-section">
+            <h2>项目图片</h2>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="images/homework/photo1.jpg" alt="项目图片1">
+                    <div class="image-caption">图片说明 1</div>
                 </div>
-                
-                <!-- Toolbar -->
-                <div class="editor-toolbar">
-                    <button class="toolbar-btn" onclick="insertText('**', '**')" title="Bold">
-                        <i class="fas fa-bold"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('*', '*')" title="Italic">
-                        <i class="fas fa-italic"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('# ', '')" title="Heading 1">
-                        <i class="fas fa-heading"></i> H1
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('## ', '')" title="Heading 2">
-                        <i class="fas fa-heading"></i> H2
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('- ', '')" title="List">
-                        <i class="fas fa-list-ul"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('1. ', '')" title="Numbered List">
-                        <i class="fas fa-list-ol"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('> ', '')" title="Quote">
-                        <i class="fas fa-quote-right"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('`', '`')" title="Inline Code">
-                        <i class="fas fa-code"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('\n```\n', '\n```\n')" title="Code Block">
-                        <i class="fas fa-file-code"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="insertText('[', '](url)')" title="Link">
-                        <i class="fas fa-link"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="document.getElementById('imageInput').click()" title="Insert Image">
-                        <i class="fas fa-image"></i>
-                    </button>
-                    <button class="toolbar-btn" onclick="document.getElementById('videoInput').click()" title="Insert Video">
-                        <i class="fas fa-video"></i>
-                    </button>
+                <div class="image-item">
+                    <img src="images/homework/photo2.jpg" alt="项目图片2">
+                    <div class="image-caption">图片说明 2</div>
                 </div>
-                
-                <textarea id="markdownInput" placeholder="Type your Markdown here..."></textarea>
-                
-                <!-- Image Upload Area -->
-                <div class="image-upload-area" id="uploadArea" onclick="document.getElementById('imageInput').click()">
-                    <div class="upload-icon">
-                        <i class="fas fa-cloud-upload-alt"></i>
-                    </div>
-                    <div class="upload-text">Click or Drag & Drop to Upload Images</div>
-                    <div class="upload-hint">Support: JPG, PNG, GIF, WebP (Max 5MB)</div>
-                </div>
-                <input type="file" id="imageInput" accept="image/*" multiple>
-                
-                <!-- Video Upload Area -->
-                <div class="video-upload-area" id="videoUploadArea" onclick="document.getElementById('videoInput').click()">
-                    <div class="upload-icon">
-                        <i class="fas fa-film"></i>
-                    </div>
-                    <div class="upload-text">Click or Drag & Drop to Upload Videos</div>
-                    <div class="upload-hint">Support: MP4, WebM, MOV (Max 50MB)</div>
-                </div>
-                <input type="file" id="videoInput" accept="video/*" multiple>
-                
-                <!-- Uploaded Images -->
-                <div class="uploaded-images" id="uploadedImages"></div>
-                
-                <!-- Uploaded Videos -->
-                <div class="uploaded-videos" id="uploadedVideos"></div>
-            </div>
-
-            <!-- Preview Panel -->
-            <div class="preview-panel" id="previewPanel">
-                <div class="preview-label">
-                    <i class="fas fa-eye"></i>
-                    Live Preview
-                </div>
-                <div class="markdown-content" id="previewContent"></div>
             </div>
         </div>
 
-        <!-- Save Section -->
-        <div class="save-section">
-            <button class="btn-reset" onclick="resetContent()">
-                <i class="fas fa-undo"></i> Reset
-            </button>
-            <button class="btn-export" onclick="exportAsJSON()" style="background: #3498db; margin-right: 1rem;">
-                <i class="fas fa-file-code"></i> Export JSON
-            </button>
-            <button class="btn-export" onclick="exportAsHTML()" style="background: #27ae60; margin-right: 1rem;">
-                <i class="fas fa-file-alt"></i> Export HTML
-            </button>
-            <button class="btn-publish" onclick="publishToPage()" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin-right: 1rem;">
-                <i class="fas fa-globe"></i> Publish to Page
-            </button>
-            <button class="btn-save" onclick="saveContent()" id="saveBtn">
-                <i class="fas fa-save"></i> Save Changes
-            </button>
+        <!-- Section 3: Video -->
+        <div class="content-section">
+            <h2>演示视频</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/homework/demo.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+                <div class="video-caption">项目演示视频</div>
+            </div>
+        </div>
+
+        <!-- Section 4: Technical Details -->
+        <div class="content-section">
+            <h2>技术细节</h2>
+            <h3>使用的技术</h3>
+            <ul>
+                <li>Arduino / ESP32</li>
+                <li>传感器模块</li>
+                <li>Python / C++</li>
+            </ul>
+
+            <h3>代码示例</h3>
+            <pre><code>// 示例代码
+void setup() {
+    Serial.begin(9600);
+    pinMode(LED_PIN, OUTPUT);
+}</code></pre>
+        </div>
+
+        <!-- Section 5: Conclusion -->
+        <div class="content-section">
+            <h2>总结与反思</h2>
+            <p>
+                在这里写下项目的总结、遇到的问题和解决方案。
+            </p>
         </div>
     </div>
 
@@ -863,913 +346,5 @@
     <footer>
         <p>&copy; 2026 Aether Studio. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Configure marked
-        marked.setOptions({
-            breaks: true,
-            gfm: true
-        });
-
-        // Get homework ID from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const homeworkId = urlParams.get('id') || '1';
-
-        // Default content for each homework
-        const defaultContents = {
-            '1': `# Project Management
-
-## Overview
-
-Learn project planning and time management skills.
-
-## Key Points
-
-- Create project timeline
-- Set milestones
-- Risk assessment
-
-## Tools
-
-- Gantt Charts
-- Kanban Boards
-- Time tracking software
-
-> Good planning is half the battle.`,
-            
-            '2': `# Arduino Output
-
-## Overview
-
-Control various output devices with Arduino.
-
-## Components
-
-- LED (PWM control)
-- Buzzer (tone generation)
-- Servo motor
-- OLED display
-
-## Code Example
-
-\`\`\`cpp
-void setup() {
-  pinMode(LED_PIN, OUTPUT);
-}
-
-void loop() {
-  analogWrite(LED_PIN, 128);
-  delay(1000);
-}
-\`\`\`
-
-## Results
-
-Successfully controlled multiple output devices.`,
-            
-            '3': `# Arduino Input
-
-## Overview
-
-Read signals from sensors and input devices.
-
-## Sensors Used
-
-- DHT11 (Temperature & Humidity)
-- LDR (Light sensor)
-- Push button
-- Potentiometer
-
-## Key Concepts
-
-1. Analog vs Digital inputs
-2. Pull-up resistors
-3. Debouncing techniques
-
-## Code Snippet
-
-\`\`\`cpp
-int value = analogRead(A0);
-float voltage = value * (5.0 / 1023.0);
-\`\`\``,
-            
-            '4': `# Interface Application Program
-
-## Overview
-
-Build GUI applications that communicate with hardware.
-
-## Technologies
-
-- **Processing** - Visual programming
-- **Python** - PySerial communication
-- **Web** - HTML/JS interfaces
-
-## Project: Serial Monitor
-
-Created custom interface for real-time data visualization.
-
-### Features
-
-- Real-time graphing
-- Data logging
-- Custom controls
-
-\`\`\`python
-import serial
-ser = serial.Serial('COM3', 9600)
-data = ser.readline().decode().strip()
-print(f"Sensor: {data}")
-\`\`\``,
-            
-            '5': `# CAD Design
-
-## Overview
-
-3D modeling and design fundamentals.
-
-## Software
-
-- Fusion 360
-- Blender
-- FreeCAD
-
-## Projects
-
-1. Mechanical parts design
-2. Enclosure modeling
-3. Assembly drawings
-
-## Export Formats
-
-- STL (3D printing)
-- STEP (Manufacturing)
-- DXF (Laser cutting)
-
-> Precision is key in CAD design.`,
-            
-            '6': `# Material and Tool
-
-## Overview
-
-Understanding materials and proper tool usage.
-
-## Materials
-
-### Plastics
-- PLA, PETG, ABS
-- Acrylic
-- Polycarbonate
-
-### Metals
-- Aluminum
-- Steel
-- Copper
-
-## Tools
-
-- Calipers
-- Multimeter
-- Soldering iron
-- Hand tools
-
-## Safety
-
-Always wear appropriate PPE and follow safety guidelines.`,
-            
-            '7': `# 3D Printing
-
-## Overview
-
-Additive manufacturing techniques.
-
-## Printer Specs
-
-- **Model:** Prusa i3 MK3S+
-- **Materials:** PLA, PETG
-- **Layer Height:** 0.2mm
-- **Infill:** 20%
-
-## Process
-
-1. Design in CAD
-2. Export as STL
-3. Slice with Cura
-4. Print and post-process
-
-## Tips
-
-- Proper bed leveling
-- Correct temperature settings
-- Support structures when needed`,
-            
-            '8': `# Laser Cutting & CNC
-
-## Overview
-
-Subtractive manufacturing methods.
-
-## Laser Cutter
-
-- **Power:** 60W CO2 laser
-- **Materials:** Wood, acrylic, leather
-- **Precision:** ±0.1mm
-
-## CNC Router
-
-- **Axes:** 3-axis (X, Y, Z)
-- **Bit sizes:** 3mm, 6mm
-- **Materials:** Wood, foam, soft metals
-
-## Design Considerations
-
-- Kerf compensation
-- Tab placement
-- Tool path optimization
-
-> Design for manufacturability.`,
-            
-            '9': `# IoT and Interaction
-
-## Overview
-
-Building connected devices and IoT systems.
-
-## Communication Protocols
-
-- WiFi (ESP8266/ESP32)
-- Bluetooth (BLE)
-- LoRa
-- MQTT
-
-## Project: Smart Monitor
-
-WiFi-enabled sensor system with cloud connectivity.
-
-### Tech Stack
-
-\`\`\`
-Hardware: ESP32 + DHT22
-Backend: Node.js + MongoDB
-Protocol: MQTT
-Frontend: React Native
-\`\`\`
-
-### Features
-
-- Real-time monitoring
-- Cloud dashboard
-- Email alerts
-- Historical data`
-        };
-
-        // Homework info
-        const homeworkInfo = {
-            '1': { number: 'HOMEWORK 01', title: 'Project Management' },
-            '2': { number: 'HOMEWORK 02', title: 'Arduino Output' },
-            '3': { number: 'HOMEWORK 03', title: 'Arduino Input' },
-            '4': { number: 'HOMEWORK 04', title: 'Interface Application Program' },
-            '5': { number: 'HOMEWORK 05', title: 'CAD' },
-            '6': { number: 'HOMEWORK 06', title: 'Material and Tool' },
-            '7': { number: 'HOMEWORK 07', title: '3D Printer' },
-            '8': { number: 'HOMEWORK 08', title: 'LASER CUTTING & CNC' },
-            '9': { number: 'HOMEWORK 09', title: 'IOT AND INTERACTION' }
-        };
-
-        // Elements
-        const markdownInput = document.getElementById('markdownInput');
-        const previewContent = document.getElementById('previewContent');
-        const editorContainer = document.getElementById('editorContainer');
-        const editorPanel = document.getElementById('editorPanel');
-        const previewPanel = document.getElementById('previewPanel');
-        const saveBtn = document.getElementById('saveBtn');
-        const imageInput = document.getElementById('imageInput');
-        const uploadArea = document.getElementById('uploadArea');
-        const uploadedImagesDiv = document.getElementById('uploadedImages');
-
-        // Store uploaded images
-        let uploadedImages = [];
-
-        // Load content
-        function loadContent() {
-            const info = homeworkInfo[homeworkId];
-            if (info) {
-                document.getElementById('homeworkNumber').textContent = info.number;
-                document.getElementById('homeworkTitle').textContent = info.title;
-            }
-
-            // Try to load from localStorage first
-            const saved = localStorage.getItem(`homework_${homeworkId}`);
-            const content = saved || defaultContents[homeworkId] || '# Start writing...';
-            
-            markdownInput.value = content;
-            updatePreview();
-        }
-
-        // Update preview
-        function updatePreview() {
-            const markdown = markdownInput.value;
-            previewContent.innerHTML = marked.parse(markdown);
-        }
-
-        // Real-time preview
-        markdownInput.addEventListener('input', updatePreview);
-
-        // View mode
-        function setViewMode(mode) {
-            // Update buttons
-            document.querySelectorAll('.btn-toggle').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            if (mode === 'split') {
-                document.getElementById('btnSplit').classList.add('active');
-                editorContainer.className = 'editor-container';
-                editorPanel.style.display = 'block';
-                previewPanel.style.display = 'block';
-            } else if (mode === 'preview') {
-                document.getElementById('btnPreview').classList.add('active');
-                editorContainer.className = 'editor-container preview-only';
-                editorPanel.style.display = 'none';
-                previewPanel.style.display = 'block';
-            } else if (mode === 'edit') {
-                document.getElementById('btnEdit').classList.add('active');
-                editorContainer.className = 'editor-container edit-only';
-                editorPanel.style.display = 'block';
-                previewPanel.style.display = 'none';
-            }
-        }
-
-        // Save content
-        function saveContent() {
-            const content = markdownInput.value;
-            localStorage.setItem(`homework_${homeworkId}`, content);
-            
-            // Show saved state
-            saveBtn.classList.add('saved');
-            saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved!';
-            
-            setTimeout(() => {
-                saveBtn.classList.remove('saved');
-                saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
-            }, 2000);
-        }
-
-        // Reset content
-        function resetContent() {
-            if (confirm('Reset to default content? This will discard all changes.')) {
-                localStorage.removeItem(`homework_${homeworkId}`);
-                loadContent();
-            }
-        }
-
-        // Export as JSON
-        function exportAsJSON() {
-            const data = {
-                title: homeworkTitles[homeworkId] || 'Homework',
-                content: markdownInput.value,
-                images: uploadedImages,
-                videos: uploadedVideos,
-                exportedAt: new Date().toISOString(),
-                version: '1.0'
-            };
-
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${homeworkTitles[homeworkId] || 'homework'}_${new Date().getTime()}.json`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            alert('✅ JSON file exported! Share this file with others to import.');
-        }
-
-        // Export as HTML
-        function exportAsHTML() {
-            const htmlContent = generateStaticHTML();
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${homeworkTitles[homeworkId] || 'homework'}_${new Date().getTime()}.html`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            alert('✅ HTML file exported! Others can open it directly in browser.');
-        }
-
-        // Generate static HTML
-        function generateStaticHTML() {
-            const previewHTML = document.getElementById('previewContent').innerHTML;
-            const title = homeworkTitles[homeworkId] || 'Homework';
-            const exportDate = new Date().toLocaleString('zh-CN');
-
-            return `<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${title} | Aether Studio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #000;
-            color: #fff;
-            line-height: 1.8;
-            padding: 4rem 2rem;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 4rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            color: #B8A9FF;
-        }
-        .header .meta {
-            color: #999;
-            font-size: 0.9rem;
-        }
-        .content {
-            font-size: 1.1rem;
-            line-height: 2;
-        }
-        .content h1, .content h2, .content h3 {
-            margin: 2rem 0 1rem;
-            color: #B8A9FF;
-        }
-        .content p { margin-bottom: 1.5rem; }
-        .content code {
-            background: rgba(184, 169, 255, 0.1);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: monospace;
-        }
-        .content pre {
-            background: #0A0A0A;
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
-        .content pre code {
-            background: none;
-            padding: 0;
-        }
-        .content blockquote {
-            border-left: 4px solid #B8A9FF;
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            color: #999;
-            font-style: italic;
-        }
-        .content img, .content video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-        .content ul, .content ol {
-            margin: 1.5rem 0;
-            padding-left: 2rem;
-        }
-        .content li { margin-bottom: 0.5rem; }
-        .content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-        }
-        .content th, .content td {
-            padding: 0.8rem;
-            border: 1px solid rgba(255,255,255,0.1);
-            text-align: left;
-        }
-        .content th {
-            background: rgba(184, 169, 255, 0.1);
-        }
-        .footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            color: #666;
-            font-size: 0.85rem;
-        }
-        @media (max-width: 768px) {
-            body { padding: 2rem 1rem; }
-            .header h1 { font-size: 2rem; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>${title}</h1>
-            <div class="meta">Exported on ${exportDate} | Aether Studio</div>
-        </div>
-        <div class="content">
-            ${previewHTML}
-        </div>
-        <div class="footer">
-            <p>© 2026 Aether Studio. Generated from Homework Editor.</p>
-        </div>
-    </div>
-</body>
-</html>`;
-        }
-
-        // Import from JSON
-        function importFromJSON(file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    
-                    if (data.content) {
-                        markdownInput.value = data.content;
-                        updatePreview();
-                    }
-                    
-                    if (data.images) {
-                        uploadedImages = data.images;
-                        refreshUploadedImages();
-                    }
-                    
-                    if (data.videos) {
-                        uploadedVideos = data.videos;
-                        refreshUploadedVideos();
-                    }
-                    
-                    saveContent();
-                    alert('✅ Content imported successfully!');
-                } catch (error) {
-                    alert('❌ Invalid JSON file!');
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        // Add import button to toolbar
-        const importBtn = document.createElement('button');
-        importBtn.className = 'toolbar-btn';
-        importBtn.innerHTML = '<i class="fas fa-file-import"></i>';
-        importBtn.title = 'Import JSON';
-        importBtn.onclick = () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = '.json';
-            input.onchange = (e) => {
-                if (e.target.files[0]) {
-                    importFromJSON(e.target.files[0]);
-                }
-            };
-            input.click();
-        };
-        
-        // Insert import button after the last toolbar button
-        const toolbar = document.querySelector('.editor-toolbar');
-        if (toolbar) {
-            toolbar.appendChild(importBtn);
-        }
-
-        // Publish to static page
-        function publishToPage() {
-            const htmlContent = generateStaticHTML();
-            const filename = `homework${homeworkId}.html`;
-            
-            // Download the file
-            const blob = new Blob([htmlContent], { type: 'text/html' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-
-            // Show instructions
-            const instructions = `
-✅ File downloaded: ${filename}
-
-📋 Next steps:
-1. Move the file to: c:\\Users\\陈梓琦\\Documents\\GitHub\\zwu2026-1-004\\
-2. Open terminal in that folder
-3. Run these commands:
-   git add ${filename}
-   git commit -m "Update ${homeworkTitles[homeworkId]}"
-   git push origin main
-
-🌐 After push, others can view at:
-https://nexmaker-fab.github.io/zwu2026-1-004/${filename}
-            `;
-            
-            alert(instructions);
-        }
-
-        // Initialize
-        loadContent();
-
-        // Insert text at cursor position
-        function insertText(before, after) {
-            const start = markdownInput.selectionStart;
-            const end = markdownInput.selectionEnd;
-            const text = markdownInput.value;
-            const selectedText = text.substring(start, end);
-            
-            const newText = text.substring(0, start) + before + selectedText + after + text.substring(end);
-            markdownInput.value = newText;
-            
-            // Set cursor position
-            const newCursorPos = start + before.length + selectedText.length + after.length;
-            markdownInput.setSelectionRange(newCursorPos, newCursorPos);
-            markdownInput.focus();
-            
-            // Update preview
-            updatePreview();
-        }
-
-        // Handle image upload
-        imageInput.addEventListener('change', handleImageUpload);
-
-        // Drag and drop
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('image/'));
-            files.forEach(file => processImage(file));
-        });
-
-        function handleImageUpload(e) {
-            const files = Array.from(e.target.files);
-            files.forEach(file => processImage(file));
-            // Reset input
-            e.target.value = '';
-        }
-
-        function processImage(file) {
-            if (!file.type.startsWith('image/')) {
-                alert('Please upload an image file');
-                return;
-            }
-
-            if (file.size > 5 * 1024 * 1024) {
-                alert('Image size should be less than 5MB');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const base64 = e.target.result;
-                const imageName = file.name;
-                
-                // Store image
-                uploadedImages.push({
-                    name: imageName,
-                    data: base64
-                });
-
-                // Add to display
-                displayUploadedImage(base64, uploadedImages.length - 1);
-
-                // Insert markdown
-                const markdown = `\n![${imageName}](${base64})\n`;
-                insertAtCursor(markdown);
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function displayUploadedImage(base64, index) {
-            const div = document.createElement('div');
-            div.className = 'uploaded-image-item';
-            div.innerHTML = `
-                <img src="${base64}" alt="Uploaded">
-                <div class="image-overlay">
-                    <button class="image-action-btn" onclick="insertImageMarkdown(${index})" title="Insert">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="image-action-btn" onclick="deleteImage(${index})" title="Delete">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-            uploadedImagesDiv.appendChild(div);
-        }
-
-        function insertImageMarkdown(index) {
-            const img = uploadedImages[index];
-            if (img) {
-                const markdown = `\n![${img.name}](${img.data})\n`;
-                insertAtCursor(markdown);
-            }
-        }
-
-        function deleteImage(index) {
-            if (confirm('Delete this image?')) {
-                uploadedImages.splice(index, 1);
-                refreshUploadedImages();
-            }
-        }
-
-        function refreshUploadedImages() {
-            uploadedImagesDiv.innerHTML = '';
-            uploadedImages.forEach((img, index) => {
-                displayUploadedImage(img.data, index);
-            });
-        }
-
-        function insertAtCursor(text) {
-            const start = markdownInput.selectionStart;
-            const end = markdownInput.selectionEnd;
-            const value = markdownInput.value;
-            
-            markdownInput.value = value.substring(0, start) + text + value.substring(end);
-            markdownInput.selectionStart = markdownInput.selectionEnd = start + text.length;
-            markdownInput.focus();
-            
-            updatePreview();
-        }
-
-        // Load images from localStorage
-        function loadImages() {
-            const saved = localStorage.getItem(`homework_${homeworkId}_images`);
-            if (saved) {
-                uploadedImages = JSON.parse(saved);
-                uploadedImages.forEach((img, index) => {
-                    displayUploadedImage(img.data, index);
-                });
-            }
-        }
-
-        // Save images with content
-        const originalSave = saveContent;
-        saveContent = function() {
-            localStorage.setItem(`homework_${homeworkId}_images`, JSON.stringify(uploadedImages));
-            localStorage.setItem(`homework_${homeworkId}_videos`, JSON.stringify(uploadedVideos));
-            originalSave();
-        };
-
-        // Video Upload Functionality
-        const videoInput = document.getElementById('videoInput');
-        const uploadedVideosDiv = document.getElementById('uploadedVideos');
-        let uploadedVideos = [];
-
-        if (videoInput) {
-            videoInput.addEventListener('change', handleVideoUpload);
-        }
-
-        // Drag and drop for videos
-        const videoUploadArea = document.getElementById('videoUploadArea');
-        if (videoUploadArea) {
-            videoUploadArea.addEventListener('dragover', (e) => {
-                e.preventDefault();
-                videoUploadArea.classList.add('dragover');
-            });
-
-            videoUploadArea.addEventListener('dragleave', () => {
-                videoUploadArea.classList.remove('dragover');
-            });
-
-            videoUploadArea.addEventListener('drop', (e) => {
-                e.preventDefault();
-                videoUploadArea.classList.remove('dragover');
-                const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('video/'));
-                files.forEach(file => processVideo(file));
-            });
-        }
-
-        function handleVideoUpload(e) {
-            const files = Array.from(e.target.files);
-            files.forEach(file => processVideo(file));
-            e.target.value = '';
-        }
-
-        function processVideo(file) {
-            if (!file.type.startsWith('video/')) {
-                alert('Please upload a video file');
-                return;
-            }
-
-            if (file.size > 50 * 1024 * 1024) {
-                alert('Video size should be less than 50MB');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const base64 = e.target.result;
-                const videoName = file.name;
-                
-                uploadedVideos.push({
-                    name: videoName,
-                    data: base64,
-                    type: file.type
-                });
-
-                displayUploadedVideo(base64, videoName, uploadedVideos.length - 1);
-
-                // Insert video markdown
-                const markdown = `\n<video controls width="100%">\n  <source src="${base64}" type="${file.type}">\n  Your browser does not support the video tag.\n</video>\n`;
-                insertAtCursor(markdown);
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function displayUploadedVideo(base64, name, index) {
-            const div = document.createElement('div');
-            div.className = 'uploaded-video-item';
-            div.innerHTML = `
-                <video src="${base64}" muted></video>
-                <div class="video-info">${name}</div>
-                <div class="video-overlay">
-                    <button class="video-action-btn" onclick="insertVideoMarkdown(${index})" title="Insert">
-                        <i class="fas fa-plus"></i>
-                    </button>
-                    <button class="video-action-btn" onclick="deleteVideo(${index})" title="Delete">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-            uploadedVideosDiv.appendChild(div);
-        }
-
-        function insertVideoMarkdown(index) {
-            const video = uploadedVideos[index];
-            if (video) {
-                const markdown = `\n<video controls width="100%">\n  <source src="${video.data}" type="${video.type}">\n  Your browser does not support the video tag.\n</video>\n`;
-                insertAtCursor(markdown);
-            }
-        }
-
-        function deleteVideo(index) {
-            if (confirm('Delete this video?')) {
-                uploadedVideos.splice(index, 1);
-                refreshUploadedVideos();
-            }
-        }
-
-        function refreshUploadedVideos() {
-            uploadedVideosDiv.innerHTML = '';
-            uploadedVideos.forEach((video, index) => {
-                displayUploadedVideo(video.data, video.name, index);
-            });
-        }
-
-        // Load videos from localStorage
-        function loadVideos() {
-            const saved = localStorage.getItem(`homework_${homeworkId}_videos`);
-            if (saved) {
-                uploadedVideos = JSON.parse(saved);
-                uploadedVideos.forEach((video, index) => {
-                    displayUploadedVideo(video.data, video.name, index);
-                });
-            }
-        }
-
-        // Initialize
-        loadImages();
-        loadVideos();
-
-        // Load images on init
-        loadImages();
-    </script>
 </body>
 </html>
