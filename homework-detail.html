@@ -110,6 +110,7 @@
         /* Content Sections */
         .content-section {
             margin-bottom: 3rem;
+            text-align: left;
         }
 
         .content-section h2 {
@@ -117,6 +118,7 @@
             font-weight: 300;
             margin-bottom: 1.5rem;
             color: var(--accent-purple);
+            text-align: left;
         }
 
         .content-section h3 {
@@ -124,12 +126,22 @@
             font-weight: 300;
             margin: 2rem 0 1rem;
             color: var(--text-primary);
+            text-align: left;
+        }
+
+        .content-section h4 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--text-primary);
+            text-align: left;
         }
 
         .content-section p {
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
             line-height: 2;
+            text-align: left;
         }
 
         .content-section ul,
@@ -146,8 +158,8 @@
         /* Images */
         .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
             margin: 2rem 0;
         }
 
@@ -155,6 +167,7 @@
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-light);
+            margin: 2rem 0;
         }
 
         .image-item img {
@@ -303,7 +316,7 @@
             <p>Create a public repository where you can collaborate with your team to create web content.</p>
             
             <!-- 插入创建仓库的截图 -->
-            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+            <div class="image-item">
                 <img src="image/create-repository.png" alt="创建GitHub仓库">
                 <div class="image-caption">在 GitHub 上创建新的公开仓库</div>
             </div>
@@ -312,7 +325,7 @@
             <p>Set the page to be empty. Click on the settings of the repository and select "Pages" on the left. Choose "main" and "/root" and save. The link above allows you to view the page.</p>
             
             <!-- 插入 Pages 设置的截图 -->
-            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+            <div class="image-item">
                 <img src="image/pages-settings.png" alt="GitHub Pages设置">
                 <div class="image-caption">配置 GitHub Pages - 选择 main 分支和 /root 目录</div>
             </div>
@@ -321,13 +334,13 @@
             <p>Click on "Settings", find "Collaborators" on the left, then click "Add people", enter their email addresses, and set their role (maintainer).</p>
             
             <!-- 插入添加协作者的截图1 -->
-            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+            <div class="image-item">
                 <img src="image/add-collaborators1.png" alt="添加协作者步骤1">
                 <div class="image-caption">点击 Settings → Collaborators → Add people</div>
             </div>
             
             <!-- 插入添加协作者的截图2 -->
-            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+            <div class="image-item">
                 <img src="image/add-collaborators-2.png" alt="添加协作者步骤2">
                 <div class="image-caption">输入邮箱地址并设置 Maintainer 角色</div>
             </div>
@@ -344,7 +357,7 @@
             <p>Clone the repository and select one to save to your computer.</p>
             
             <!-- 插入克隆仓库的截图 -->
-            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+            <div class="image-item">
                 <img src="image/clone-repository.png" alt="克隆仓库">
                 <div class="image-caption">克隆仓库到本地计算机</div>
             </div>
@@ -353,7 +366,7 @@
             <p>After modifying the files, write a commit note on the left side.</p>
             
             <!-- 插入提交更改的截图 -->
-            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+            <div class="image-item">
                 <img src="image/commit-changes.png" alt="提交更改">
                 <div class="image-caption">编写提交说明（Commit Message）</div>
             </div>
@@ -362,7 +375,7 @@
             <p>Click Push origin in the upper right corner to upload to GitHub.</p>
             
             <!-- 插入推送代码的截图 -->
-            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+            <div class="image-item">
                 <img src="image/push-to-github.png" alt="推送到GitHub">
                 <div class="image-caption">点击 "Push origin" 将代码上传到 GitHub</div>
             </div>
