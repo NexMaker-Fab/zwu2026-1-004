@@ -286,38 +286,42 @@
             <p>
                 在这里写下作业的详细介绍。可以包含项目背景、目标、技术栈等信息。
             </p>
-        </div>
-
-        <!-- Section 2: Images -->
-        <div class="content-section">
-            <h2>项目图片</h2>
-            <div class="image-gallery">
-                <div class="image-item">
-                    <img src="images/homework/photo1.jpg" alt="项目图片1">
-                    <div class="image-caption">图片说明 1</div>
-                </div>
-                <div class="image-item">
-                    <img src="images/homework/photo2.jpg" alt="项目图片2">
-                    <div class="image-caption">图片说明 2</div>
-                </div>
+            
+            <!-- 在这里插入图片：复制下面的代码块 -->
+            <div class="image-item" style="max-width: 600px; margin: 2rem auto;">
+                <img src="images/homework/photo1.jpg" alt="说明文字">
+                <div class="image-caption">图片说明</div>
             </div>
-        </div>
-
-        <!-- Section 3: Video -->
-        <div class="content-section">
-            <h2>演示视频</h2>
-            <div class="video-container">
+            
+            <p>继续写文字内容...</p>
+            
+            <!-- 在这里插入视频：复制下面的代码块 -->
+            <div class="video-container" style="max-width: 800px; margin: 2rem auto;">
                 <video controls>
                     <source src="videos/homework/demo.mp4" type="video/mp4">
                     您的浏览器不支持视频播放。
                 </video>
-                <div class="video-caption">项目演示视频</div>
+                <div class="video-caption">视频说明</div>
             </div>
         </div>
 
-        <!-- Section 4: Technical Details -->
+        <!-- Section 2: Technical Details -->
         <div class="content-section">
             <h2>技术细节</h2>
+            <p>在这里描述项目的技术实现...</p>
+            
+            <!-- 示例：多张图片并排显示 -->
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="images/homework/detail1.jpg" alt="细节1">
+                    <div class="image-caption">细节图 1</div>
+                </div>
+                <div class="image-item">
+                    <img src="images/homework/detail2.jpg" alt="细节2">
+                    <div class="image-caption">细节图 2</div>
+                </div>
+            </div>
+            
             <h3>使用的技术</h3>
             <ul>
                 <li>Arduino / ESP32</li>
@@ -333,13 +337,61 @@ void setup() {
 }</code></pre>
         </div>
 
-        <!-- Section 5: Conclusion -->
+        <!-- Section 3: Conclusion -->
         <div class="content-section">
             <h2>总结与反思</h2>
             <p>
                 在这里写下项目的总结、遇到的问题和解决方案。
             </p>
+            
+            <!-- 可以在任何位置继续添加图片或视频 -->
+            <div class="image-item" style="max-width: 700px; margin: 2rem auto;">
+                <img src="images/homework/final.jpg" alt="最终成果">
+                <div class="image-caption">最终成果展示</div>
+            </div>
         </div>
+        
+        <!-- 
+        ============================================
+        使用说明：
+        
+        1. 插入单张图片（任意位置）：
+        <div class="image-item" style="max-width: 600px; margin: 2rem auto;">
+            <img src="你的图片路径.jpg" alt="说明文字">
+            <div class="image-caption">图片说明</div>
+        </div>
+        
+        2. 插入多张图片网格（任意位置）：
+        <div class="image-gallery">
+            <div class="image-item">
+                <img src="图片1.jpg" alt="说明1">
+                <div class="image-caption">说明 1</div>
+            </div>
+            <div class="image-item">
+                <img src="图片2.jpg" alt="说明2">
+                <div class="image-caption">说明 2</div>
+            </div>
+        </div>
+        
+        3. 插入视频（任意位置）：
+        <div class="video-container" style="max-width: 800px; margin: 2rem auto;">
+            <video controls>
+                <source src="你的视频路径.mp4" type="video/mp4">
+                您的浏览器不支持视频播放。
+            </video>
+            <div class="video-caption">视频说明</div>
+        </div>
+        
+        4. 调整图片/视频大小：
+           修改 style="max-width: XXXpx;" 中的数值
+        
+        5. 居中对齐：
+           使用 style="margin: 2rem auto;"
+        
+        6. 左对齐：
+           使用 style="margin: 2rem 0;"
+        ============================================
+        -->
     </div>
 
     <!-- Footer -->
