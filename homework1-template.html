@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 1 | Aether Studio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #000000;
+            --bg-secondary: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --accent-purple: #B8A9FF;
+            --border-light: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-purple);
+        }
+
+        /* Content */
+        .content-page {
+            padding-top: 120px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 4rem;
+            padding-right: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 200;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+            color: var(--accent-purple);
+        }
+
+        .page-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            color: var(--accent-purple);
+        }
+
+        .content-section h3 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin: 2rem 0 1rem;
+            color: var(--text-primary);
+        }
+
+        .content-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+
+        .content-section ul,
+        .content-section ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        /* Images */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-item {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Videos */
+        .video-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-caption {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Code Blocks */
+        .content-section pre {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-light);
+        }
+
+        .content-section code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+        }
+
+        .content-section pre code {
+            color: var(--text-primary);
+        }
+
+        /* Blockquote */
+        .content-section blockquote {
+            border-left: 4px solid var(--accent-purple);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1.5rem 2rem;
+            }
+
+            .nav-menu {
+                gap: 1.5rem;
+            }
+
+            .content-page {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">AETHER STUDIO</a>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="homework.html">Homework</a></li>
+            <li><a href="team.html">Team</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <div class="content-page">
+        <!-- Header -->
+        <div class="page-header">
+            <h1 class="page-title">HOMEWORK 1</h1>
+            <p class="page-subtitle">Project Management</p>
+        </div>
+
+        <!-- Section 1: Introduction -->
+        <div class="content-section">
+            <h2>项目概述</h2>
+            <p>
+                在这里写下作业的详细介绍。可以包含项目背景、目标、技术栈等信息。
+                这是第一段文字说明。
+            </p>
+            <p>
+                这是第二段文字，可以继续描述项目的细节和实现过程。
+            </p>
+        </div>
+
+        <!-- Section 2: Images -->
+        <div class="content-section">
+            <h2>项目图片</h2>
+            <div class="image-gallery">
+                <div class="image-item">
+                    <!-- 替换为你的图片路径 -->
+                    <img src="images/homework1/photo1.jpg" alt="项目图片1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%230A0A0A%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2216%22%3EImage 1%3C/text%3E%3C/svg%3E'">
+                    <div class="image-caption">图片说明 1</div>
+                </div>
+                <div class="image-item">
+                    <img src="images/homework1/photo2.jpg" alt="项目图片2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%230A0A0A%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2216%22%3EImage 2%3C/text%3E%3C/svg%3E'">
+                    <div class="image-caption">图片说明 2</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Video -->
+        <div class="content-section">
+            <h2>演示视频</h2>
+            <div class="video-container">
+                <!-- 替换为你的视频路径 -->
+                <video controls poster="images/homework1/video-poster.jpg">
+                    <source src="videos/homework1/demo.mp4" type="video/mp4">
+                    您的浏览器不支持视频播放。
+                </video>
+                <div class="video-caption">项目演示视频</div>
+            </div>
+        </div>
+
+        <!-- Section 4: Technical Details -->
+        <div class="content-section">
+            <h2>技术细节</h2>
+            <h3>使用的技术</h3>
+            <ul>
+                <li>Arduino / ESP32</li>
+                <li>传感器模块</li>
+                <li>Python / C++</li>
+                <li>3D 打印</li>
+            </ul>
+
+            <h3>代码示例</h3>
+            <pre><code>// 示例代码
+void setup() {
+    Serial.begin(9600);
+    pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+    digitalWrite(LED_PIN, HIGH);
+    delay(1000);
+    digitalWrite(LED_PIN, LOW);
+    delay(1000);
+}</code></pre>
+        </div>
+
+        <!-- Section 5: Conclusion -->
+        <div class="content-section">
+            <h2>总结与反思</h2>
+            <p>
+                在这里写下项目的总结、遇到的问题和解决方案，以及未来的改进方向。
+            </p>
+            <blockquote>
+                "这是一个很有意义的项目，通过实践学到了很多新知识。"
+            </blockquote>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Aether Studio. All rights reserved.</p>
+    </footer>
+</body>
+</html>
