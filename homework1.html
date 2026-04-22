@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework 1 | Aether Studio</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --bg-primary: #000000;
             --bg-secondary: #0A0A0A;
@@ -17,14 +23,16 @@
             --text-secondary: #999999;
             --accent-purple: #B8A9FF;
             --border-light: rgba(255, 255, 255, 0.1);
-            --success: #2ed573;
         }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.8;
         }
+
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -37,315 +45,205 @@
             z-index: 1000;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
         }
+
         .logo {
             font-size: 1.3rem;
             font-weight: 300;
             letter-spacing: 0.3em;
+            text-transform: uppercase;
             color: var(--text-primary);
             text-decoration: none;
         }
-        .nav-menu { display: flex; list-style: none; gap: 3rem; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
         .nav-menu a {
             color: var(--text-primary);
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 300;
+            letter-spacing: 0.1em;
             transition: color 0.3s ease;
         }
-        .nav-menu a:hover { color: var(--accent-purple); }
-        .homework-detail {
-            padding-top: 100px;
-            min-height: 100vh;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 100px 4rem 4rem;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+
+        .nav-menu a:hover {
             color: var(--accent-purple);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            transition: gap 0.3s ease;
         }
-        .back-link:hover { gap: 1rem; }
-        .homework-header {
-            margin-bottom: 3rem;
+
+        /* Content */
+        .content-page {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            padding-bottom: 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-light);
         }
-        .homework-number {
-            font-size: 0.85rem;
-            color: var(--accent-purple);
-            margin-bottom: 0.5rem;
-        }
-        .homework-title {
+
+        .page-title {
             font-size: 2.5rem;
-            font-weight: 300;
+            font-weight: 200;
+            letter-spacing: 0.2em;
             margin-bottom: 1rem;
+            color: var(--accent-purple);
         }
-        .homework-desc {
+
+        .page-subtitle {
             font-size: 1rem;
             color: var(--text-secondary);
-            line-height: 1.8;
+            font-weight: 300;
         }
-        /* Markdown Content Section */
-        .markdown-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+            text-align: left;
         }
-        .markdown-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
             margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .markdown-title {
-            font-size: 1.5rem;
-            font-weight: 400;
-        }
-        .btn-copy {
-            padding: 0.5rem 1.2rem;
-            background: transparent;
-            border: 1px solid var(--accent-purple);
             color: var(--accent-purple);
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            text-align: left;
         }
-        .btn-copy:hover {
-            background: var(--accent-purple);
-            color: var(--bg-primary);
-        }
-        .btn-copy.copied {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-        }
-        .markdown-content {
+
+        .content-section h3 {
+            font-size: 1.4rem;
+            font-weight: 300;
+            margin: 2rem 0 1rem;
             color: var(--text-primary);
+            text-align: left;
+        }
+
+        .content-section h4 {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin: 1.5rem 0 0.8rem;
+            color: var(--text-primary);
+            text-align: left;
+        }
+
+        .content-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            line-height: 2;
+            text-align: left;
+        }
+
+        .content-section ul,
+        .content-section ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .content-section li {
+            margin-bottom: 0.8rem;
             line-height: 1.8;
         }
-        .markdown-content h1, .markdown-content h2, .markdown-content h3,
-        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
-            margin: 1.5rem 0 1rem;
-            font-weight: 400;
-            color: var(--accent-purple);
+
+        /* Images */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
         }
-        .markdown-content h1 { font-size: 2rem; }
-        .markdown-content h2 { font-size: 1.75rem; }
-        .markdown-content h3 { font-size: 1.5rem; }
-        .markdown-content p {
-            margin-bottom: 1rem;
+
+        .image-item {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            margin: 2rem 0;
+            background: var(--bg-secondary);
         }
-        .markdown-content code {
-            background: rgba(184, 169, 255, 0.1);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            color: var(--accent-purple);
-            font-size: 0.9em;
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            max-height: none;
+            display: block;
+            object-fit: contain;
+            image-rendering: auto;
+            transition: transform 0.3s ease;
         }
-        .markdown-content pre {
-            background: rgba(0, 0, 0, 0.5);
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-caption {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Videos */
+        .video-container {
+            margin: 2rem 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+        }
+
+        .video-container video {
+            width: 100%;
+            display: block;
+        }
+
+        .video-caption {
+            padding: 1rem;
+            background: var(--bg-secondary);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        /* Code Blocks */
+        .content-section pre {
+            background: var(--bg-secondary);
             padding: 1.5rem;
             border-radius: 8px;
             overflow-x: auto;
-            margin: 1rem 0;
+            margin: 1.5rem 0;
             border: 1px solid var(--border-light);
         }
-        .markdown-content pre code {
-            background: transparent;
-            padding: 0;
+
+        .content-section code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+        }
+
+        .content-section pre code {
             color: var(--text-primary);
         }
-        .markdown-content blockquote {
-            border-left: 3px solid var(--accent-purple);
+
+        /* Blockquote */
+        .content-section blockquote {
+            border-left: 4px solid var(--accent-purple);
             padding-left: 1.5rem;
-            margin: 1rem 0;
+            margin: 2rem 0;
             color: var(--text-secondary);
             font-style: italic;
         }
-        .markdown-content ul, .markdown-content ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        .markdown-content li {
-            margin-bottom: 0.5rem;
-        }
-        .markdown-content a {
-            color: var(--accent-purple);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-        .markdown-content a:hover {
-            border-bottom-color: var(--accent-purple);
-        }
-        .markdown-content img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-        .markdown-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        .markdown-content th, .markdown-content td {
-            padding: 0.75rem;
-            border: 1px solid var(--border-light);
-            text-align: left;
-        }
-        .markdown-content th {
-            background: rgba(184, 169, 255, 0.1);
-            color: var(--accent-purple);
-        }
-        .markdown-content hr {
-            border: none;
-            border-top: 1px solid var(--border-light);
-            margin: 2rem 0;
-        }
-        .section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .section-title i { color: var(--accent-purple); }
-        .upload-area {
-            border: 2px dashed var(--border-light);
-            border-radius: 8px;
-            padding: 3rem 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .upload-area:hover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.05);
-        }
-        .upload-area.dragover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.1);
-        }
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--accent-purple);
-            margin-bottom: 1rem;
-        }
-        .upload-text { font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .upload-hint { font-size: 0.85rem; color: var(--text-secondary); }
-        input[type="file"] { display: none; }
-        .file-list { margin-top: 2rem; }
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            margin-bottom: 0.8rem;
-            animation: slideIn 0.3s ease;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        .file-info { display: flex; align-items: center; gap: 1rem; }
-        .file-icon { color: var(--accent-purple); font-size: 1.2rem; }
-        .file-name { font-size: 0.9rem; }
-        .file-size { font-size: 0.75rem; color: var(--text-secondary); }
-        .file-remove {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: color 0.3s ease;
-        }
-        .file-remove:hover { color: #ff4757; }
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            background: var(--accent-purple);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3);
-        }
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .submission-list { margin-top: 1.5rem; }
-        .submission-item {
-            padding: 1.2rem;
-            background: rgba(46, 213, 115, 0.05);
-            border: 1px solid rgba(46, 213, 115, 0.2);
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-        }
-        .submission-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        .submission-name { font-size: 0.9rem; font-weight: 400; }
-        .submission-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--success);
-        }
-        .submission-time {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-secondary);
-        }
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.3;
-        }
+
+        /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
@@ -353,389 +251,143 @@
             color: var(--text-secondary);
             font-size: 0.85rem;
         }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .navbar { padding: 1.5rem 2rem; }
+            .navbar {
+                padding: 1.5rem 2rem;
+            }
+
             .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.98);
-                flex-direction: column;
-                padding: 2rem;
+                gap: 1.5rem;
             }
-            .nav-menu.active { display: flex; }
-            .hamburger {
-                display: flex;
-                flex-direction: column;
-                cursor: pointer;
-                gap: 5px;
+
+            .content-page {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
-            .hamburger span {
-                width: 25px;
-                height: 2px;
-                background: var(--text-primary);
+
+            .page-title {
+                font-size: 2rem;
             }
-            .homework-detail { padding: 100px 2rem 2rem; }
+
+            .image-gallery {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <a href="index.html" class="logo">AETHER</a>
-        <ul class="nav-menu" id="navMenu">
+        <a href="index.html" class="logo">AETHER STUDIO</a>
+        <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About US</a></li>
-            <li><a href="homework.html">Daily homework</a></li>
-            <li><a href="final.html">Finalwork</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="homework.html">Homework</a></li>
+            <li><a href="team.html">Team</a></li>
         </ul>
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
     </nav>
 
-    <div class="homework-detail">
-        <a href="homework.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Homework List
-        </a>
-
-        <div class="homework-header">
-            <p class="homework-number">HOMEWORK 01</p>
-            <h1 class="homework-title">Project Management</h1>
-            <p class="homework-desc">
-                项目规划与时间管理。学习如何有效地管理项目进度，制定合理的时间计划，
-                并确保按时完成任务。
-            </p>
+    <!-- Content -->
+    <div class="content-page">
+        <!-- Header -->
+        <div class="page-header">
+            <h1 class="page-title">HOMEWORK 1</h1>
+            <p class="page-subtitle">Project Management - Prepare</p>
         </div>
 
-        <!-- Markdown Content Section -->
-        <div class="markdown-section">
-            <div class="markdown-header">
-                <h2 class="markdown-title">
-                    <i class="fas fa-file-alt" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
-                    Homework Content
-                </h2>
-                <button class="btn-copy" id="copyBtn" onclick="copyContent()">
-                    <i class="fas fa-copy"></i>
-                    <span>Copy</span>
-                </button>
+        <!-- Section 1: Introduction -->
+        <div class="content-section">
+            <h2>Homework 1: Prepare</h2>
+            
+            <h3>1. Prepare</h3>
+            <p>We will use the following tools to build our own webpage:</p>
+            <ul>
+                <li><strong>Git:</strong> Used for version control. No installation required on Mac, mainly for configuration.</li>
+                <li><strong>GitHub:</strong> Used as the hosting service for our webpage.</li>
+                <li><strong>GitHub Desktop:</strong> Makes it easy for us to upload code from local to GitHub.</li>
+                <li><strong>Lingma:</strong> Used for writing documents and code.</li>
+            </ul>
+        </div>
+
+        <!-- Section 2: Web Page Setting -->
+        <div class="content-section">
+            <h3>2. Web page setting</h3>
+            
+            <h4>Create a new repository on GitHub to host your website</h4>
+            <p>Create a public repository where you can collaborate with your team to create web content.</p>
+            
+            <!-- 插入创建仓库的截图 -->
+            <div class="image-item">
+                <img src="image/create-repository.png" alt="创建GitHub仓库">
+                <div class="image-caption">在 GitHub 上创建新的公开仓库</div>
             </div>
-            <div class="markdown-content" id="markdownContent"></div>
-            <!-- Raw markdown for copying -->
-            <textarea id="rawMarkdown" style="display: none;"></textarea>
-        </div>
-
-        <!-- Submit Section -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-upload"></i>
-                Submit Your Work
-            </h2>
-            <div class="upload-area" id="uploadArea">
-                <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                <p class="upload-text">Drag & Drop files here or click to upload</p>
-                <p class="upload-hint">Support: Code, Images, Documents, PDF (Max 10MB)</p>
-                <input type="file" id="fileInput" multiple>
+            
+            <h4>Configure GitHub Pages</h4>
+            <p>Set the page to be empty. Click on the settings of the repository and select "Pages" on the left. Choose "main" and "/root" and save. The link above allows you to view the page.</p>
+            
+            <!-- 插入 Pages 设置的截图 -->
+            <div class="image-item">
+                <img src="image/pages-settings.png" alt="GitHub Pages设置">
+                <div class="image-caption">配置 GitHub Pages - 选择 main 分支和 /root 目录</div>
             </div>
-            <div class="file-list" id="fileList"></div>
-            <button class="btn-submit" id="submitBtn" disabled>
-                <i class="fas fa-paper-plane"></i> Submit Files
-            </button>
+            
+            <h4>Add Collaborators</h4>
+            <p>Click on "Settings", find "Collaborators" on the left, then click "Add people", enter their email addresses, and set their role (maintainer).</p>
+            
+            <!-- 插入添加协作者的截图1 -->
+            <div class="image-item">
+                <img src="image/add-collaborators1.png" alt="添加协作者步骤1">
+                <div class="image-caption">点击 Settings → Collaborators → Add people</div>
+            </div>
+            
+            <!-- 插入添加协作者的截图2 -->
+            <div class="image-item">
+                <img src="image/add-collaborators-2.png" alt="添加协作者步骤2">
+                <div class="image-caption">输入邮箱地址并设置 Maintainer 角色</div>
+            </div>
         </div>
 
-        <!-- Submitted Files Section -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-check-circle"></i>
-                Submitted Files
-            </h2>
-            <div id="submissionList" class="submission-list">
-                <div class="empty-state">
-                    <i class="fas fa-inbox"></i>
-                    <p>No files submitted yet</p>
-                </div>
+        <!-- Section 3: Clone Repository -->
+        <div class="content-section">
+            <h3>3. Clone the repository to GitHub</h3>
+            
+            <h4>Open GitHub Desktop and Login</h4>
+            <p>Open the software and log in to your GitHub account.</p>
+            
+            <h4>Clone the Repository</h4>
+            <p>Clone the repository and select one to save to your computer.</p>
+            
+            <!-- 插入克隆仓库的截图 -->
+            <div class="image-item">
+                <img src="image/clone-repository.png" alt="克隆仓库">
+                <div class="image-caption">克隆仓库到本地计算机</div>
+            </div>
+            
+            <h4>Modify Files and Commit</h4>
+            <p>After modifying the files, write a commit note on the left side.</p>
+            
+            <!-- 插入提交更改的截图 -->
+            <div class="image-item">
+                <img src="image/commit-changes.png" alt="提交更改">
+                <div class="image-caption">编写提交说明（Commit Message）</div>
+            </div>
+            
+            <h4>Push to GitHub</h4>
+            <p>Click Push origin in the upper right corner to upload to GitHub.</p>
+            
+            <!-- 插入推送代码的截图 -->
+            <div class="image-item">
+                <img src="image/push-to-github.png" alt="推送到GitHub">
+                <div class="image-caption">点击 "Push origin" 将代码上传到 GitHub</div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Aether Studio. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => navMenu.classList.remove('active'));
-        });
-
-        // File upload
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const fileList = document.getElementById('fileList');
-        const submitBtn = document.getElementById('submitBtn');
-        const submissionList = document.getElementById('submissionList');
-        let selectedFiles = [];
-
-        uploadArea.addEventListener('click', () => fileInput.click());
-
-        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
-
-        function handleFiles(files) {
-            Array.from(files).forEach(file => {
-                if (file.size > 10 * 1024 * 1024) {
-                    alert(`File "${file.name}" exceeds 10MB limit`);
-                    return;
-                }
-                selectedFiles.push(file);
-                addFileToList(file);
-            });
-            updateSubmitButton();
-        }
-
-        function addFileToList(file) {
-            const fileId = `file-${Date.now()}-${Math.random()}`;
-            const fileItem = document.createElement('div');
-            fileItem.className = 'file-item';
-            fileItem.id = fileId;
-            fileItem.innerHTML = `
-                <div class="file-info">
-                    <i class="fas fa-file file-icon"></i>
-                    <div>
-                        <div class="file-name">${file.name}</div>
-                        <div class="file-size">${formatSize(file.size)}</div>
-                    </div>
-                </div>
-                <button class="file-remove" onclick="removeFile('${fileId}')">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            fileList.appendChild(fileItem);
-        }
-
-        function removeFile(fileId) {
-            const fileItem = document.getElementById(fileId);
-            if (fileItem) {
-                fileItem.remove();
-                selectedFiles = selectedFiles.filter(f => f.name !== fileItem.querySelector('.file-name').textContent);
-                updateSubmitButton();
-            }
-        }
-
-        function updateSubmitButton() {
-            submitBtn.disabled = selectedFiles.length === 0;
-        }
-
-        function formatSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-        }
-
-        submitBtn.addEventListener('click', () => {
-            if (selectedFiles.length === 0) return;
-
-            // Simulate submission
-            selectedFiles.forEach(file => {
-                const submission = document.createElement('div');
-                submission.className = 'submission-item';
-                const now = new Date();
-                submission.innerHTML = `
-                    <div class="submission-header">
-                        <span class="submission-name">
-                            <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
-                            ${file.name}
-                        </span>
-                        <span class="submission-status">
-                            <i class="fas fa-check"></i>
-                            Submitted
-                        </span>
-                    </div>
-                    <p class="submission-time">${now.toLocaleString()}</p>
-                `;
-
-                // Remove empty state if exists
-                const emptyState = submissionList.querySelector('.empty-state');
-                if (emptyState) emptyState.remove();
-
-                submissionList.insertBefore(submission, submissionList.firstChild);
-            });
-
-            // Clear selected files
-            selectedFiles = [];
-            fileList.innerHTML = '';
-            updateSubmitButton();
-            fileInput.value = '';
-
-            // Show success message
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!';
-            submitBtn.style.background = 'var(--success)';
-            setTimeout(() => {
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Files';
-                submitBtn.style.background = '';
-            }, 3000);
-        });
-
-        // Load submitted files from localStorage
-        function loadSubmissions() {
-            const key = 'homework1_submissions';
-            const submissions = JSON.parse(localStorage.getItem(key) || '[]');
-            
-            if (submissions.length > 0) {
-                submissionList.innerHTML = '';
-                submissions.forEach(sub => {
-                    const item = document.createElement('div');
-                    item.className = 'submission-item';
-                    item.innerHTML = `
-                        <div class="submission-header">
-                            <span class="submission-name">
-                                <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
-                                ${sub.name}
-                            </span>
-                            <span class="submission-status">
-                                <i class="fas fa-check"></i>
-                                Submitted
-                            </span>
-                        </div>
-                        <p class="submission-time">${sub.time}</p>
-                    `;
-                    submissionList.appendChild(item);
-                });
-            }
-        }
-
-        // Save submission to localStorage
-        function saveSubmission(fileName) {
-            const key = 'homework1_submissions';
-            const submissions = JSON.parse(localStorage.getItem(key) || '[]');
-            submissions.unshift({
-                name: fileName,
-                time: new Date().toLocaleString()
-            });
-            localStorage.setItem(key, JSON.stringify(submissions));
-        }
-
-        // Override submit to save to localStorage
-        const originalSubmit = submitBtn.onclick;
-        submitBtn.addEventListener('click', () => {
-            selectedFiles.forEach(file => saveSubmission(file.name));
-        }, true);
-
-        loadSubmissions();
-
-        // Markdown Content - Edit your homework content here
-        const homeworkContent = `
-# Homework 1: Project Management
-
-## Overview
-
-This assignment focuses on project planning and time management skills.
-
-## Requirements
-
-1. **Create a project plan** for your Fab Academy journey
-2. **Set milestones** for each week
-3. **Identify potential risks** and mitigation strategies
-
-## Key Concepts
-
-> Effective project management is the key to successful fabrication.
-
-### Tools Used
-
-- Gantt Charts
-- Kanban Boards
-- Time Tracking
-
-### Timeline
-
-| Week | Task | Status |
-|------|------|--------|
-| 1 | Project Proposal | \u2705 Completed |
-| 2 | Design Phase | \u274c Pending |
-| 3 | Prototyping | \u23f3 In Progress |
-
-## Submission
-
-Please submit your project plan document in PDF format.
-
-**Deadline:** End of Week 1
-        `;
-
-        // Render markdown content
-        const markdownContent = document.getElementById('markdownContent');
-        const rawMarkdown = document.getElementById('rawMarkdown');
-        
-        if (marked) {
-            // Configure marked options
-            marked.setOptions({
-                breaks: true,
-                gfm: true
-            });
-            
-            // Render markdown to HTML
-            markdownContent.innerHTML = marked.parse(homeworkContent);
-        } else {
-            // Fallback if marked.js fails to load
-            markdownContent.innerHTML = '<p style="color: var(--text-secondary);">Content loading...</p>';
-        }
-        
-        // Store raw markdown for copying
-        rawMarkdown.value = homeworkContent.trim();
-
-        // Copy content function
-        function copyContent() {
-            const copyBtn = document.getElementById('copyBtn');
-            const textToCopy = rawMarkdown.value;
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                copyBtn.classList.add('copied');
-                copyBtn.querySelector('span').textContent = 'Copied!';
-                copyBtn.querySelector('i').className = 'fas fa-check';
-                
-                setTimeout(() => {
-                    copyBtn.classList.remove('copied');
-                    copyBtn.querySelector('span').textContent = 'Copy';
-                    copyBtn.querySelector('i').className = 'fas fa-copy';
-                }, 2000);
-            }).catch(err => {
-                // Fallback for older browsers
-                const textarea = document.createElement('textarea');
-                textarea.value = textToCopy;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                
-                copyBtn.classList.add('copied');
-                copyBtn.querySelector('span').textContent = 'Copied!';
-                setTimeout(() => {
-                    copyBtn.classList.remove('copied');
-                    copyBtn.querySelector('span').textContent = 'Copy';
-                }, 2000);
-            });
-        }
-    </script>
 </body>
 </html>
