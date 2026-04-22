@@ -344,6 +344,93 @@
             transform: scale(1.1);
         }
 
+        /* Video Upload Area */
+        .video-upload-area {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 2px dashed var(--border-light);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-upload-area:hover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.05);
+        }
+
+        .video-upload-area.dragover {
+            border-color: var(--accent-purple);
+            background: rgba(184, 169, 255, 0.1);
+        }
+
+        #videoInput {
+            display: none;
+        }
+
+        /* Uploaded Videos List */
+        .uploaded-videos {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .uploaded-video-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            background: var(--bg-secondary);
+        }
+
+        .uploaded-video-item video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        .video-info {
+            padding: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 30px);
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .uploaded-video-item:hover .video-overlay {
+            opacity: 1;
+        }
+
+        .video-action-btn {
+            padding: 0.4rem 0.8rem;
+            background: var(--accent-purple);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: transform 0.2s ease;
+        }
+
+        .video-action-btn:hover {
+            transform: scale(1.1);
+        }
+
         /* Preview Panel */
         .preview-panel {
             background: var(--bg-secondary);
@@ -668,6 +755,9 @@
                     <button class="toolbar-btn" onclick="document.getElementById('imageInput').click()" title="Insert Image">
                         <i class="fas fa-image"></i>
                     </button>
+                    <button class="toolbar-btn" onclick="document.getElementById('videoInput').click()" title="Insert Video">
+                        <i class="fas fa-video"></i>
+                    </button>
                 </div>
                 
                 <textarea id="markdownInput" placeholder="Type your Markdown here..."></textarea>
@@ -682,8 +772,21 @@
                 </div>
                 <input type="file" id="imageInput" accept="image/*" multiple>
                 
+                <!-- Video Upload Area -->
+                <div class="video-upload-area" id="videoUploadArea" onclick="document.getElementById('videoInput').click()">
+                    <div class="upload-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="upload-text">Click or Drag & Drop to Upload Videos</div>
+                    <div class="upload-hint">Support: MP4, WebM, MOV (Max 50MB)</div>
+                </div>
+                <input type="file" id="videoInput" accept="video/*" multiple>
+                
                 <!-- Uploaded Images -->
                 <div class="uploaded-images" id="uploadedImages"></div>
+                
+                <!-- Uploaded Videos -->
+                <div class="uploaded-videos" id="uploadedVideos"></div>
             </div>
 
             <!-- Preview Panel -->
@@ -1232,8 +1335,130 @@ Frontend: React Native
         const originalSave = saveContent;
         saveContent = function() {
             localStorage.setItem(`homework_${homeworkId}_images`, JSON.stringify(uploadedImages));
+            localStorage.setItem(`homework_${homeworkId}_videos`, JSON.stringify(uploadedVideos));
             originalSave();
         };
+
+        // Video Upload Functionality
+        const videoInput = document.getElementById('videoInput');
+        const uploadedVideosDiv = document.getElementById('uploadedVideos');
+        let uploadedVideos = [];
+
+        if (videoInput) {
+            videoInput.addEventListener('change', handleVideoUpload);
+        }
+
+        // Drag and drop for videos
+        const videoUploadArea = document.getElementById('videoUploadArea');
+        if (videoUploadArea) {
+            videoUploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                videoUploadArea.classList.add('dragover');
+            });
+
+            videoUploadArea.addEventListener('dragleave', () => {
+                videoUploadArea.classList.remove('dragover');
+            });
+
+            videoUploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                videoUploadArea.classList.remove('dragover');
+                const files = Array.from(e.dataTransfer.files).filter(file => file.type.startsWith('video/'));
+                files.forEach(file => processVideo(file));
+            });
+        }
+
+        function handleVideoUpload(e) {
+            const files = Array.from(e.target.files);
+            files.forEach(file => processVideo(file));
+            e.target.value = '';
+        }
+
+        function processVideo(file) {
+            if (!file.type.startsWith('video/')) {
+                alert('Please upload a video file');
+                return;
+            }
+
+            if (file.size > 50 * 1024 * 1024) {
+                alert('Video size should be less than 50MB');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const base64 = e.target.result;
+                const videoName = file.name;
+                
+                uploadedVideos.push({
+                    name: videoName,
+                    data: base64,
+                    type: file.type
+                });
+
+                displayUploadedVideo(base64, videoName, uploadedVideos.length - 1);
+
+                // Insert video markdown
+                const markdown = `\n<video controls width="100%">\n  <source src="${base64}" type="${file.type}">\n  Your browser does not support the video tag.\n</video>\n`;
+                insertAtCursor(markdown);
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function displayUploadedVideo(base64, name, index) {
+            const div = document.createElement('div');
+            div.className = 'uploaded-video-item';
+            div.innerHTML = `
+                <video src="${base64}" muted></video>
+                <div class="video-info">${name}</div>
+                <div class="video-overlay">
+                    <button class="video-action-btn" onclick="insertVideoMarkdown(${index})" title="Insert">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="video-action-btn" onclick="deleteVideo(${index})" title="Delete">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            uploadedVideosDiv.appendChild(div);
+        }
+
+        function insertVideoMarkdown(index) {
+            const video = uploadedVideos[index];
+            if (video) {
+                const markdown = `\n<video controls width="100%">\n  <source src="${video.data}" type="${video.type}">\n  Your browser does not support the video tag.\n</video>\n`;
+                insertAtCursor(markdown);
+            }
+        }
+
+        function deleteVideo(index) {
+            if (confirm('Delete this video?')) {
+                uploadedVideos.splice(index, 1);
+                refreshUploadedVideos();
+            }
+        }
+
+        function refreshUploadedVideos() {
+            uploadedVideosDiv.innerHTML = '';
+            uploadedVideos.forEach((video, index) => {
+                displayUploadedVideo(video.data, video.name, index);
+            });
+        }
+
+        // Load videos from localStorage
+        function loadVideos() {
+            const saved = localStorage.getItem(`homework_${homeworkId}_videos`);
+            if (saved) {
+                uploadedVideos = JSON.parse(saved);
+                uploadedVideos.forEach((video, index) => {
+                    displayUploadedVideo(video.data, video.name, index);
+                });
+            }
+        }
+
+        // Initialize
+        loadImages();
+        loadVideos();
 
         // Load images on init
         loadImages();
