@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aether Studio | Course Portfolio</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="image/logo.png">
+    <link rel="apple-touch-icon" href="image/logo.png">
+    
     <!-- Cache Control -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
@@ -139,6 +143,28 @@
             text-transform: uppercase;
             color: var(--text-primary);
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 8px rgba(184, 169, 255, 0.3));
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
+            filter: drop-shadow(0 4px 12px rgba(184, 169, 255, 0.5));
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
         }
 
         .nav-menu {
@@ -564,6 +590,10 @@
                 padding: 1.5rem 2rem;
             }
 
+            .logo-img {
+                height: 32px;
+            }
+
             .nav-menu {
                 display: none;
                 position: absolute;
@@ -624,7 +654,9 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <a href="#" class="logo">AETHER</a>
+        <a href="#" class="logo">
+            <img src="image/logo.png" alt="Aether Studio Logo" class="logo-img">
+        </a>
         <ul class="nav-menu" id="navMenu">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About US</a></li>
