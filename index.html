@@ -1011,6 +1011,22 @@
 
         // 3D Tilt Effect for Team Member Cards
         document.querySelectorAll('.team-member').forEach(card => {
+            // 给王琦琦添加链接
+            if(card.querySelector('h3').textContent === '王琦琦') {
+                card.style.cursor = 'pointer';
+                card.setAttribute('data-link', 'https://babeecat7.github.io/wqqd/');
+            }
+            // 给章悦添加链接
+            if(card.querySelector('h3').textContent === '章悦') {
+                card.style.cursor = 'pointer';
+                card.setAttribute('data-link', 'https://elefish410.github.io/11/');
+            }
+            // 给何昱璇添加链接
+            if(card.querySelector('h3').textContent === '何昱璇') {
+                card.style.cursor = 'pointer';
+                card.setAttribute('data-link', 'https://xuan-jiji.github.io/-.github.io/');
+            }
+            
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
@@ -1025,6 +1041,14 @@
             
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+            });
+            
+            // 添加点击跳转功能
+            card.addEventListener('click', () => {
+                const link = card.getAttribute('data-link');
+                if (link) {
+                    window.open(link, '_blank');
+                }
             });
         });
 
