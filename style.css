@@ -628,6 +628,18 @@ main {
     transform: scaleX(0);
     transition: transform 0.4s ease;
     transform-origin: left;
+    pointer-events: none !important;
+    z-index: 0;
+}
+
+/* 确保可点击的卡片层级最高 */
+a.card.member-card {
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+}
+
+a.card.member-card * {
     pointer-events: none;
 }
 
