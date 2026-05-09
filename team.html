@@ -270,6 +270,30 @@
                 navbar.classList.remove('scrolled');
             }
         });
+
+        // 强制为特定卡片添加点击跳转（保底方案）
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = [
+                { name: '陈梓琦', url: 'https://cziqi9307-byte.github.io/chenziqi-portfolio/' },
+                { name: '王琦琦', url: 'https://babeecat7.github.io/wqqd/' },
+                { name: '章悦', url: 'https://elefish410.github.io/11/' },
+                { name: '何昱璇', url: 'https://xuan-jiji.github.io/-.github.io/' }
+            ];
+
+            cards.forEach(member => {
+                const card = Array.from(document.querySelectorAll('.member-card')).find(el => 
+                    el.innerText.includes(member.name)
+                );
+                if (card) {
+                    card.style.cursor = 'pointer';
+                    card.onclick = function(e) {
+                        // 如果点击的是内部的链接，则不触发卡片跳转
+                        if (e.target.tagName === 'A') return;
+                        window.open(member.url, '_blank');
+                    };
+                }
+            });
+        });
     </script>
 </body>
 </html>
