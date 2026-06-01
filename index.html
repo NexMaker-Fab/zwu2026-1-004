@@ -6,11 +6,18 @@
     <title>Aether Studio | Course Portfolio</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="image/logo.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="image/logo.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="image/logo.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="image/logo.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="image/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="image/logo.png" id="favicon-light">
+    <link rel="icon" type="image/png" sizes="16x16" href="image/logo.png" id="favicon-light-16">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/logo.png" id="favicon-light-apple">
+    <link rel="icon" type="image/png" sizes="192x192" href="image/logo.png" id="favicon-light-192">
+    <link rel="icon" type="image/png" sizes="512x512" href="image/logo.png" id="favicon-light-512">
+    
+    <!-- Dark mode favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="image/logo-white.png" id="favicon-dark" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="16x16" href="image/logo-white.png" id="favicon-dark-16" media="(prefers-color-scheme: dark)">
+    <link rel="apple-touch-icon" sizes="180x180" href="image/logo-white.png" id="favicon-dark-apple" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="192x192" href="image/logo-white.png" id="favicon-dark-192" media="(prefers-color-scheme: dark)">
+    <link rel="icon" type="image/png" sizes="512x512" href="image/logo-white.png" id="favicon-dark-512" media="(prefers-color-scheme: dark)">
     
     <!-- Cache Control -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -899,6 +906,54 @@
 
         // Initialize upload
         const uploadManager = new UploadManager();
+
+        // Favicon theme switching functionality
+        function updateFaviconTheme() {
+            const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            // Get all favicon links
+            const lightFavicons = [
+                document.getElementById('favicon-light'),
+                document.getElementById('favicon-light-16'),
+                document.getElementById('favicon-light-apple'),
+                document.getElementById('favicon-light-192'),
+                document.getElementById('favicon-light-512')
+            ];
+            
+            const darkFavicons = [
+                document.getElementById('favicon-dark'),
+                document.getElementById('favicon-dark-16'),
+                document.getElementById('favicon-dark-apple'),
+                document.getElementById('favicon-dark-192'),
+                document.getElementById('favicon-dark-512')
+            ];
+            
+            if (isDarkMode) {
+                // In dark mode, disable light favicons and enable dark ones
+                lightFavicons.forEach(link => {
+                    if (link) link.disabled = true;
+                });
+                darkFavicons.forEach(link => {
+                    if (link) link.disabled = false;
+                });
+            } else {
+                // In light mode, disable dark favicons and enable light ones
+                darkFavicons.forEach(link => {
+                    if (link) link.disabled = true;
+                });
+                lightFavicons.forEach(link => {
+                    if (link) link.disabled = false;
+                });
+            }
+        }
+
+        // Check for theme changes
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFaviconTheme);
+        }
+
+        // Initial check
+        updateFaviconTheme();
 
         // Navbar scroll effect
         const navbar = document.getElementById('navbar');
