@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -987,7 +987,7 @@
         document.addEventListener('mousemove', (e) => {
             if (Math.random() > 0.85) {
                 const trail = document.createElement('div');
-                trail.textContent = ['�?, '�?, '�?, '�?, '�?][Math.floor(Math.random() * 5)];
+                trail.textContent = ['✦', '✧', '◇', '○', '●'][Math.floor(Math.random() * 5)];
                 trail.style.cssText = `
                     position: fixed;
                     left: ${e.clientX}px;
@@ -1069,17 +1069,17 @@
         // 3D Tilt Effect for Team Member Cards
         document.querySelectorAll('.team-member').forEach(card => {
             // 给王琦琦添加链接
-            if(card.querySelector('h3').textContent === '王琦�?) {
+            if(card.querySelector('h3').textContent === '王琦琦') {
                 card.style.cursor = 'pointer';
                 card.setAttribute('data-link', 'https://babeecat7.github.io/wqqd/');
             }
-            // 给章悦添加链�?
+            // 给章悦添加链接
             if(card.querySelector('h3').textContent === '章悦') {
                 card.style.cursor = 'pointer';
                 card.setAttribute('data-link', 'https://elefish410.github.io/11/');
             }
             // 给何昱璇添加链接
-            if(card.querySelector('h3').textContent === '何昱�?) {
+            if(card.querySelector('h3').textContent === '何昱璇') {
                 card.style.cursor = 'pointer';
                 card.setAttribute('data-link', 'https://xuan-jiji.github.io/-.github.io/');
             }
