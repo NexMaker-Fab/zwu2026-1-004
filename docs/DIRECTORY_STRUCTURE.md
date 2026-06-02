@@ -46,9 +46,27 @@ zwu2026-1-004/
 - `zhu.html` - 朱诗瑶个人主页
 - `profile-chen.html` - 陈梓琦作品集（独立版本）
 
-### 作业页面
-- `homework1.html` ~ `homework9.html` - 各次作业展示页
-- `homework1-template.html` - 作业模板
+### 作业页面（共12个文件）
+由于 GitHub Pages 限制，所有作业 HTML 文件必须在根目录：
+
+**作业列表和详情：**
+- `homework.html` - 作业总列表页
+- `homework-detail.html` - 作业详情模板页
+- `daily.html` - 日常作业页
+
+**具体作业展示（9次作业）：**
+- `homework1.html` - 作业1：Git基础操作
+- `homework2.html` - 作业2：Arduino流水灯
+- `homework3.html` - 作业3
+- `homework4.html` - 作业4
+- `homework5.html` - 作业5
+- `homework6.html` - 作业6
+- `homework7.html` - 作业7
+- `homework8.html` - 作业8
+- `homework9.html` - 作业9
+
+**模板文件：**
+- `homework1-template.html` - 作业HTML模板（供参考）
 
 ### 核心资源
 - `style.css` - 全局样式表
@@ -95,6 +113,18 @@ zwu2026-1-004/
 
 ### GitHub Pages 要求
 由于使用 GitHub Pages 托管，**所有 HTML 文件必须保持在根目录**，不能移动到子文件夹中，以确保正确的 URL 路径访问。
+
+**为什么作业 HTML 文件不能在子目录？**
+- GitHub Pages 直接映射根目录的文件到网站 URL
+- 如果将 `homework1.html` 移到 `homeworks/` 文件夹
+- 访问地址会从 `yourdomain.com/homework1.html` 变成 `yourdomain.com/homeworks/homework1.html`
+- 这会破坏现有的链接和导航结构
+- 需要修改所有引用这些文件的链接
+
+**当前的组织方式：**
+- ✅ 所有 HTML 页面 → 根目录（保持可访问性）
+- ✅ 相关资源（图片、视频）→ 对应的子目录
+- ✅ 文档和脚本 → 分类到 `docs/` 和 `scripts/`
 
 ### 为什么这样组织？
 1. **根目录保持简洁**：只保留必须的文件（HTML、CSS、JS）
