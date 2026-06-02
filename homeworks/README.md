@@ -12,28 +12,22 @@
 - `daily.html` - 日常作业页
 
 ### 具体作业展示
-| 文件名 | 作业名称 | 说明 |
-|--------|---------|------|
-| `homework1.html` | 作业1 | Git 基础操作 |
-| `homework2.html` | 作业2 | Arduino 流水灯 |
-| `homework3.html` | 作业3 | - |
-| `homework4.html` | 作业4 | - |
-| `homework5.html` | 作业5 | - |
-| `homework6.html` | 作业6 | - |
-| `homework7.html` | 作业7 | - |
-| `homework8.html` | 作业8 | - |
-| `homework9.html` | 作业9 | - |
 
-## 🔗 访问方式
+| 作业 | 说明 | 在线访问 |
+|------|------|----------|
+| **作业1** | Git 基础操作 | [🔗 查看作业1](https://NexMaker-Fab.github.io/zwu2026-1-004/homework1.html) |
+| **作业2** | Arduino 流水灯 | [🔗 查看作业2](https://NexMaker-Fab.github.io/zwu2026-1-004/homework2.html) |
+| **作业3** | - | [🔗 查看作业3](https://NexMaker-Fab.github.io/zwu2026-1-004/homework3.html) |
+| **作业4** | - | [🔗 查看作业4](https://NexMaker-Fab.github.io/zwu2026-1-004/homework4.html) |
+| **作业5** | - | [🔗 查看作业5](https://NexMaker-Fab.github.io/zwu2026-1-004/homework5.html) |
+| **作业6** | - | [🔗 查看作业6](https://NexMaker-Fab.github.io/zwu2026-1-004/homework6.html) |
+| **作业7** | - | [🔗 查看作业7](https://NexMaker-Fab.github.io/zwu2026-1-004/homework7.html) |
+| **作业8** | - | [🔗 查看作业8](https://NexMaker-Fab.github.io/zwu2026-1-004/homework8.html) |
+| **作业9** | - | [🔗 查看作业9](https://NexMaker-Fab.github.io/zwu2026-1-004/homework9.html) |
 
-所有作业页面的访问地址格式：
-```
-https://您的域名.github.io/zwu2026-1-004/homeworkX.html
-```
-
-例如：
-- 作业1: `https://您的域名.github.io/zwu2026-1-004/homework1.html`
-- 作业2: `https://您的域名.github.io/zwu2026-1-004/homework2.html`
+### 作业导航页
+- **作业总列表**: [🔗 homework.html](https://NexMaker-Fab.github.io/zwu2026-1-004/homework.html)
+- **日常作业**: [🔗 daily.html](https://NexMaker-Fab.github.io/zwu2026-1-004/daily.html)
 
 ## 📁 相关资源
 
