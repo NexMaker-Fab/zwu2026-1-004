@@ -450,36 +450,57 @@
             </div>
         </div>
 
-        <!-- Section 3: Arduino Input -->
+        <!-- Section 3: LED Cumulative Lighting -->
         <div class="content-section">
-            <h2>3. Arduino Input</h2>
+            <h2>3. LED Cumulative Lighting</h2>
             
             <h3>Overview</h3>
-            <p>Learn to read signals from various sensors and input devices.</p>
+            <p>Green, red, and yellow LEDs light up sequentially without turning off, achieving a cumulative lighting effect. After all LEDs are lit, they pause for 2 seconds, then all turn off and restart the cycle.</p>
             
-            <h3>Sensors Used</h3>
+            <h3>Hardware Connection</h3>
             <ul>
-                <li>Temperature Sensor (DHT11)</li>
-                <li>Light Sensor (LDR)</li>
-                <li>Push Button</li>
-                <li>Potentiometer</li>
+                <li>Green LED anode → Pin <strong>A0</strong> (with 220Ω resistor)</li>
+                <li>Red LED anode → Pin <strong>A1</strong> (with 220Ω resistor)</li>
+                <li>Yellow LED anode → Pin <strong>A2</strong> (with 220Ω resistor)</li>
+                <li>All LED cathodes → GND</li>
             </ul>
             
-            <h3>Key Learnings</h3>
+            <h3>Code</h3>
+            <pre><code>int green = A0;
+int red   = A1;
+int yellow= A2;
+
+void setup() {
+  pinMode(green, OUTPUT);
+  pinMode(red, OUTPUT);
+  pinMode(yellow, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(green, HIGH);
+  delay(500);
+
+  digitalWrite(red, HIGH);
+  delay(500);
+
+  digitalWrite(yellow, HIGH);
+  delay(500);
+
+  delay(2000);
+  digitalWrite(green, LOW);
+  digitalWrite(red, LOW);
+  digitalWrite(yellow, LOW);
+  delay(500);
+}</code></pre>
+            
+            <h3>Workflow</h3>
             <ol>
-                <li><strong>Analog vs Digital</strong> inputs</li>
-                <li><strong>Pull-up/Pull-down</strong> resistors</li>
-                <li><strong>Debouncing</strong> techniques</li>
+                <li>Green LED lights up, wait 0.5 seconds</li>
+                <li>Red LED lights up (green LED remains on), wait 0.5 seconds</li>
+                <li>Yellow LED lights up (all three LEDs on), wait 0.5 seconds</li>
+                <li>All LEDs stay lit for 2 seconds</li>
+                <li>All LEDs turn off, restart cycle after 0.5 seconds</li>
             </ol>
-            
-            <h3>Code Snippet</h3>
-            <pre><code>int sensorValue = analogRead(A0);
-float voltage = sensorValue * (5.0 / 1023.0);</code></pre>
-            
-            <h3>Results</h3>
-            <blockquote>
-                Successfully read data from multiple sensor types.
-            </blockquote>
         </div>
     </div>
 
