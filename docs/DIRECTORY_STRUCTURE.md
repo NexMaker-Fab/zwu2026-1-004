@@ -53,16 +53,15 @@ zwu2026-1-004/
 - `homework-detail.html` - 作业详情模板页
 - `daily.html` - 日常作业页
 
-**具体作业展示（9次作业）：**
+**具体作业展示（8次作业）：**
 - `homework1.html` - 作业1：Git基础操作
-- `homework2.html` - 作业2：Arduino流水灯
-- `homework3.html` - 作业3
-- `homework4.html` - 作业4
-- `homework5.html` - 作业5
-- `homework6.html` - 作业6
-- `homework7.html` - 作业7
-- `homework8.html` - 作业8
-- `homework9.html` - 作业9
+- `homework2.html` - 作业2：Arduino Output & Input（流水灯 + 传感器输入）
+- `homework4.html` - 作业3：Interface Application Program
+- `homework5.html` - 作业4：CAD
+- `homework6.html` - 作业5：Material and Tool
+- `homework7.html` - 作业6：3D Printer
+- `homework8.html` - 作业7：LASER CUTTING & CNC
+- `homework9.html` - 作业8：IOT AND INTERACTION
 
 **模板文件：**
 - `homework1-template.html` - 作业HTML模板（供参考）

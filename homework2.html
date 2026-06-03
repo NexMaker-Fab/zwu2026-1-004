@@ -449,6 +449,38 @@
                 <div class="video-caption">流水灯效果演示视频</div>
             </div>
         </div>
+
+        <!-- Section 3: Arduino Input -->
+        <div class="content-section">
+            <h2>3. Arduino Input</h2>
+            
+            <h3>Overview</h3>
+            <p>Learn to read signals from various sensors and input devices.</p>
+            
+            <h3>Sensors Used</h3>
+            <ul>
+                <li>Temperature Sensor (DHT11)</li>
+                <li>Light Sensor (LDR)</li>
+                <li>Push Button</li>
+                <li>Potentiometer</li>
+            </ul>
+            
+            <h3>Key Learnings</h3>
+            <ol>
+                <li><strong>Analog vs Digital</strong> inputs</li>
+                <li><strong>Pull-up/Pull-down</strong> resistors</li>
+                <li><strong>Debouncing</strong> techniques</li>
+            </ol>
+            
+            <h3>Code Snippet</h3>
+            <pre><code>int sensorValue = analogRead(A0);
+float voltage = sensorValue * (5.0 / 1023.0);</code></pre>
+            
+            <h3>Results</h3>
+            <blockquote>
+                Successfully read data from multiple sensor types.
+            </blockquote>
+        </div>
     </div>
 
     <!-- Footer -->
