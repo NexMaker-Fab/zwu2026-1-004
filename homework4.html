@@ -32,7 +32,6 @@
             line-height: 1.8;
         }
 
-        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -76,7 +75,6 @@
             color: var(--accent-purple);
         }
 
-        /* Content */
         .content-page {
             padding-top: 120px;
             max-width: 1200px;
@@ -107,7 +105,6 @@
             font-weight: 300;
         }
 
-        /* Content Sections */
         .content-section {
             margin-bottom: 3rem;
             text-align: left;
@@ -118,30 +115,24 @@
             font-weight: 300;
             margin-bottom: 1.5rem;
             color: var(--accent-purple);
-            text-align: left;
         }
 
         .content-section h3 {
             font-size: 1.4rem;
             font-weight: 300;
             margin: 2rem 0 1rem;
-            color: var(--text-primary);
-            text-align: left;
         }
 
         .content-section h4 {
             font-size: 1.2rem;
             font-weight: 300;
             margin: 1.5rem 0 0.8rem;
-            color: var(--text-primary);
-            text-align: left;
         }
 
         .content-section p {
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
             line-height: 2;
-            text-align: left;
         }
 
         .content-section ul,
@@ -155,14 +146,6 @@
             line-height: 1.8;
         }
 
-        /* Images */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
         .image-item {
             border-radius: 12px;
             overflow: hidden;
@@ -174,10 +157,7 @@
         .image-item img {
             width: 100%;
             height: auto;
-            max-height: none;
             display: block;
-            object-fit: contain;
-            image-rendering: auto;
             transition: transform 0.3s ease;
         }
 
@@ -193,7 +173,6 @@
             text-align: center;
         }
 
-        /* Videos */
         .video-container {
             margin: 2rem 0;
             border-radius: 12px;
@@ -214,27 +193,6 @@
             text-align: center;
         }
 
-        /* Code Blocks */
-        .content-section pre {
-            background: var(--bg-secondary);
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            border: 1px solid var(--border-light);
-        }
-
-        .content-section code {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            color: var(--accent-purple);
-        }
-
-        .content-section pre code {
-            color: var(--text-primary);
-        }
-
-        /* Blockquote */
         .content-section blockquote {
             border-left: 4px solid var(--accent-purple);
             padding-left: 1.5rem;
@@ -243,7 +201,6 @@
             font-style: italic;
         }
 
-        /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
@@ -252,7 +209,6 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .navbar {
                 padding: 1.5rem 2rem;
@@ -270,15 +226,10 @@
             .page-title {
                 font-size: 2rem;
             }
-
-            .image-gallery {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <a href="index.html" class="logo">AETHER STUDIO</a>
         <ul class="nav-menu">
@@ -288,28 +239,23 @@
         </ul>
     </nav>
 
-    <!-- Content -->
     <div class="content-page">
-        <!-- Back Button -->
         <div style="margin-bottom: 2rem;">
-            <a href="homework.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-purple); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease;">
+            <a href="homework.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-purple); text-decoration: none; font-size: 0.9rem;">
                 <i class="fas fa-arrow-left"></i>
                 <span>Back to Homework List</span>
             </a>
         </div>
         
-        <!-- Header -->
         <div class="page-header">
             <h1 class="page-title">HOMEWORK 4</h1>
             <p class="page-subtitle">Fusion 360 Modeling & Assembly</p>
         </div>
 
-        <!-- Section 1: Create Steering Wheel -->
         <div class="content-section">
             <h2>1. Create Car Steering Wheel Part</h2>
             
             <h3>Step 1: Open Autodesk Fusion</h3>
-            <!-- 插入打开Fusion的截图 -->
             <div class="image-item">
                 <img src="image/homework4/fusion-open.png" alt="Open Autodesk Fusion">
                 <div class="image-caption">Open Autodesk Fusion 360</div>
@@ -318,7 +264,6 @@
             <h3>Step 2: Create New Design</h3>
             <p>Click <strong>[New]</strong> → Select <strong>[Mixed Design]</strong> → <strong>[New]</strong></p>
             
-            <!-- 插入新建设计的三张截图 -->
             <div class="image-item">
                 <img src="image/homework4/new-design-1.jpg" alt="New Design Step 1">
                 <div class="image-caption">Create new design - Step 1</div>
@@ -347,28 +292,24 @@
                 All corners and connections have R3 fillet transitions, integrally formed, structurally complete, ready for direct 3D printing.
             </blockquote>
             
-            <!-- 插入AI生成结果的截图 -->
             <div class="image-item">
                 <img src="image/homework4/steering-wheel-generated.jpg" alt="Generated Steering Wheel">
                 <div class="image-caption">AI-generated steering wheel model</div>
             </div>
             
             <h3>Step 4: Save Part</h3>
-            <!-- 插入保存零件的截图 -->
             <div class="image-item">
                 <img src="image/homework4/save-steering-wheel.jpg" alt="Save Steering Wheel Part">
                 <div class="image-caption">Save the steering wheel part file</div>
             </div>
         </div>
 
-        <!-- Section 2: Create Cable Tie Mount -->
         <div class="content-section">
             <h2>2. Create Cable Tie Mount</h2>
             
             <h3>Step 1: Create New Design</h3>
             <p>Click <strong>[New]</strong> → <strong>[Mixed Design]</strong> → <strong>[New]</strong></p>
             
-            <!-- 插入新建设计的截图 -->
             <div class="image-item">
                 <img src="image/homework4/mount-new-design.jpg" alt="New Design for Mount">
                 <div class="image-caption">Create new design for cable tie mount</div>
@@ -387,56 +328,48 @@
                 Plates and base are integrally formed, structurally complete, ready for direct use after molding without secondary modification, compliant with 3D printing standards.
             </blockquote>
             
-            <!-- 插入AI生成结果的截图 -->
             <div class="image-item">
                 <img src="image/homework4/mount-generated.jpg" alt="Generated Cable Tie Mount">
                 <div class="image-caption">AI-generated cable tie mount model</div>
             </div>
             
             <h3>Step 3: Save Part</h3>
-            <!-- 插入保存零件的截图 -->
             <div class="image-item">
                 <img src="image/homework4/save-mount.jpg" alt="Save Cable Tie Mount">
                 <div class="image-caption">Save the cable tie mount part file</div>
             </div>
         </div>
 
-        <!-- Section 3: Import Car Model -->
         <div class="content-section">
             <h2>3. Import Complete Car Model</h2>
             
             <h3>Step 1: Open Website</h3>
             <p>Open webpage: <a href="http://www.sophicar.com/parametric-modeling" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">http://www.sophicar.com/parametric-modeling</a></p>
             
-            <!-- 插入打开网页的截图 -->
             <div class="image-item">
                 <img src="image/homework4/sophicar-website.jpg" alt="SophiCar Website">
                 <div class="image-caption">Open SophiCar parametric modeling website</div>
             </div>
             
             <h3>Step 2: Export Car Model as F3D Format</h3>
-            <!-- 插入导出F3D格式的截图 -->
             <div class="image-item">
                 <img src="image/homework4/export-f3d.jpg" alt="Export F3D Format">
                 <div class="image-caption">Export car model in F3D format</div>
             </div>
             
             <h3>Step 3: Open F3D File in Fusion</h3>
-            <!-- 插入打开F3D文件的截图 -->
             <div class="image-item">
                 <img src="image/homework4/open-f3d.jpg" alt="Open F3D in Fusion">
                 <div class="image-caption">Open exported F3D car model in Fusion 360</div>
             </div>
         </div>
 
-        <!-- Section 4: Assemble Steering Wheel -->
         <div class="content-section">
             <h2>4. Assemble Steering Wheel</h2>
             
             <h3>Step 1: Insert Component</h3>
             <p>Click <strong>[Insert]</strong> → <strong>[Insert Component]</strong> → Select steering wheel part file</p>
             
-            <!-- 插入插入零部件的四张截图 -->
             <div class="image-item">
                 <img src="image/homework4/insert-steering-1.jpg" alt="Insert Steering Wheel Step 1">
                 <div class="image-caption">Insert component - Step 1</div>
@@ -460,7 +393,6 @@
             <h3>Step 2: Position Component</h3>
             <p>After insertion, drag to move the part's center point to the approximate installation position</p>
             
-            <!-- 插入拖拽定位的截图 -->
             <div class="image-item">
                 <img src="image/homework4/position-steering.jpg" alt="Position Steering Wheel">
                 <div class="image-caption">Drag to position the steering wheel</div>
@@ -469,7 +401,6 @@
             <h3>Step 3: Apply Constraints</h3>
             <p>Switch to <strong>[Assemble]</strong> → <strong>[Constrain Components]</strong> → Select corresponding assembly faces to complete constraints</p>
             
-            <!-- 插入约束装配的四张截图 -->
             <div class="image-item">
                 <img src="image/homework4/constraint-steering-1.jpg" alt="Constraint Step 1">
                 <div class="image-caption">Apply constraints - Step 1</div>
@@ -491,14 +422,12 @@
             </div>
         </div>
 
-        <!-- Section 5: Assemble Cable Tie Mount -->
         <div class="content-section">
             <h2>5. Assemble Cable Tie Mount</h2>
             
             <h3>Step 1: Insert Component</h3>
             <p>Click <strong>[Insert]</strong> → <strong>[Insert Component]</strong> → Select cable tie mount part file</p>
             
-            <!-- 插入插入零部件的四张截图 -->
             <div class="image-item">
                 <img src="image/homework4/insert-mount-1.jpg" alt="Insert Mount Step 1">
                 <div class="image-caption">Insert component - Step 1</div>
@@ -522,7 +451,6 @@
             <h3>Step 2: Position Component</h3>
             <p>After insertion, drag to move the part's center point to the approximate installation position</p>
             
-            <!-- 插入拖拽定位的截图 -->
             <div class="image-item">
                 <img src="image/homework4/position-mount.png" alt="Position Cable Tie Mount">
                 <div class="image-caption">Drag to position the cable tie mount</div>
@@ -531,7 +459,6 @@
             <h3>Step 3: Apply Constraints</h3>
             <p>Switch to <strong>[Assemble]</strong> → <strong>[Constrain Components]</strong> → Select corresponding assembly faces to complete constraints</p>
             
-            <!-- 插入约束装配的四张截图 -->
             <div class="image-item">
                 <img src="image/homework4/constraint-mount-1.png" alt="Mount Constraint Step 1">
                 <div class="image-caption">Apply constraints - Step 1</div>
@@ -553,12 +480,10 @@
             </div>
         </div>
 
-        <!-- Section 6: Final Result Video -->
         <div class="content-section">
             <h2>6. Final Assembly Result</h2>
             <p>Watch the complete assembly process and final result:</p>
             
-            <!-- 插入整体演示视频 -->
             <div class="video-container">
                 <video controls>
                     <source src="videos/homework4/fusion-assembly-demo.mp4" type="video/mp4">
@@ -569,7 +494,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Aether Studio. All rights reserved.</p>
     </footer>
