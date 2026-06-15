@@ -372,59 +372,6 @@
                 <div class="image-caption">Circuit components with sound sensor</div>
             </div>
             
-            <h3>Circuit Diagram</h3>
-            <p>Complete circuit diagram showing the connection between Arduino, LEDs, resistors, and sound sensor.</p>
-            
-            <h3>Wiring Code (Running LED Lights)</h3>
-            <pre><code>void setup() {
-  pinMode(A0, OUTPUT);
-  pinMode(A1, OUTPUT);
-  pinMode(A2, OUTPUT);
-}
-
-void loop() {
-  // 正序流水：红→黄→蓝
-  digitalWrite(A0, HIGH);
-  delay(300);
-  digitalWrite(A0, LOW);
-
-  digitalWrite(A1, HIGH);
-  delay(300);
-  digitalWrite(A1, LOW);
-
-  digitalWrite(A2, HIGH);
-  delay(300);
-  digitalWrite(A2, LOW);
-
-  // 反序流水：黄→红
-  digitalWrite(A1, HIGH);
-  delay(300);
-  digitalWrite(A1, LOW);
-
-  digitalWrite(A0, HIGH);
-  delay(300);
-  digitalWrite(A0, LOW);
-}</code></pre>
-            
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 2rem 0;">
-                <div class="image-item">
-                    <img src="image/homework2/running-led-step1.jpg" alt="Running LED Step 1">
-                    <div class="image-caption">Running LED - Step 1</div>
-                </div>
-                <div class="image-item">
-                    <img src="image/homework2/running-led-step2.jpg" alt="Running LED Step 2">
-                    <div class="image-caption">Running LED - Step 2</div>
-                </div>
-                <div class="image-item">
-                    <img src="image/homework2/running-led-step3.jpg" alt="Running LED Step 3">
-                    <div class="image-caption">Running LED - Step 3</div>
-                </div>
-                <div class="image-item">
-                    <img src="image/homework2/running-led-step4.jpg" alt="Running LED Step 4">
-                    <div class="image-caption">Running LED - Step 4</div>
-                </div>
-            </div>
-            
             <h3>Operation Principle</h3>
             <ul>
                 <li>The green LED stays on under normal volume.</li>
