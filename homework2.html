@@ -497,6 +497,222 @@ void loop() {
                 <div class="video-caption">流水灯效果演示视频</div>
             </div>
         </div>
+
+        <!-- Add Sound Sensor Section -->
+        <div class="content-section">
+            <h2>Add a Sound Sensor</h2>
+            
+            <h3>Circuit Components</h3>
+            <div class="image-item">
+                <img src="image/homework2/sound-sensor-components.jpg" alt="Sound Sensor Circuit Components">
+                <div class="image-caption">Circuit components with sound sensor</div>
+            </div>
+            
+            <h3>Circuit Diagram</h3>
+            <div class="image-item">
+                <img src="image/homework2/sound-sensor-circuit.jpg" alt="Sound Sensor Circuit Diagram">
+                <div class="image-caption">Complete circuit diagram with sound sensor</div>
+            </div>
+            
+            <h3>Wiring Code (Running LED Lights)</h3>
+            <pre><code>void setup() {
+  pinMode(A0, OUTPUT);
+  pinMode(A1, OUTPUT);
+  pinMode(A2, OUTPUT);
+}
+
+void loop() {
+  // 正序流水：红→黄→蓝
+  digitalWrite(A0, HIGH);
+  delay(300);
+  digitalWrite(A0, LOW);
+
+  digitalWrite(A1, HIGH);
+  delay(300);
+  digitalWrite(A1, LOW);
+
+  digitalWrite(A2, HIGH);
+  delay(300);
+  digitalWrite(A2, LOW);
+
+  // 反序流水：黄→红
+  digitalWrite(A1, HIGH);
+  delay(300);
+  digitalWrite(A1, LOW);
+
+  digitalWrite(A0, HIGH);
+  delay(300);
+  digitalWrite(A0, LOW);
+}</code></pre>
+            
+            <div class="image-gallery">
+                <div class="image-item">
+                    <img src="image/homework2/running-led-step1.jpg" alt="Running LED Step 1">
+                    <div class="image-caption">Running LED - Step 1</div>
+                </div>
+                <div class="image-item">
+                    <img src="image/homework2/running-led-step2.jpg" alt="Running LED Step 2">
+                    <div class="image-caption">Running LED - Step 2</div>
+                </div>
+                <div class="image-item">
+                    <img src="image/homework2/running-led-step3.jpg" alt="Running LED Step 3">
+                    <div class="image-caption">Running LED - Step 3</div>
+                </div>
+                <div class="image-item">
+                    <img src="image/homework2/running-led-step4.jpg" alt="Running LED Step 4">
+                    <div class="image-caption">Running LED - Step 4</div>
+                </div>
+            </div>
+            
+            <h3>Operation Principle</h3>
+            <ul>
+                <li>The green LED stays on under normal volume.</li>
+                <li>The yellow LED flickers in breathing mode when speaking loudly.</li>
+                <li>When no sound is detected, the LEDs operate in running light mode.</li>
+            </ul>
+            
+            <h3>Operation Code</h3>
+            <pre><code>/*
+ * 声音控制三色灯 - 取峰值，绿灯范围可调
+ * 安静 (&lt;60)     : 流水灯 (绿-&gt;红-&gt;黄)
+ * 正常 (60~350)  : 绿灯常亮
+ * 大声 (&gt;350)    : 黄灯呼吸灯
+ */
+
+const int PIN_LED_GREEN = A0;
+const int PIN_LED_RED   = A1;
+const int PIN_LED_YELLOW = 9;
+const int SOUND_SENSOR = A3;
+
+// ========== 可调整的阈值 ==========
+const int SILENT_THRESHOLD = 60;    // 小于此值 → 安静模式
+const int LOUD_THRESHOLD   = 350;   // 大于此值 → 大声模式 (调高此值可让绿灯范围更大)
+// =================================
+
+const unsigned long INTERVAL = 300;      // 流水灯切换间隔(ms)
+const unsigned long BREATHE_CYCLE = 2000; // 呼吸周期(ms)
+
+const int NUM_SAMPLES = 10;        // 每次采样次数
+const int REQUIRED_STABLE = 3;     // 连续稳定次数
+
+unsigned long lastChange = 0;
+int step = 0;
+unsigned long breatheStart = 0;
+
+int lastMode = -1;
+int stableCount = 0;
+
+// 读取峰值（最大值）
+int readMaxVolume() {
+  int maxVal = 0;
+  for (int i = 0; i &lt; NUM_SAMPLES; i++) {
+    int v = analogRead(SOUND_SENSOR);
+    if (v &gt; maxVal) maxVal = v;
+    delay(3);
+  }
+  return maxVal;
+}
+
+void setup() {
+  pinMode(PIN_LED_GREEN, OUTPUT);
+  pinMode(PIN_LED_RED, OUTPUT);
+  pinMode(PIN_LED_YELLOW, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Ready - Peak detection, LOUD_THRESHOLD=350");
+  digitalWrite(PIN_LED_GREEN, LOW);
+  digitalWrite(PIN_LED_RED, LOW);
+  analogWrite(PIN_LED_YELLOW, 0);
+}
+
+void loop() {
+  int volume = readMaxVolume();
+  Serial.println(volume);
+
+  int mode;
+  if (volume &lt; SILENT_THRESHOLD)
+    mode = 0;
+  else if (volume &lt; LOUD_THRESHOLD)
+    mode = 1;
+  else
+    mode = 2;
+
+  if (mode == lastMode) {
+    stableCount++;
+  } else {
+    stableCount = 0;
+    lastMode = mode;
+  }
+
+  if (stableCount &gt;= REQUIRED_STABLE) {
+    // 熄灭所有灯
+    digitalWrite(PIN_LED_GREEN, LOW);
+    digitalWrite(PIN_LED_RED, LOW);
+    analogWrite(PIN_LED_YELLOW, 0);
+
+    if (mode == 0) {
+      // 安静模式：流水灯
+      unsigned long now = millis();
+      if (now - lastChange &gt;= INTERVAL) {
+        lastChange = now;
+        step = (step + 1) % 3;
+        if (step == 0) digitalWrite(PIN_LED_GREEN, HIGH);
+        else if (step == 1) digitalWrite(PIN_LED_RED, HIGH);
+        else analogWrite(PIN_LED_YELLOW, 255);
+      }
+    }
+    else if (mode == 1) {
+      // 正常模式：绿灯常亮
+      digitalWrite(PIN_LED_GREEN, HIGH);
+    }
+    else {
+      // 大声模式：黄灯呼吸灯
+      if (breatheStart == 0) breatheStart = millis();
+      unsigned long elapsed = millis() - breatheStart;
+      float t = (float)(elapsed % BREATHE_CYCLE) / BREATHE_CYCLE;
+      int brightness;
+      if (t &lt; 0.5) {
+        brightness = (int)(t * 2 * 255);
+      } else {
+        brightness = (int)((1 - t) * 2 * 255);
+      }
+      analogWrite(PIN_LED_YELLOW, brightness);
+    }
+  }
+  delay(30);
+}</code></pre>
+            
+            <h3>Demo Videos</h3>
+            
+            <h4>Running Light Mode (No Sound)</h4>
+            <p>When no sound is detected, the LEDs operate in running light mode.</p>
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/homework2/silent-running-light.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <div class="video-caption">Silent mode - Running light effect</div>
+            </div>
+            
+            <h4>Green LED On (Normal Volume)</h4>
+            <p>The green LED stays on under normal volume.</p>
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/homework2/normal-green-led.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <div class="video-caption">Normal volume - Green LED constant on</div>
+            </div>
+            
+            <h4>Breathing Yellow LED (Loud Sound)</h4>
+            <p>The yellow LED flickers in breathing mode when speaking loudly.</p>
+            <div class="video-container">
+                <video controls>
+                    <source src="videos/homework2/loud-breathing-yellow.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+                <div class="video-caption">Loud sound - Yellow LED breathing mode</div>
+            </div>
+        </div>
     </div>
 
     <!-- Footer -->
