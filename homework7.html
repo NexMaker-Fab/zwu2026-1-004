@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework 6 | Aether Studio</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --bg-primary: #000000;
             --bg-secondary: #0A0A0A;
@@ -17,14 +23,16 @@
             --text-secondary: #999999;
             --accent-purple: #B8A9FF;
             --border-light: rgba(255, 255, 255, 0.1);
-            --success: #2ed573;
         }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.8;
         }
+
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -37,257 +45,125 @@
             z-index: 1000;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
         }
+
         .logo {
             font-size: 1.3rem;
             font-weight: 300;
             letter-spacing: 0.3em;
+            text-transform: uppercase;
             color: var(--text-primary);
             text-decoration: none;
         }
-        .nav-menu { display: flex; list-style: none; gap: 3rem; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
         .nav-menu a {
             color: var(--text-primary);
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 300;
+            letter-spacing: 0.1em;
             transition: color 0.3s ease;
         }
-        .nav-menu a:hover { color: var(--accent-purple); }
-        .homework-detail {
-            padding-top: 100px;
-            min-height: 100vh;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 100px 4rem 4rem;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+
+        .nav-menu a:hover {
             color: var(--accent-purple);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            transition: gap 0.3s ease;
         }
-        .back-link:hover { gap: 1rem; }
-        .homework-header {
-            margin-bottom: 3rem;
+
+        /* Content */
+        .content-page {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            padding-bottom: 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-light);
         }
-        .homework-number {
-            font-size: 0.85rem;
-            color: var(--accent-purple);
-            margin-bottom: 0.5rem;
-        }
-        .homework-title {
+
+        .page-title {
             font-size: 2.5rem;
-            font-weight: 300;
+            font-weight: 200;
+            letter-spacing: 0.2em;
             margin-bottom: 1rem;
         }
-        .homework-desc {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            font-weight: 300;
+            letter-spacing: 0.1em;
         }
-        /* Markdown Content Section */
-        .markdown-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 2.5rem;
+
+        .content-section {
             margin-bottom: 3rem;
         }
-        .markdown-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .markdown-title {
-            font-size: 1.5rem;
+
+        .content-section h2 {
+            font-size: 1.8rem;
             font-weight: 300;
-        }
-        .btn-copy {
-            background: transparent;
-            border: 1px solid var(--accent-purple);
-            color: var(--accent-purple);
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn-copy:hover {
-            background: var(--accent-purple);
-            color: #000;
-        }
-        .btn-copy.copied {
-            background: var(--success);
-            border-color: var(--success);
-            color: #fff;
-        }
-        .markdown-content {
-            font-size: 1rem;
-            line-height: 1.8;
+            margin-bottom: 1.5rem;
             color: var(--text-primary);
         }
-        .markdown-content h1, .markdown-content h2, .markdown-content h3 {
+
+        .content-section h3 {
+            font-size: 1.3rem;
+            font-weight: 300;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            font-weight: 300;
-        }
-        .markdown-content h1 { font-size: 2rem; }
-        .markdown-content h2 { font-size: 1.5rem; color: var(--accent-purple); }
-        .markdown-content h3 { font-size: 1.2rem; }
-        .markdown-content p { margin-bottom: 1rem; }
-        .markdown-content ul, .markdown-content ol {
-            margin-left: 2rem;
-            margin-bottom: 1rem;
-        }
-        .markdown-content li { margin-bottom: 0.5rem; }
-        .markdown-content strong { color: var(--accent-purple); }
-        .markdown-content code {
-            background: rgba(184, 169, 255, 0.1);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: monospace;
-            font-size: 0.9rem;
-        }
-        .markdown-content pre {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1.5rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-        }
-        .markdown-content pre code {
-            background: transparent;
-            padding: 0;
-        }
-        .section {
-            margin-bottom: 3rem;
-        }
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .upload-area {
-            border: 2px dashed var(--border-light);
-            border-radius: 12px;
-            padding: 3rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 1.5rem;
-        }
-        .upload-area:hover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.05);
-        }
-        .upload-icon {
-            font-size: 3rem;
             color: var(--accent-purple);
+        }
+
+        .content-section p {
             margin-bottom: 1rem;
+            line-height: 1.8;
         }
-        .upload-text {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .upload-hint {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-        #fileInput { display: none; }
-        .file-list {
+
+        .content-section ul {
+            margin-left: 2rem;
             margin-bottom: 1.5rem;
         }
-        .file-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 1rem;
+
+        .content-section li {
             margin-bottom: 0.8rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            line-height: 1.8;
         }
-        .file-name {
-            font-size: 0.9rem;
+
+        .content-section strong {
+            color: var(--accent-purple);
         }
-        .file-remove {
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .file-remove:hover { color: #ff4757; }
-        .btn-submit {
-            background: var(--accent-purple);
-            color: #000;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 400;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .btn-submit:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(184, 169, 255, 0.3);
-        }
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .submission-list {
-            display: grid;
-            gap: 1rem;
-        }
-        .submission-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 8px;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .submission-info {
-            flex: 1;
-        }
-        .submission-filename {
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-        }
-        .submission-time {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        .empty-state {
+
+        .image-item {
+            margin: 2rem 0;
             text-align: center;
-            padding: 3rem;
+        }
+
+        .image-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .image-caption {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
+            font-style: italic;
         }
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
+
         footer {
             text-align: center;
             padding: 3rem 4rem;
@@ -295,12 +171,12 @@
             color: var(--text-secondary);
             font-size: 0.85rem;
         }
+
         @media (max-width: 768px) {
             .navbar { padding: 1.5rem 2rem; }
             .nav-menu { display: none; }
-            .homework-detail { padding: 100px 2rem 2rem; }
-            .homework-title { font-size: 2rem; }
-            .markdown-section { padding: 1.5rem; }
+            .content-page { padding-left: 2rem; padding-right: 2rem; }
+            .page-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -316,471 +192,249 @@
         </ul>
     </nav>
 
-    <div class="homework-detail">
-        <a href="homework.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Homework List
-        </a>
-
-        <div class="homework-header">
-            <p class="homework-number">HOMEWORK 06</p>
-            <h1 class="homework-title">IOT AND INTERACTION</h1>
-            <p class="homework-desc">
-                IoT Smart Fingerprint & Password Lock - Concept and Implementation
-            </p>
+    <!-- Content -->
+    <div class="content-page">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">IOT AND INTERACTION</h1>
+            <p class="page-subtitle">IoT Smart Fingerprint & Password Lock - Concept and Implementation</p>
         </div>
 
-        <!-- Markdown Content Section -->
-        <div class="markdown-section">
-            <div class="markdown-header">
-                <h2 class="markdown-title">
-                    <i class="fas fa-file-alt" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
-                    Homework Content
-                </h2>
-                <button class="btn-copy" id="copyBtn" onclick="copyContent()">
-                    <i class="fas fa-copy"></i>
-                    <span>Copy</span>
-                </button>
+        <!-- Section 1: IoT Concept -->
+        <div class="content-section">
+            <h2>I. Concept and Core Process of IoT</h2>
+            
+            <h3>1) Concept of Internet of Things (IoT)</h3>
+            <p>The full name of IoT is Internet of Things. Based on the Internet and telecommunication networks, it connects all independent physical devices together. Combining sensor technology, wireless communication, cloud computing and embedded development, traditional devices are endowed with capabilities including information perception, data collection, network transmission, intelligent analysis, remote interaction and automatic control.</p>
+            
+            <p>IoT realizes interconnection between people and devices, as well as device to device. Its general working process is: Data Collection → Network Transmission → Cloud Processing → Terminal Application → Equipment Execution. The smart lock is one of the most mature and widely used civilian IoT products.</p>
+            
+            <h3>2) Core Process</h3>
+            <p>The IoT system consists of five layers, and the smart lock operates strictly following this framework:</p>
+            
+            <ul>
+                <li><strong>Perception Layer:</strong> It acts as the sensory part of the system. Equipped with fingerprint modules, touch keypads, NFC sensors, infrared human sensors, anti-pry vibration sensors and cameras, it collects original data such as fingerprints, passwords, vibration signals and remaining power. It is the foundation of all functions.</li>
+                
+                <li><strong>Network Layer:</strong> It serves as the data transmission channel. The built-in communication modules use Wi-Fi 2.4G, BLE Bluetooth and NB-IoT to upload encrypted data to cloud servers, and receive control commands from the cloud to complete two-way data interaction.</li>
+                
+                <li><strong>Platform Layer (Cloud):</strong> It is the brain and data warehouse of the whole system. Composed of professional cloud platforms, servers and databases, it manages massive connected devices, stores and analyzes data, forwards commands, and maintains user accounts and access rights.</li>
+                
+                <li><strong>Application Layer:</strong> It is the operation entrance for end users, including mobile Apps, WeChat mini-programs and background management systems. Users can bind devices, set parameters, check access records and receive alarm notifications here.</li>
+                
+                <li><strong>Control Layer:</strong> It is the final execution part. After receiving commands, the main control chip drives the motor and lock bolt to finish locking and unlocking. It also triggers sound-light alarms and camera capture for linkage security functions.</li>
+            </ul>
+            
+            <!-- Figure 1: IoT Architecture -->
+            <div class="image-item">
+                <img src="image/homework7/iot-architecture.jpg" alt="IoT Five-Layer Architecture">
+                <div class="image-caption">Figure 1: IoT Smart Lock Five-Layer System Architecture</div>
             </div>
-            <div class="markdown-content" id="markdownContent"></div>
-            <!-- Raw markdown for copying -->
-            <textarea id="rawMarkdown" style="display: none;"></textarea>
         </div>
 
-        <!-- Submit Section -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-upload"></i>
-                Submit Your Work
-            </h2>
-            <div class="upload-area" id="uploadArea">
-                <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                <p class="upload-text">Drag & Drop files here or click to upload</p>
-                <p class="upload-hint">Support: Code, Images, Documents, PDF (Max 10MB)</p>
-                <input type="file" id="fileInput" multiple>
+        <!-- Section 2: Product Information -->
+        <div class="content-section">
+            <h2>II. Product: IoT Smart Fingerprint & Password Lock</h2>
+            
+            <h3>1) Basic Product Information</h3>
+            <ul>
+                <li><strong>Official Name:</strong> IoT Smart Fingerprint & Password Lock for Home Security</li>
+                <li><strong>Aliases:</strong> Smart Lock, IoT Electronic Lock, Anti-theft Smart Lock</li>
+                <li><strong>Product Positioning:</strong> A new generation security device replacing traditional mechanical locks. It integrates biometric identification, IoT communication, cloud management and security warning, focusing on convenient access, remote control and home safety protection.</li>
+                <li><strong>Product Classification:</strong>
+                    <ul>
+                        <li>By appearance: Handle-style lock, Push-pull lock, Fully automatic lock</li>
+                        <li>By function: Basic fingerprint & password lock, NFC-enabled lock, Video lock, Face recognition flagship lock</li>
+                        <li>By usage: Home door lock, Indoor door lock, Commercial access control lock</li>
+                    </ul>
+                </li>
+                <li><strong>Price Range:</strong>
+                    <ul>
+                        <li>Entry-level: 500–1000 RMB, supports fingerprint, password and Bluetooth unlocking</li>
+                        <li>Mainstream home model: 1000–3000 RMB, with Wi-Fi, temporary passcode and alarm functions</li>
+                        <li>High-end flagship: Over 3000 RMB, equipped with face recognition, video intercom and smart home linkage</li>
+                    </ul>
+                </li>
+                <li><strong>Main Brands:</strong> Kaadas, Xiaomi, Lockin, Dessmann, TCL</li>
+                <li><strong>Compatibility:</strong> Fits most standard anti-theft doors, wooden doors, apartment doors and office doors.</li>
+            </ul>
+            
+            <h3>2) Detailed Hardware Composition</h3>
+            <p>The whole lock is divided into six major parts: outdoor panel, indoor panel, lock body, main control & communication modules, power supply modules and security sensors.</p>
+            
+            <ul>
+                <li><strong>Outdoor Interactive Panel:</strong>
+                    <ul>
+                        <li>Semiconductor fingerprint module: With live detection, anti-fake fingerprint function</li>
+                        <li>Backlit touch keypad: Supports virtual password to prevent peeping</li>
+                        <li>NFC sensing area: Works with mobile phones, access cards and smart bands</li>
+                        <li>Wide-angle camera (optional): With night vision for capture and video intercom</li>
+                        <li>Indicator lights & buzzers: Status prompt and alarm reminder</li>
+                    </ul>
+                </li>
+                <li><strong>Indoor Panel:</strong>
+                    <ul>
+                        <li>Manual rotary knob: Emergency mechanical unlock when power off</li>
+                        <li>Internal anti-lock button: One-click safety locking</li>
+                        <li>Hidden mechanical keyhole: Ultimate emergency solution</li>
+                    </ul>
+                </li>
+                <li><strong>Mechanical Lock Body:</strong>
+                    <ul>
+                        <li>DC deceleration motor: Low noise and high torque to drive lock bolts</li>
+                        <li>Multi-point lock bolts & anti-pry hooks: Meet national anti-theft standards</li>
+                        <li>Electromechanical separation structure: Mechanical part works independently when circuit fails</li>
+                    </ul>
+                </li>
+                <li><strong>Main Control & Communication Modules:</strong>
+                    <ul>
+                        <li>MCU main control chip: Processes data and executes logic</li>
+                        <li>Wi-Fi module: Connects to router for long-distance remote control</li>
+                        <li>BLE Bluetooth module: Short-distance fast pairing and unlocking</li>
+                        <li>Zigbee/NB-IoT module (optional): Alternative networking methods</li>
+                    </ul>
+                </li>
+                <li><strong>Power Supply Module:</strong>
+                    <ul>
+                        <li>Lithium battery pack: Rechargeable, large capacity</li>
+                        <li>Dry battery compartment: Emergency backup power supply</li>
+                        <li>Type-C emergency charging port: External power bank support</li>
+                    </ul>
+                </li>
+                <li><strong>Security Sensor Module:</strong>
+                    <ul>
+                        <li>Anti-pry vibration sensor: Detects violent prying and damage</li>
+                        <li>Wrong attempt lock module: Locks the panel after multiple failed verifications</li>
+                        <li>High temperature sensor (high-end model): Links with fire alarm system</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <!-- Figure 2: Hardware Components -->
+            <div class="image-item">
+                <img src="image/homework7/smart-lock-hardware.jpg" alt="Smart Lock Hardware Components">
+                <div class="image-caption">Figure 2: IoT Smart Lock Hardware Component Breakdown</div>
             </div>
-            <div class="file-list" id="fileList"></div>
-            <button class="btn-submit" id="submitBtn" disabled>
-                <i class="fas fa-paper-plane"></i> Submit Files
-            </button>
         </div>
 
-        <!-- Submitted Files Section -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-check-circle"></i>
-                Submitted Files
-            </h2>
-            <div id="submissionList" class="submission-list">
-                <div class="empty-state">
-                    <i class="fas fa-inbox"></i>
-                    <p>No files submitted yet</p>
-                </div>
+        <!-- Section 3: Working Principle -->
+        <div class="content-section">
+            <h3>3) Working Principle & Implementation</h3>
+            <p>The product supports offline local mode and online IoT mode. Basic functions work normally even without network.</p>
+            
+            <ul>
+                <li><strong>Offline Local Mode:</strong> Fingerprint/password verification → MCU compares locally stored feature values → Drives motor to unlock if match. All operations completed locally, no network required.</li>
+                <li><strong>Online IoT Mode:</strong> User sends command via App → Command transmitted through cloud platform → Lock receives via Wi-Fi/BLE → Executes corresponding actions (unlocking, status query, parameter setting).</li>
+            </ul>
+            
+            <!-- Figure 3: Offline and Online Modes -->
+            <div class="image-item">
+                <img src="image/homework7/offline-online-modes.jpg" alt="Offline and Online IoT Modes">
+                <div class="image-caption">Figure 3: Comparison of Offline Local Mode and Online IoT Mode</div>
             </div>
+        </div>
+
+        <!-- Section 4: Problems Solved -->
+        <div class="content-section">
+            <h3>4) Problems Solved</h3>
+            
+            <p><strong>Drawbacks of Traditional Mechanical Locks:</strong></p>
+            <ul>
+                <li>Easily lost keys require replacement of entire lock cylinder</li>
+                <li>Cannot monitor who entered and when</li>
+                <li>Keys may be copied secretly, posing security risks</li>
+                <li>Inconvenient for elderly and children to carry keys</li>
+                <li>Cannot remotely grant temporary access to visitors</li>
+            </ul>
+            
+            <p><strong>IoT Smart Lock Solutions:</strong></p>
+            <ul>
+                <li><strong>Key-free design:</strong> Use fingerprints, passwords, NFC cards or faces to unlock, completely eliminating the trouble of losing keys</li>
+                <li><strong>Access record traceability:</strong> Automatically record every entry and exit time and method, viewable in real-time on mobile phone</li>
+                <li><strong>Remote authorization:</strong> Generate temporary passwords remotely for couriers, housekeepers or guests, automatically invalid after expiration</li>
+                <li><strong>Abnormal alarm:</strong> Immediately send push notifications to mobile phone in case of forced prying, wrong attempts or low battery</li>
+                <li><strong>Smart home linkage:</strong> Unlock the door and automatically turn on lights, air conditioning and other devices</li>
+            </ul>
+        </div>
+
+        <!-- Section 5: Application Scenarios -->
+        <div class="content-section">
+            <h3>5) Application Scenarios</h3>
+            <ol>
+                <li><strong>Family homes:</strong> Elderly and children do not need to carry keys; parents can check children's return home status remotely</li>
+                <li><strong>Rental apartments:</strong> Landlords manage multiple properties remotely, change passwords online without changing locks</li>
+                <li><strong>Hotels & homestays:</strong> Guests self-check-in with temporary passwords, reducing front desk workload</li>
+                <li><strong>Office buildings:</strong> Employee fingerprint access control, attendance records automatically generated</li>
+                <li><strong>Shops & warehouses:</strong> Monitor lock status remotely and receive alarms in case of illegal intrusion</li>
+                <li><strong>Senior residences:</strong> Simple operation and key-free design suit elderly users better</li>
+            </ol>
+            
+            <!-- Figure 4: Application Scenarios -->
+            <div class="image-item">
+                <img src="image/homework7/application-scenarios.jpg" alt="Application Scenarios">
+                <div class="image-caption">Figure 4: IoT Smart Lock Application Scenarios in Different Environments</div>
+            </div>
+        </div>
+
+        <!-- Section 6: Key Technologies -->
+        <div class="content-section">
+            <h3>6) Key Technologies</h3>
+            <ul>
+                <li><strong>Semiconductor Live Fingerprint Recognition:</strong> Capacitive sensing + AI algorithm, effectively preventing fake fingerprints, recognition accuracy up to 99.9%</li>
+                <li><strong>C/S Architecture Cloud Platform:</strong> Supports millions of devices online simultaneously, millisecond-level command response</li>
+                <li><strong>AES-128 Encryption Transmission:</strong> All data encrypted during transmission, preventing man-in-the-middle attacks and replay attacks</li>
+                <li><strong>Low Power Design:</strong> Standby current less than 50μA, four AA batteries last over 12 months</li>
+                <li><strong>OTA Remote Upgrade:</strong> Firmware updated online without disassembly, continuously optimizing performance and adding features</li>
+                <li><strong>Multi-factor Authentication:</strong> Support combination verification like "fingerprint + password", improving security level</li>
+                <li><strong>Edge Computing:</strong> Local feature comparison reduces cloud dependence and protects privacy</li>
+            </ul>
+        </div>
+
+        <!-- Section 7: Data Security -->
+        <div class="content-section">
+            <h3>7) Data Security & Privacy Protection</h3>
+            <ul>
+                <li><strong>Data Encryption:</strong> Fingerprint templates and passwords stored using AES encryption, non-reversible storage</li>
+                <li><strong>Local Storage Priority:</strong> Sensitive data stored in secure chips locally, not uploaded to cloud</li>
+                <li><strong>Permission Management:</strong> Administrator and ordinary user permission isolation, sensitive operations require secondary authentication</li>
+                <li><strong>Privacy Compliance:</strong> Complies with GDPR and other international privacy regulations, users have right to delete data</li>
+            </ul>
+        </div>
+
+        <!-- Section 8: Advantages & Disadvantages -->
+        <div class="content-section">
+            <h3>8) Advantages & Disadvantages</h3>
+            
+            <p><strong>Advantages:</strong></p>
+            <ul>
+                <li>Convenient and fast, no need to carry keys</li>
+                <li>High security, difficult to crack</li>
+                <li>Remote management, flexible control</li>
+                <li>Rich functions, smart home integration</li>
+                <li>Traceable records, clear responsibility</li>
+            </ul>
+            
+            <p><strong>Disadvantages:</strong></p>
+            <ul>
+                <li>Dependent on electricity, requires regular battery replacement</li>
+                <li>Higher price than traditional locks</li>
+                <li>Complex structure, higher maintenance cost</li>
+                <li>Potential network security risks</li>
+                <li>May malfunction in extreme environments (high temperature, humidity)</li>
+            </ul>
+        </div>
+
+        <!-- Back Button at Bottom -->
+        <div style="text-align: center; margin: 3rem 0;">
+            <a href="homework.html" style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2.5rem; background: var(--accent-purple); color: #000; text-decoration: none; border-radius: 8px; font-weight: 400; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(184, 169, 255, 0.3);">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Homework List</span>
+            </a>
         </div>
     </div>
 
-    <!-- Back Button at Bottom -->
-    <div style="text-align: center; margin: 3rem 0;">
-        <a href="homework.html" style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2.5rem; background: var(--accent-purple); color: #000; text-decoration: none; border-radius: 8px; font-weight: 400; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(184, 169, 255, 0.3);">
-            <i class="fas fa-arrow-left"></i>
-            <span>Back to Homework List</span>
-        </a>
-    </div>
-
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Aether Studio. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        if (hamburger) {
-            hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
-        }
-
-        // Markdown content from Word document
-        const markdownText = `# IoT Smart Fingerprint & Password Lock
-
-## Concept and Core Process of IoT
-
-### 1) Concept of Internet of Things (IoT)
-
-The full name of IoT is Internet of Things. Based on the Internet and telecommunication networks, it connects all independent physical devices together. Combining sensor technology, wireless communication, cloud computing and embedded development, traditional devices are endowed with capabilities including information perception, data collection, network transmission, intelligent analysis, remote interaction and automatic control.
-
-IoT realizes interconnection between people and devices, as well as device to device. Its general working process is: Data Collection → Network Transmission → Cloud Processing → Terminal Application → Equipment Execution. The smart lock is one of the most mature and widely used civilian IoT products.
-
-### 2) Core Process
-
-The IoT system consists of five layers, and the smart lock operates strictly following this framework:
-
-**1. Perception Layer**
-
-It acts as the sensory part of the system. Equipped with fingerprint modules, touch keypads, NFC sensors, infrared human sensors, anti-pry vibration sensors and cameras, it collects original data such as fingerprints, passwords, vibration signals and remaining power. It is the foundation of all functions.
-
-**2. Network Layer**
-
-It serves as the data transmission channel. The built-in communication modules use Wi-Fi 2.4G, BLE Bluetooth and NB-IoT to upload encrypted data to cloud servers, and receive control commands from the cloud to complete two-way data interaction.
-
-**3. Platform Layer (Cloud)**
-
-It is the brain and data warehouse of the whole system. Composed of professional cloud platforms, servers and databases, it manages massive connected devices, stores and analyzes data, forwards commands, and maintains user accounts and access rights.
-
-**4. Application Layer**
-
-It is the operation entrance for end users, including mobile Apps, WeChat mini-programs and background management systems. Users can bind devices, set parameters, check access records and receive alarm notifications here.
-
-**5. Control Layer**
-
-It is the final execution part. After receiving commands, the main control chip drives the motor and lock bolt to finish locking and unlocking. It also triggers sound-light alarms and camera capture for linkage security functions.
-
-![IoT Five-Layer Architecture](image/homework7/iot-architecture.jpg)
-*Figure 1: IoT Smart Lock Five-Layer System Architecture*
-
----
-
-## II. Product: IoT Smart Fingerprint & Password Lock
-
-### 1) Basic Product Information
-
-• **Official Name**: IoT Smart Fingerprint & Password Lock for Home Security
-
-• **Aliases**: Smart Lock, IoT Electronic Lock, Anti-theft Smart Lock
-
-• **Product Positioning**: A new generation security device replacing traditional mechanical locks. It integrates biometric identification, IoT communication, cloud management and security warning, focusing on convenient access, remote control and home safety protection.
-
-• **Product Classification**
-
-1. By appearance: Handle-style lock, Push-pull lock, Fully automatic lock
-
-2. By function: Basic fingerprint & password lock, NFC-enabled lock, Video lock, Face recognition flagship lock
-
-3. By usage: Home door lock, Indoor door lock, Commercial access control lock
-
-• **Price Range**
-
-Entry-level: 500–1000 RMB, supports fingerprint, password and Bluetooth unlocking
-
-Mainstream home model: 1000–3000 RMB, with Wi-Fi, temporary passcode and alarm functions
-
-High-end flagship: Over 3000 RMB, equipped with face recognition, video intercom and smart home linkage
-
-• **Main Brands**: Kaadas, Xiaomi, Lockin, Dessmann, TCL
-
-• **Compatibility**: Fits most standard anti-theft doors, wooden doors, apartment doors and office doors.
-
-### 2) Detailed Hardware Composition
-
-The whole lock is divided into six major parts: outdoor panel, indoor panel, lock body, main control & communication modules, power supply modules and security sensors.
-
-**1. Outdoor Interactive Panel**
-
-Semiconductor fingerprint module: With live detection, anti-fake fingerprint function
-
-Backlit touch keypad: Supports virtual password to prevent peeping
-
-NFC sensing area: Works with mobile phones, access cards and smart bands
-
-Wide-angle camera (optional): With night vision for capture and video intercom
-
-Indicator lights & buzzers: Status prompt and alarm reminder
-
-**2. Indoor Panel**
-
-Manual rotary knob: Emergency mechanical unlock when power off
-
-Internal anti-lock button: One-click safety locking
-
-Hidden mechanical keyhole: Ultimate emergency solution
-
-**3. Mechanical Lock Body**
-
-DC deceleration motor: Low noise and high torque to drive lock bolts
-
-Multi-point lock bolts & anti-pry hooks: Meet national anti-theft standards
-
-Electromechanical separation structure: Mechanical part works independently when circuit fails
-
-**4. Main Control & Communication Modules**
-
-Main control circuit board: Embedded MCU chip for data calculation and logic judgment
-
-Wireless communication module: Wi-Fi + BLE combo module (ESP8266 / ESP32); NB-IoT module for commercial use
-
-Storage chip: Locally saves encrypted fingerprint data and temporary passwords
-
-**5. Power Supply Module**
-
-Rechargeable lithium battery pack: Detachable for charging
-
-External USB emergency power port: For temporary power supply when battery runs out
-
-**6. Security Sensor Module**
-
-Anti-pry vibration sensor: Detects violent prying and damage
-
-Wrong attempt lock module: Locks the panel after multiple failed verifications
-
-High temperature sensor (high-end model): Links with fire alarm system
-
-![Smart Lock Hardware Components](image/homework7/smart-lock-hardware.jpg)
-*Figure 2: IoT Smart Lock Hardware Component Breakdown*
-
-### 3) Working Principle & Implementation
-
-The product supports offline local mode and online IoT mode. Basic functions work normally even without network.
-
-**(1) Offline Local Mode**
-
-After collecting fingerprint, password or NFC signals, the main control chip compares the data with locally stored encrypted information via edge computing.
-
-• Verification passed: The motor retracts lock bolts to unlock the door.
-
-• Verification failed: The buzzer and lights give reminders. The panel will be locked temporarily after continuous wrong attempts.
-
-Manual knob and mechanical key are prepared for circuit failure or power exhaustion.
-
-**(2) Online IoT Mode**
-
-After connecting to Wi-Fi, the lock builds an encrypted connection with the cloud platform to realize two-way data interaction:
-
-1. Data Upload: Access records, device power, prying alarms and error logs are uploaded to the cloud in real time.
-
-2. Command Receiving: Users send commands via mobile App, such as remote unlocking and temporary password generation. The cloud forwards commands to the target lock.
-
-3. Command Execution: The lock carries out corresponding operations and feeds back results to the App.
-
-BLE Bluetooth is mainly used for short-distance pairing and fast unlocking with low power consumption.
-
-![Offline and Online IoT Modes](image/homework7/offline-online-modes.jpg)
-*Figure 3: Comparison of Offline Local Mode and Online IoT Mode*
-
-### 4) Problems Solved
-
-**Drawbacks of Traditional Mechanical Locks**
-
-1. Totally dependent on physical keys, which are easy to lose, steal or copy, causing security risks.
-
-2. No remote management function. Users cannot confirm lock status or open the door for visitors when staying outside.
-
-3. Poor security performance. Users cannot get alerts if the lock is pried or damaged.
-
-4. Inconvenient for the elderly and children. They may lose keys or get trapped after being locked indoors.
-
-5. High management cost for rental houses, B&Bs and offices. Staff need to replace locks and recycle keys frequently.
-
-**Solutions of IoT Smart Lock**
-
-1. Key-free access: Multiple unlocking methods eliminate troubles caused by physical keys.
-
-2. Remote authorization: Time-limited temporary passcodes can be created for couriers, cleaners and guests, which will expire automatically.
-
-3. Full-time security protection: All access activities are recorded. The lock will trigger local alarms and push mobile notifications once abnormal damage occurs, and the camera will capture on-site images.
-
-4. User-friendly for all groups: The elderly and children do not need to carry keys. Remote unlocking helps people trapped indoors.
-
-5. Low-cost commercial management: Administrators can assign and cancel access rights online without on-site work. All records can be tracked for a long time.
-
-### 5) Application Scenarios
-
-1. Family entrance door: The most common scenario for daily use and temporary visitor access.
-
-2. Rental apartments: Manage tenants' access rights remotely and cancel permissions after check-out.
-
-3. B&Bs & budget hotels: Realize self check-in with temporary passwords, no on-duty staff required.
-
-4. Offices & dormitories: Grade access rights by positions and keep access records for safety management.
-
-5. Shops & warehouses: Monitor lock status remotely and receive alarms in case of illegal intrusion.
-
-6. Senior residences: Simple operation and key-free design suit elderly users better.
-
-![Application Scenarios](image/homework7/application-scenarios.jpg)
-*Figure 4: IoT Smart Lock Application Scenarios in Different Environments*
-
-### 6) Key Technologies
-
-**1. Biometric Recognition Technology**
-
-Semiconductor live fingerprint recognition is widely used to resist fake fingerprints. High-end models adopt 3D face recognition for higher security.
-
-**2. Wireless Communication Technology**
-
-• Wi-Fi 2.4G: Long-distance network connection and large data transmission
-
-• BLE Bluetooth: Low-power short-distance pairing and unlocking
-
-• NB-IoT: Wide signal coverage for commercial devices without home broadband
-
-**3. Cloud Platform Technology**
-
-Supports mass device access, data storage, command forwarding, OTA firmware upgrade and user management.
-
-**4. Data Encryption Technology**
-
-Local data adopts AES encryption algorithm. Network transmission uses TLS security protocol. Each device has a unique hardware ID for identity authentication.
-
-**5. Low Power Consumption Technology**
-
-The device enters deep sleep when idle and wakes up quickly when triggered. The battery life can reach 10 to 18 months in normal use.
-
-**6. Edge Computing Technology**
-
-Core verification work is completed locally on the lock. Basic functions remain available when the network is disconnected.
-
-**7. Electromechanical Separation Technology**
-
-The circuit system and mechanical lock body are separated physically. Circuit damage cannot cause lock failure.
-
-### 7) Data Security & Privacy Protection
-
-A full-link protection system is built from device, transmission, cloud and user privacy aspects:
-
-**1. Local Device Security**
-
-Each lock has an exclusive hardware ID. Firmware is encrypted to prevent illegal flashing and tampering. Anti-disassembly circuits will lock the system and trigger alarms once being destroyed.
-
-**2. Transmission Security**
-
-All transmitted data is encrypted to prevent network sniffing and data tampering.
-
-**3. Cloud Security**
-
-User data is desensitized and stored in separate areas. Strict authority isolation ensures data independence. Cloud servers are equipped with firewalls to resist network attacks.
-
-**4. Personal Privacy Protection**
-
-• No original fingerprint images are uploaded to the cloud. Only encrypted fingerprint features are saved locally.
-
-• Captured pictures and videos are only accessible to the account owner.
-
-• Users can delete records, unbind devices and cancel accounts at any time.
-
-• Temporary passwords can be set with limited times and valid periods to avoid abuse.
-
-### 8) Advantages & Disadvantages
-
-**Advantages**
-
-1. Integrated functions of unlocking, security protection and remote management.
-
-2. Dual offline & online modes ensure high stability.
-
-3. Simple operation for people of all ages.
-
-4. Able to connect with whole-home smart devices for linkage control.
-
-**Disadvantages**
-
-1. Runs on batteries and needs regular recharging (emergency power port as backup).
-
-2. Higher price than traditional mechanical locks.
-
-3. Signal fluctuation may occur under strong electromagnetic interference.`;
-
-        // Render markdown content
-        document.getElementById('markdownContent').innerHTML = marked.parse(markdownText);
-        document.getElementById('rawMarkdown').value = markdownText;
-
-        // Copy content function
-        function copyContent() {
-            const rawMarkdown = document.getElementById('rawMarkdown').value;
-            navigator.clipboard.writeText(rawMarkdown).then(() => {
-                const copyBtn = document.getElementById('copyBtn');
-                copyBtn.classList.add('copied');
-                copyBtn.querySelector('span').textContent = 'Copied!';
-                setTimeout(() => {
-                    copyBtn.classList.remove('copied');
-                    copyBtn.querySelector('span').textContent = 'Copy';
-                }, 2000);
-            });
-        }
-
-        // File upload functionality
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const fileList = document.getElementById('fileList');
-        const submitBtn = document.getElementById('submitBtn');
-        const submissionList = document.getElementById('submissionList');
-
-        let uploadedFiles = [];
-
-        uploadArea.addEventListener('click', () => fileInput.click());
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = 'var(--accent-purple)';
-            uploadArea.style.background = 'rgba(184, 169, 255, 0.05)';
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.borderColor = 'var(--border-light)';
-            uploadArea.style.background = 'transparent';
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = 'var(--border-light)';
-            uploadArea.style.background = 'transparent';
-            handleFiles(e.dataTransfer.files);
-        });
-
-        fileInput.addEventListener('change', (e) => {
-            handleFiles(e.target.files);
-        });
-
-        function handleFiles(files) {
-            Array.from(files).forEach(file => {
-                if (file.size > 10 * 1024 * 1024) {
-                    alert('File ' + file.name + ' exceeds 10MB limit');
-                    return;
-                }
-                uploadedFiles.push(file);
-                renderFileList();
-            });
-        }
-
-        function renderFileList() {
-            fileList.innerHTML = '';
-            uploadedFiles.forEach((file, index) => {
-                const fileItem = document.createElement('div');
-                fileItem.className = 'file-item';
-                fileItem.innerHTML = '<span class="file-name">' + file.name + '</span><i class="fas fa-times file-remove" onclick="removeFile(' + index + ')"></i>';
-                fileList.appendChild(fileItem);
-            });
-            submitBtn.disabled = uploadedFiles.length === 0;
-        }
-
-        function removeFile(index) {
-            uploadedFiles.splice(index, 1);
-            renderFileList();
-        }
-
-        submitBtn.addEventListener('click', () => {
-            if (uploadedFiles.length === 0) return;
-
-            // Simulate submission
-            uploadedFiles.forEach(file => {
-                const submissionItem = document.createElement('div');
-                submissionItem.className = 'submission-item';
-                submissionItem.innerHTML = '<div class="submission-info"><div class="submission-filename">' + file.name + '</div><div class="submission-time">' + new Date().toLocaleString() + '</div></div><i class="fas fa-check" style="color: var(--success);"></i>';
-                submissionList.insertBefore(submissionItem, submissionList.firstChild);
-            });
-
-            // Clear uploaded files
-            uploadedFiles = [];
-            renderFileList();
-            fileInput.value = '';
-
-            // Remove empty state if exists
-            const emptyState = submissionList.querySelector('.empty-state');
-            if (emptyState) {
-                emptyState.remove();
-            }
-
-            alert('Files submitted successfully!');
-        });
-    </script>
 </body>
 </html>
