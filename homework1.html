@@ -423,22 +423,53 @@
             </div>
         </div>
 
-        <!-- Section: Content Overview -->
+        <!-- Section 7: File and Folder Description -->
         <div class="content-section">
-            <h3>内容概览 - Content Overview</h3>
-            <p><strong>本文档包含以下内容：</strong></p>
+            <h3>7. 项目文件与目录说明</h3>
             
-            <ul style="margin-left: 2rem; line-height: 2;">
-                <li><strong>1. Tools and Environment Setup（工具与环境设置）</strong>：介绍本次作业使用的工具和软件环境，包括Git、GitHub、GitHub Desktop和Lingma AI助手。</li>
-                <li><strong>2. Web page setting（网页设置）</strong>：演示如何在GitHub上创建仓库、配置GitHub Pages以及添加协作者。注意：仓库是原先已经建好的，这里是操作示范。</li>
-                <li><strong>3. Clone the repository to GitHub（克隆仓库到本地）</strong>：展示如何使用GitHub Desktop将远程仓库克隆到本地计算机进行开发。</li>
-                <li><strong>4. Use Lingma for Website Development（使用Lingma进行网站开发）</strong>：介绍如何使用Lingma AI助手辅助网站开发，包含完整的提示词示例，展示如何通过AI生成符合圣罗兰风格的品牌官网代码。</li>
-                <li><strong>5. Modify Files and Commit（修改文件并提交）</strong>：演示如何编写提交说明并记录代码更改。</li>
-                <li><strong>6. Push to GitHub（推送到GitHub）</strong>：展示如何将本地更改推送到GitHub远程仓库。</li>
-                <li><strong>7. Project Directory Structure Organization（项目目录结构整理）</strong>：说明如何组织项目目录结构，创建专门的文件夹存放文档、图片、视频等资源，提高项目的可维护性。</li>
+            <h4>根目录文件</h4>
+            <ul>
+                <li><strong>index.html</strong> - 网站主页，包含视频背景、团队介绍、作业列表和最终项目展示</li>
+                <li><strong>style.css</strong> - 全局样式文件，定义网站的视觉风格、颜色、字体和布局</li>
+                <li><strong>upload.js</strong> - 上传功能JavaScript脚本，处理文件上传逻辑</li>
+                <li><strong>about.html</strong> - 关于页面，介绍项目和团队信息</li>
+                <li><strong>team.html</strong> - 团队介绍页面，展示所有成员信息</li>
+                <li><strong>homework.html</strong> - 作业列表页面，汇总所有平时作业链接</li>
+                <li><strong>homework1.html ~ homework9.html</strong> - 九个平时作业的详细内容页面</li>
+                <li><strong>profile-chen.html, chen.html, wang.html, li.html, zhang.html, zhu.html, he.html, xu.html</strong> - 团队成员个人介绍页面</li>
+                <li><strong>README.md</strong> - 项目说明文档，包含项目介绍、技术栈和使用说明</li>
+                <li><strong>.gitignore</strong> - Git忽略文件配置，指定不需要版本控制的文件</li>
             </ul>
             
-            <p style="margin-top: 1.5rem;"><strong>学习目标：</strong>通过本次作业，您将掌握使用Git进行版本控制、使用GitHub托管项目、使用GitHub Desktop管理代码、以及利用AI助手提高开发效率的完整工作流程。</p>
+            <h4>图片资源目录 (image/)</h4>
+            <ul>
+                <li><strong>logo.png</strong> - 网站Logo图标</li>
+                <li><strong>homework1/</strong> - 作业一的截图和图片资源（创建仓库、Pages设置、添加协作者等）</li>
+                <li><strong>homework2/</strong> - 作业二的截图和图片资源（Arduino IDE、电路连接、核心组件等）</li>
+                <li><strong>homework4/</strong> - 作业四的截图和图片资源（Fusion 360建模、装配、磁吸底座设计等）</li>
+            </ul>
+            
+            <h4>视频资源目录 (videos/)</h4>
+            <ul>
+                <li><strong>homework2/flow-lamp-demo.mp4</strong> - 作业二的流水灯演示视频</li>
+                <li><strong>homework4/</strong> - 作业四的相关视频资源（如有）</li>
+            </ul>
+            
+            <h4>GitHub工作流目录 (.github/workflows/)</h4>
+            <ul>
+                <li><strong>pages-rebuild.txt</strong> - GitHub Pages自动部署配置文件，用于触发网站重新构建</li>
+            </ul>
+            
+            <h4>其他辅助文件</h4>
+            <ul>
+                <li><strong>deploy.bat</strong> - Windows批处理脚本，用于快速部署网站</li>
+                <li><strong>check-deployment.ps1, fix-deployment.ps1, optimize-favicon.ps1</strong> - PowerShell脚本，用于检查、修复部署和优化favicon</li>
+                <li><strong>create-independent-site.ps1</strong> - 创建独立站点的PowerShell脚本</li>
+                <li><strong>DEPLOYMENT_CHECKLIST.md, DEPLOYMENT_COMPLETE.md, DEPLOY_FIX_GUIDE.md</strong> - 部署相关文档</li>
+                <li><strong>FEATURE_UPGRADE_COMPLETE.md, MENU_OPTIMIZATION_COMPLETE.md</strong> - 功能升级和优化完成记录</li>
+                <li><strong>HOMEWORK1_IMAGE_GUIDE.md, INDEPENDENT_SITE_GUIDE.md, UPLOAD_FEATURE_GUIDE.md</strong> - 特定功能使用指南</li>
+                <li><strong>PROFILE_LINK_DEBUG.md, FIX_DEPLOYMENT.md</strong> - 问题修复和调试文档</li>
+            </ul>
         </div>
     </div>
 
