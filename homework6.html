@@ -405,7 +405,7 @@
             <p class="homework-number">HOMEWORK 06</p>
             <h1 class="homework-title">IoT Smart Fingerprint & Password Lock</h1>
             <p class="homework-desc">
-                Internet of Things (IoT) smart lock product introduction.
+                物联网智能指纹密码锁产品介绍 - IoT数据上报、云端交互
             </p>
         </div>
 
@@ -655,269 +655,212 @@
         const homeworkContent = `
 # IoT Smart Fingerprint & Password Lock
 
-## Concept and Core Process of IoT
+## 物联网概念与核心流程
 
-### 1) Concept of Internet of Things (IoT)
+### 1. 物联网(IoT)概念
 
-The full name of IoT is Internet of Things. Based on the Internet and telecommunication networks, it connects all independent physical devices together. Combining sensor technology, wireless communication, cloud computing and embedded development, traditional devices are endowed with capabilities including information perception, data collection, network transmission, intelligent analysis, remote interaction and automatic control.
+物联网的全称是 Internet of Things。基于互联网和电信网络,将所有独立的物理设备连接在一起。结合传感器技术、无线通信、云计算和嵌入式开发,赋予传统设备信息感知、数据采集、网络传输、智能分析、远程交互和自动控制等能力。
 
-IoT realizes interconnection between people and devices, as well as device to device. Its general working process is: Data Collection → Network Transmission → Cloud Processing → Terminal Application → Equipment Execution. The smart lock is one of the most mature and widely used civilian IoT products.
+物联网实现了人与设备、设备与设备之间的互联互通。其一般工作流程为:**数据采集 → 网络传输 → 云端处理 → 终端应用 → 设备执行**。智能锁是最成熟且广泛应用的民用物联网产品之一。
 
-### 2) Core Process
+### 2. 核心流程
 
-The IoT system consists of five layers, and the smart lock operates strictly following this framework:
+物联网系统由五层组成,智能锁严格遵循此框架运行:
 
-**1. Perception Layer**
+#### (1) 感知层
+作为系统的感官部分。配备指纹模块、触摸键盘、NFC传感器、红外人体传感器、防撬振动传感器和摄像头,采集指纹、密码、振动信号和剩余电量等原始数据。是所有功能的基础。
 
-It acts as the sensory part of the system. Equipped with fingerprint modules, touch keypads, NFC sensors, infrared human sensors, anti-pry vibration sensors and cameras, it collects original data such as fingerprints, passwords, vibration signals and remaining power. It is the foundation of all functions.
+#### (2) 网络层
+作为数据传输通道。内置通信模块使用 Wi-Fi 2.4G、BLE蓝牙和NB-IoT将加密数据上传至云服务器,并接收来自云端的控制指令,完成双向数据交互。
 
-**2. Network Layer**
+#### (3) 平台层(云端)
+是整个系统的大脑和数据仓库。由专业云平台、服务器和数据库组成,管理海量连接设备,存储和分析数据,转发指令,维护用户账户和访问权限。
 
-It serves as the data transmission channel. The built-in communication modules use Wi-Fi 2.4G, BLE Bluetooth and NB-IoT to upload encrypted data to cloud servers, and receive control commands from the cloud to complete two-way data interaction.
+#### (4) 应用层
+是终端用户的操作入口,包括移动App、微信小程序和后台管理系统。用户可以在此绑定设备、设置参数、查看访问记录和接收报警通知。
 
-**3. Platform Layer (Cloud)**
-
-It is the brain and data warehouse of the whole system. Composed of professional cloud platforms, servers and databases, it manages massive connected devices, stores and analyzes data, forwards commands, and maintains user accounts and access rights.
-
-**4. Application Layer**
-
-It is the operation entrance for end users, including mobile Apps, WeChat mini-programs and background management systems. Users can bind devices, set parameters, check access records and receive alarm notifications here.
-
-**5. Control Layer**
-
-It is the final execution part. After receiving commands, the main control chip drives the motor and lock bolt to finish locking and unlocking. It also triggers sound-light alarms and camera capture for linkage security functions.
+#### (5) 控制层
+是最终执行部分。接收指令后,主控芯片驱动电机和锁舌完成锁定和解锁。同时触发声光报警和摄像头抓拍,实现联动安防功能。
 
 ---
 
-## II. Product: IoT Smart Fingerprint & Password Lock
+## 产品详情:物联网智能指纹密码锁
 
-### 1) Basic Product Information
+### 1. 基本产品信息
 
-• **Official Name**: IoT Smart Fingerprint & Password Lock for Home Security
+- **官方名称**: IoT Smart Fingerprint & Password Lock for Home Security
+- **别名**: 智能锁、物联网电子锁、防盗智能锁
+- **产品定位**: 替代传统机械锁的新一代安全设备。集成生物识别、物联网通信、云管理和安全预警,专注于便捷出入、远程控制和家庭安全防护。
 
-• **Aliases**: Smart Lock, IoT Electronic Lock, Anti-theft Smart Lock
+#### 产品分类
 
-• **Product Positioning**: A new generation security device replacing traditional mechanical locks. It integrates biometric identification, IoT communication, cloud management and security warning, focusing on convenient access, remote control and home safety protection.
+1. **按外观**: 把手式锁、推拉式锁、全自动锁
+2. **按功能**: 基础指纹密码锁、NFC锁、视频锁、人脸识别旗舰锁
+3. **按用途**: 家用门锁、室内门锁、商用门禁锁
 
-• **Product Classification**
+#### 价格范围
 
-1. By appearance: Handle-style lock, Push-pull lock, Fully automatic lock
+- **入门级**: 500–1000元,支持指纹、密码和蓝牙解锁
+- **主流家用型号**: 1000–3000元,具备Wi-Fi、临时密码和报警功能
+- **高端旗舰**: 3000元以上,配备人脸识别、视频对讲和智能家居联动
 
-2. By function: Basic fingerprint & password lock, NFC-enabled lock, Video lock, Face recognition flagship lock
+**主要品牌**: Kaadas、小米、Lockin、Dessmann、TCL
 
-3. By usage: Home door lock, Indoor door lock, Commercial access control lock
+**兼容性**: 适用于大多数标准防盗门、木门、公寓门和办公室门。
 
-• **Price Range**
+---
 
-Entry-level: 500–1000 RMB, supports fingerprint, password and Bluetooth unlocking
+### 2. 详细硬件组成
 
-Mainstream home model: 1000–3000 RMB, with Wi-Fi, temporary passcode and alarm functions
+整个锁具分为六大主要部分:室外面板、室内面板、锁体、主控与通信模块、电源模块和安全传感器。
 
-High-end flagship: Over 3000 RMB, equipped with face recognition, video intercom and smart home linkage
+#### (1) 室外交互面板
+- **半导体指纹模块**: 具备活体检测,防伪指纹功能
+- **背光触摸键盘**: 支持虚位密码防止偷窥
+- **NFC感应区**: 可与手机、门禁卡和智能手环配合使用
+- **广角摄像头**(可选): 带夜视功能,用于抓拍和视频对讲
+- **指示灯和蜂鸣器**: 状态提示和报警提醒
 
-• **Main Brands**: Kaadas, Xiaomi, Lockin, Dessmann, TCL
+#### (2) 室内面板
+- **手动旋转旋钮**: 断电时紧急机械解锁
+- **内部反锁按钮**: 一键安全锁定
+- **隐藏式机械钥匙孔**: 终极应急解决方案
 
-• **Compatibility**: Fits most standard anti-theft doors, wooden doors, apartment doors and office doors.
+#### (3) 机械锁体
+- **直流减速电机**: 低噪音高扭矩,驱动锁舌
+- **多点锁舌和防撬钩**: 符合国家防盗标准
+- **机电分离结构**: 电路故障时机械部分独立工作
 
-### 2) Detailed Hardware Composition
+#### (4) 主控与通信模块
+- **主控电路板**: 嵌入式MCU芯片,进行数据计算和逻辑判断
+- **无线通信模块**: Wi-Fi + BLE组合模块(ESP8266/ESP32);商用采用NB-IoT模块
+- **存储芯片**: 本地保存加密指纹数据和临时密码
 
-The whole lock is divided into six major parts: outdoor panel, indoor panel, lock body, main control & communication modules, power supply modules and security sensors.
+#### (5) 电源模块
+- **可充电锂电池组**: 可拆卸充电
+- **外部USB应急供电口**: 电池耗尽时临时供电
 
-**1. Outdoor Interactive Panel**
+#### (6) 安全传感器模块
+- **防撬振动传感器**: 检测暴力撬动和破坏
+- **错误尝试锁定模块**: 多次验证失败后锁定面板
+- **高温传感器**(高端型号): 与火灾报警系统联动
 
-Semiconductor fingerprint module: With live detection, anti-fake fingerprint function
+---
 
-Backlit touch keypad: Supports virtual password to prevent peeping
+### 3. 工作原理与实现
 
-NFC sensing area: Works with mobile phones, access cards and smart bands
+产品支持离线本地模式和在线物联网模式。即使没有网络,基本功能也能正常工作。
 
-Wide-angle camera (optional): With night vision for capture and video intercom
+#### (1) 离线本地模式
 
-Indicator lights & buzzers: Status prompt and alarm reminder
+采集指纹、密码或NFC信号后,主控芯片通过边缘计算将数据与本地存储的加密信息进行比对。
 
-**2. Indoor Panel**
+- **验证通过**: 电机收回锁舌,解锁门
+- **验证失败**: 蜂鸣器和指示灯发出提醒。连续错误尝试后面板将被暂时锁定
 
-Manual rotary knob: Emergency mechanical unlock when power off
+手动旋钮和机械钥匙为电路故障或电量耗尽做好准备。
 
-Internal anti-lock button: One-click safety locking
+#### (2) 在线物联网模式
 
-Hidden mechanical keyhole: Ultimate emergency solution
+连接Wi-Fi后,锁具与云平台建立加密连接,实现双向数据交互:
 
-**3. Mechanical Lock Body**
+1. **数据上传**: 访问记录、设备电量、撬动警报和错误日志实时上传到云端
+2. **命令接收**: 用户通过移动App发送命令,如远程解锁和生成临时密码。云端将命令转发到目标锁具
+3. **命令执行**: 锁具执行相应操作并将结果反馈给App
 
-DC deceleration motor: Low noise and high torque to drive lock bolts
+BLE蓝牙主要用于短距离配对和低功耗快速解锁。
 
-Multi-point lock bolts & anti-pry hooks: Meet national anti-theft standards
+---
 
-Electromechanical separation structure: Mechanical part works independently when circuit fails
+### 4. 解决的问题
 
-**4. Main Control & Communication Modules**
+#### 传统机械锁的缺陷
 
-Main control circuit board: Embedded MCU chip for data calculation and logic judgment
+1. 完全依赖物理钥匙,容易丢失、被盗或复制,造成安全风险
+2. 无远程管理功能。用户在外时无法确认锁的状态或为访客开门
+3. 安全性能差。锁被撬或损坏时用户无法收到警报
+4. 对老人和儿童不便。可能丢失钥匙或被锁在室内后被困
+5. 出租房、民宿和办公室管理成本高。员工需要频繁更换锁和回收钥匙
 
-Wireless communication module: Wi-Fi + BLE combo module (ESP8266 / ESP32); NB-IoT module for commercial use
+#### 物联网智能锁的解决方案
 
-Storage chip: Locally saves encrypted fingerprint data and temporary passwords
+1. **无钥匙进入**: 多种解锁方式消除了物理钥匙带来的麻烦
+2. **远程授权**: 可为快递员、清洁人员和客人创建限时临时密码,自动过期
+3. **全天候安全防护**: 所有出入活动均有记录。发生异常损坏时,锁具将触发本地警报并推送手机通知,摄像头会抓拍现场图像
+4. **适合各类人群**: 老人和儿童无需携带钥匙。远程解锁帮助被困室内的人员
+5. **低成本商业管理**: 管理员可在线分配和取消访问权限,无需现场工作。所有记录可长期追踪
 
-**5. Power Supply Module**
+---
 
-Rechargeable lithium battery pack: Detachable for charging
+### 5. 应用场景
 
-External USB emergency power port: For temporary power supply when battery runs out
+1. **家庭入户门**: 日常使用和临时访客访问的最常见场景
+2. **出租公寓**: 远程管理租户的访问权限,退房后取消权限
+3. **民宿和经济型酒店**: 使用临时密码实现自助入住,无需值班人员
+4. **办公室和宿舍**: 按职位分级访问权限,保留访问记录用于安全管理
+5. **商店和仓库**: 远程监控锁的状态,非法入侵时接收警报
+6. **老年住宅**: 操作简单和无钥匙设计更适合老年用户
 
-**6. Security Sensor Module**
+---
 
-Anti-pry vibration sensor: Detects violent prying and damage
+### 6. 关键技术
 
-Wrong attempt lock module: Locks the panel after multiple failed verifications
+1. **生物识别技术**: 半导体活体指纹识别广泛应用以抵抗假指纹。高端型号采用3D人脸识别以提高安全性
+2. **无线通信技术**:
+   - Wi-Fi 2.4G: 长距离网络连接和大容量数据传输
+   - BLE蓝牙: 低功耗短距离配对和解锁
+   - NB-IoT: 信号覆盖广,适用于无家庭宽带的商用设备
+3. **云平台技术**: 支持海量设备接入、数据存储、命令转发、OTA固件升级和用户管理
+4. **数据加密技术**: 本地数据采用AES加密算法。网络传输使用TLS安全协议。每个设备具有唯一的硬件ID进行身份认证
+5. **低功耗技术**: 设备空闲时进入深度睡眠,触发时快速唤醒。正常使用下电池寿命可达10至18个月
+6. **边缘计算技术**: 核心验证工作在锁具本地完成。网络断开时基本功能仍可用
+7. **机电分离技术**: 电路系统和机械锁体物理分离。电路损坏不会导致锁具失效
 
-High temperature sensor (high-end model): Links with fire alarm system
+---
 
-### 3) Working Principle & Implementation
+### 7. 数据安全与隐私保护
 
-The product supports offline local mode and online IoT mode. Basic functions work normally even without network.
+从设备、传输、云和用户隐私方面构建全链路保护体系:
 
-**(1) Offline Local Mode**
+#### (1) 本地设备安全
+- 每把锁都有专属硬件ID
+- 固件加密防止非法刷写和篡改
+- 防拆解电路一旦被破坏将锁定系统并触发警报
 
-After collecting fingerprint, password or NFC signals, the main control chip compares the data with locally stored encrypted information via edge computing.
+#### (2) 传输安全
+- 所有传输数据均加密,防止网络嗅探和数据篡改
 
-• Verification passed: The motor retracts lock bolts to unlock the door.
+#### (3) 云安全
+- 用户数据脱敏并分区存储
+- 严格的权限隔离确保数据独立性
+- 云服务器配备防火墙抵御网络攻击
 
-• Verification failed: The buzzer and lights give reminders. The panel will be locked temporarily after continuous wrong attempts.
+#### (4) 个人隐私保护
+- **不上传原始指纹图像到云端**。仅本地保存加密的指纹特征
+- 抓拍的图片和视频仅账户所有者可访问
+- 用户可随时删除记录、解绑设备和注销账户
+- 临时密码可设置限制次数和有效期,避免滥用
 
-Manual knob and mechanical key are prepared for circuit failure or power exhaustion.
+---
 
-**(2) Online IoT Mode**
+### 8. 优缺点分析
 
-After connecting to Wi-Fi, the lock builds an encrypted connection with the cloud platform to realize two-way data interaction:
+#### 优点
 
-1. Data Upload: Access records, device power, prying alarms and error logs are uploaded to the cloud in real time.
+1. 集解锁、安全防护和远程管理功能于一体
+2. 双离线和在线模式确保高稳定性
+3. 各年龄段人群操作简单
+4. 可连接全屋智能设备进行联动控制
 
-2. Command Receiving: Users send commands via mobile App, such as remote unlocking and temporary password generation. The cloud forwards commands to the target lock.
+#### 缺点
 
-3. Command Execution: The lock carries out corresponding operations and feeds back results to the App.
+1. 依靠电池运行,需要定期充电(有应急供电口作为备份)
+2. 价格高于传统机械锁
+3. 强电磁干扰下可能出现信号波动
 
-BLE Bluetooth is mainly used for short-distance pairing and fast unlocking with low power consumption.
+---
 
-### 4) Problems Solved
-
-**Drawbacks of Traditional Mechanical Locks**
-
-1. Totally dependent on physical keys, which are easy to lose, steal or copy, causing security risks.
-
-2. No remote management function. Users cannot confirm lock status or open the door for visitors when staying outside.
-
-3. Poor security performance. Users cannot get alerts if the lock is pried or damaged.
-
-4. Inconvenient for the elderly and children. They may lose keys or get trapped after being locked indoors.
-
-5. High management cost for rental houses, B&Bs and offices. Staff need to replace locks and recycle keys frequently.
-
-**Solutions of IoT Smart Lock**
-
-1. Key-free access: Multiple unlocking methods eliminate troubles caused by physical keys.
-
-2. Remote authorization: Time-limited temporary passcodes can be created for couriers, cleaners and guests, which will expire automatically.
-
-3. Full-time security protection: All access activities are recorded. The lock will trigger local alarms and push mobile notifications once abnormal damage occurs, and the camera will capture on-site images.
-
-4. User-friendly for all groups: The elderly and children do not need to carry keys. Remote unlocking helps people trapped indoors.
-
-5. Low-cost commercial management: Administrators can assign and cancel access rights online without on-site work. All records can be tracked for a long time.
-
-### 5) Application Scenarios
-
-1. Family entrance door: The most common scenario for daily use and temporary visitor access.
-
-2. Rental apartments: Manage tenants' access rights remotely and cancel permissions after check-out.
-
-3. B&Bs & budget hotels: Realize self check-in with temporary passwords, no on-duty staff required.
-
-4. Offices & dormitories: Grade access rights by positions and keep access records for safety management.
-
-5. Shops & warehouses: Monitor lock status remotely and receive alarms in case of illegal intrusion.
-
-6. Senior residences: Simple operation and key-free design suit elderly users better.
-
-### 6) Key Technologies
-
-1. Biometric Recognition Technology
-
-Semiconductor live fingerprint recognition is widely used to resist fake fingerprints. High-end models adopt 3D face recognition for higher security.
-
-2. Wireless Communication Technology
-
-• Wi-Fi 2.4G: Long-distance network connection and large data transmission
-
-• BLE Bluetooth: Low-power short-distance pairing and unlocking
-
-• NB-IoT: Wide signal coverage for commercial devices without home broadband
-
-3. Cloud Platform Technology
-
-Supports mass device access, data storage, command forwarding, OTA firmware upgrade and user management.
-
-4. Data Encryption Technology
-
-Local data adopts AES encryption algorithm. Network transmission uses TLS security protocol. Each device has a unique hardware ID for identity authentication.
-
-5. Low Power Consumption Technology
-
-The device enters deep sleep when idle and wakes up quickly when triggered. The battery life can reach 10 to 18 months in normal use.
-
-6. Edge Computing Technology
-
-Core verification work is completed locally on the lock. Basic functions remain available when the network is disconnected.
-
-7. Electromechanical Separation Technology
-
-The circuit system and mechanical lock body are separated physically. Circuit damage cannot cause lock failure.
-
-### 7) Data Security & Privacy Protection
-
-A full-link protection system is built from device, transmission, cloud and user privacy aspects:
-
-**1. Local Device Security**
-
-Each lock has an exclusive hardware ID. Firmware is encrypted to prevent illegal flashing and tampering. Anti-disassembly circuits will lock the system and trigger alarms once being destroyed.
-
-**2. Transmission Security**
-
-All transmitted data is encrypted to prevent network sniffing and data tampering.
-
-**3. Cloud Security**
-
-User data is desensitized and stored in separate areas. Strict authority isolation ensures data independence. Cloud servers are equipped with firewalls to resist network attacks.
-
-**4. Personal Privacy Protection**
-
-• No original fingerprint images are uploaded to the cloud. Only encrypted fingerprint features are saved locally.
-
-• Captured pictures and videos are only accessible to the account owner.
-
-• Users can delete records, unbind devices and cancel accounts at any time.
-
-• Temporary passwords can be set with limited times and valid periods to avoid abuse.
-
-### 8) Advantages & Disadvantages
-
-**Advantages**
-
-1. Integrated functions of unlocking, security protection and remote management.
-
-2. Dual offline & online modes ensure high stability.
-
-3. Simple operation for people of all ages.
-
-4. Able to connect with whole-home smart devices for linkage control.
-
-**Disadvantages**
-
-1. Runs on batteries and needs regular recharging (emergency power port as backup).
-
-2. Higher price than traditional mechanical locks.
-
-3. Signal fluctuation may occur under strong electromagnetic interference.
+**截止日期**: 第6周结束
         `;
 
         // Render markdown content
