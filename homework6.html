@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework 1 | Aether Studio</title>
+    <title>Homework 6 | Aether Studio</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -403,9 +403,9 @@
 
         <div class="homework-header">
             <p class="homework-number">HOMEWORK 06</p>
-            <h1 class="homework-title">Embedded Programming</h1>
+            <h1 class="homework-title">IoT Smart Fingerprint & Password Lock</h1>
             <p class="homework-desc">
-                学习嵌入式系统编程。
+                Internet of Things (IoT) smart lock product introduction.
             </p>
         </div>
 
@@ -457,6 +457,14 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Back Button at Bottom -->
+    <div style="text-align: center; margin: 3rem 0;">
+        <a href="homework.html" style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2.5rem; background: var(--accent-purple); color: #000; text-decoration: none; border-radius: 8px; font-weight: 400; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(184, 169, 255, 0.3);">
+            <i class="fas fa-arrow-left"></i>
+            <span>Back to Homework List</span>
+        </a>
     </div>
 
     <footer>
@@ -598,7 +606,7 @@
 
         // Load submitted files from localStorage
         function loadSubmissions() {
-            const key = 'homework1_submissions';
+            const key = 'homework6_submissions';
             const submissions = JSON.parse(localStorage.getItem(key) || '[]');
             
             if (submissions.length > 0) {
@@ -626,7 +634,7 @@
 
         // Save submission to localStorage
         function saveSubmission(fileName) {
-            const key = 'homework1_submissions';
+            const key = 'homework6_submissions';
             const submissions = JSON.parse(localStorage.getItem(key) || '[]');
             submissions.unshift({
                 name: fileName,
@@ -645,41 +653,271 @@
 
         // Markdown Content - Edit your homework content here
         const homeworkContent = `
-# Homework 6: Embedded Programming
+# IoT Smart Fingerprint & Password Lock
 
-## Overview
+## Concept and Core Process of IoT
 
-Programming microcontrollers at a low level.
+### 1) Concept of Internet of Things (IoT)
 
-## Platforms
+The full name of IoT is Internet of Things. Based on the Internet and telecommunication networks, it connects all independent physical devices together. Combining sensor technology, wireless communication, cloud computing and embedded development, traditional devices are endowed with capabilities including information perception, data collection, network transmission, intelligent analysis, remote interaction and automatic control.
 
-- **AVR** - ATtiny85, ATmega328P
-- **ARM** - STM32
-- **ESP32** - WiFi enabled MCU
+IoT realizes interconnection between people and devices, as well as device to device. Its general working process is: Data Collection → Network Transmission → Cloud Processing → Terminal Application → Equipment Execution. The smart lock is one of the most mature and widely used civilian IoT products.
 
-## Programming Languages
+### 2) Core Process
 
-- C/C++
-- Assembly (basic)
+The IoT system consists of five layers, and the smart lock operates strictly following this framework:
 
-## Key Concepts
+**1. Perception Layer**
 
-1. **Registers** and memory mapping
-2. **Interrupts** handling
-3. **Timers** and PWM
-4. **Communication protocols** (I2C, SPI, UART)
+It acts as the sensory part of the system. Equipped with fingerprint modules, touch keypads, NFC sensors, infrared human sensors, anti-pry vibration sensors and cameras, it collects original data such as fingerprints, passwords, vibration signals and remaining power. It is the foundation of all functions.
 
-## Code Example
+**2. Network Layer**
 
-\`\`\`cpp
-// Direct register manipulation
-DDRB |= (1 << PB0);  // Set PB0 as output
-PORTB |= (1 << PB0); // Set PB0 high
-\`\`\`
+It serves as the data transmission channel. The built-in communication modules use Wi-Fi 2.4G, BLE Bluetooth and NB-IoT to upload encrypted data to cloud servers, and receive control commands from the cloud to complete two-way data interaction.
 
-> Mastered bare-metal programming techniques.
+**3. Platform Layer (Cloud)**
 
-**Deadline:** End of Week 6
+It is the brain and data warehouse of the whole system. Composed of professional cloud platforms, servers and databases, it manages massive connected devices, stores and analyzes data, forwards commands, and maintains user accounts and access rights.
+
+**4. Application Layer**
+
+It is the operation entrance for end users, including mobile Apps, WeChat mini-programs and background management systems. Users can bind devices, set parameters, check access records and receive alarm notifications here.
+
+**5. Control Layer**
+
+It is the final execution part. After receiving commands, the main control chip drives the motor and lock bolt to finish locking and unlocking. It also triggers sound-light alarms and camera capture for linkage security functions.
+
+---
+
+## II. Product: IoT Smart Fingerprint & Password Lock
+
+### 1) Basic Product Information
+
+• **Official Name**: IoT Smart Fingerprint & Password Lock for Home Security
+
+• **Aliases**: Smart Lock, IoT Electronic Lock, Anti-theft Smart Lock
+
+• **Product Positioning**: A new generation security device replacing traditional mechanical locks. It integrates biometric identification, IoT communication, cloud management and security warning, focusing on convenient access, remote control and home safety protection.
+
+• **Product Classification**
+
+1. By appearance: Handle-style lock, Push-pull lock, Fully automatic lock
+
+2. By function: Basic fingerprint & password lock, NFC-enabled lock, Video lock, Face recognition flagship lock
+
+3. By usage: Home door lock, Indoor door lock, Commercial access control lock
+
+• **Price Range**
+
+Entry-level: 500–1000 RMB, supports fingerprint, password and Bluetooth unlocking
+
+Mainstream home model: 1000–3000 RMB, with Wi-Fi, temporary passcode and alarm functions
+
+High-end flagship: Over 3000 RMB, equipped with face recognition, video intercom and smart home linkage
+
+• **Main Brands**: Kaadas, Xiaomi, Lockin, Dessmann, TCL
+
+• **Compatibility**: Fits most standard anti-theft doors, wooden doors, apartment doors and office doors.
+
+### 2) Detailed Hardware Composition
+
+The whole lock is divided into six major parts: outdoor panel, indoor panel, lock body, main control & communication modules, power supply modules and security sensors.
+
+**1. Outdoor Interactive Panel**
+
+Semiconductor fingerprint module: With live detection, anti-fake fingerprint function
+
+Backlit touch keypad: Supports virtual password to prevent peeping
+
+NFC sensing area: Works with mobile phones, access cards and smart bands
+
+Wide-angle camera (optional): With night vision for capture and video intercom
+
+Indicator lights & buzzers: Status prompt and alarm reminder
+
+**2. Indoor Panel**
+
+Manual rotary knob: Emergency mechanical unlock when power off
+
+Internal anti-lock button: One-click safety locking
+
+Hidden mechanical keyhole: Ultimate emergency solution
+
+**3. Mechanical Lock Body**
+
+DC deceleration motor: Low noise and high torque to drive lock bolts
+
+Multi-point lock bolts & anti-pry hooks: Meet national anti-theft standards
+
+Electromechanical separation structure: Mechanical part works independently when circuit fails
+
+**4. Main Control & Communication Modules**
+
+Main control circuit board: Embedded MCU chip for data calculation and logic judgment
+
+Wireless communication module: Wi-Fi + BLE combo module (ESP8266 / ESP32); NB-IoT module for commercial use
+
+Storage chip: Locally saves encrypted fingerprint data and temporary passwords
+
+**5. Power Supply Module**
+
+Rechargeable lithium battery pack: Detachable for charging
+
+External USB emergency power port: For temporary power supply when battery runs out
+
+**6. Security Sensor Module**
+
+Anti-pry vibration sensor: Detects violent prying and damage
+
+Wrong attempt lock module: Locks the panel after multiple failed verifications
+
+High temperature sensor (high-end model): Links with fire alarm system
+
+### 3) Working Principle & Implementation
+
+The product supports offline local mode and online IoT mode. Basic functions work normally even without network.
+
+**(1) Offline Local Mode**
+
+After collecting fingerprint, password or NFC signals, the main control chip compares the data with locally stored encrypted information via edge computing.
+
+• Verification passed: The motor retracts lock bolts to unlock the door.
+
+• Verification failed: The buzzer and lights give reminders. The panel will be locked temporarily after continuous wrong attempts.
+
+Manual knob and mechanical key are prepared for circuit failure or power exhaustion.
+
+**(2) Online IoT Mode**
+
+After connecting to Wi-Fi, the lock builds an encrypted connection with the cloud platform to realize two-way data interaction:
+
+1. Data Upload: Access records, device power, prying alarms and error logs are uploaded to the cloud in real time.
+
+2. Command Receiving: Users send commands via mobile App, such as remote unlocking and temporary password generation. The cloud forwards commands to the target lock.
+
+3. Command Execution: The lock carries out corresponding operations and feeds back results to the App.
+
+BLE Bluetooth is mainly used for short-distance pairing and fast unlocking with low power consumption.
+
+### 4) Problems Solved
+
+**Drawbacks of Traditional Mechanical Locks**
+
+1. Totally dependent on physical keys, which are easy to lose, steal or copy, causing security risks.
+
+2. No remote management function. Users cannot confirm lock status or open the door for visitors when staying outside.
+
+3. Poor security performance. Users cannot get alerts if the lock is pried or damaged.
+
+4. Inconvenient for the elderly and children. They may lose keys or get trapped after being locked indoors.
+
+5. High management cost for rental houses, B&Bs and offices. Staff need to replace locks and recycle keys frequently.
+
+**Solutions of IoT Smart Lock**
+
+1. Key-free access: Multiple unlocking methods eliminate troubles caused by physical keys.
+
+2. Remote authorization: Time-limited temporary passcodes can be created for couriers, cleaners and guests, which will expire automatically.
+
+3. Full-time security protection: All access activities are recorded. The lock will trigger local alarms and push mobile notifications once abnormal damage occurs, and the camera will capture on-site images.
+
+4. User-friendly for all groups: The elderly and children do not need to carry keys. Remote unlocking helps people trapped indoors.
+
+5. Low-cost commercial management: Administrators can assign and cancel access rights online without on-site work. All records can be tracked for a long time.
+
+### 5) Application Scenarios
+
+1. Family entrance door: The most common scenario for daily use and temporary visitor access.
+
+2. Rental apartments: Manage tenants' access rights remotely and cancel permissions after check-out.
+
+3. B&Bs & budget hotels: Realize self check-in with temporary passwords, no on-duty staff required.
+
+4. Offices & dormitories: Grade access rights by positions and keep access records for safety management.
+
+5. Shops & warehouses: Monitor lock status remotely and receive alarms in case of illegal intrusion.
+
+6. Senior residences: Simple operation and key-free design suit elderly users better.
+
+### 6) Key Technologies
+
+1. Biometric Recognition Technology
+
+Semiconductor live fingerprint recognition is widely used to resist fake fingerprints. High-end models adopt 3D face recognition for higher security.
+
+2. Wireless Communication Technology
+
+• Wi-Fi 2.4G: Long-distance network connection and large data transmission
+
+• BLE Bluetooth: Low-power short-distance pairing and unlocking
+
+• NB-IoT: Wide signal coverage for commercial devices without home broadband
+
+3. Cloud Platform Technology
+
+Supports mass device access, data storage, command forwarding, OTA firmware upgrade and user management.
+
+4. Data Encryption Technology
+
+Local data adopts AES encryption algorithm. Network transmission uses TLS security protocol. Each device has a unique hardware ID for identity authentication.
+
+5. Low Power Consumption Technology
+
+The device enters deep sleep when idle and wakes up quickly when triggered. The battery life can reach 10 to 18 months in normal use.
+
+6. Edge Computing Technology
+
+Core verification work is completed locally on the lock. Basic functions remain available when the network is disconnected.
+
+7. Electromechanical Separation Technology
+
+The circuit system and mechanical lock body are separated physically. Circuit damage cannot cause lock failure.
+
+### 7) Data Security & Privacy Protection
+
+A full-link protection system is built from device, transmission, cloud and user privacy aspects:
+
+**1. Local Device Security**
+
+Each lock has an exclusive hardware ID. Firmware is encrypted to prevent illegal flashing and tampering. Anti-disassembly circuits will lock the system and trigger alarms once being destroyed.
+
+**2. Transmission Security**
+
+All transmitted data is encrypted to prevent network sniffing and data tampering.
+
+**3. Cloud Security**
+
+User data is desensitized and stored in separate areas. Strict authority isolation ensures data independence. Cloud servers are equipped with firewalls to resist network attacks.
+
+**4. Personal Privacy Protection**
+
+• No original fingerprint images are uploaded to the cloud. Only encrypted fingerprint features are saved locally.
+
+• Captured pictures and videos are only accessible to the account owner.
+
+• Users can delete records, unbind devices and cancel accounts at any time.
+
+• Temporary passwords can be set with limited times and valid periods to avoid abuse.
+
+### 8) Advantages & Disadvantages
+
+**Advantages**
+
+1. Integrated functions of unlocking, security protection and remote management.
+
+2. Dual offline & online modes ensure high stability.
+
+3. Simple operation for people of all ages.
+
+4. Able to connect with whole-home smart devices for linkage control.
+
+**Disadvantages**
+
+1. Runs on batteries and needs regular recharging (emergency power port as backup).
+
+2. Higher price than traditional mechanical locks.
+
+3. Signal fluctuation may occur under strong electromagnetic interference.
         `;
 
         // Render markdown content
