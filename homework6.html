@@ -4,12 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homework 6 | Aether Studio</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --bg-primary: #000000;
             --bg-secondary: #0A0A0A;
@@ -17,14 +23,16 @@
             --text-secondary: #999999;
             --accent-purple: #B8A9FF;
             --border-light: rgba(255, 255, 255, 0.1);
-            --success: #2ed573;
         }
+
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
-            line-height: 1.6;
+            line-height: 1.8;
         }
+
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
@@ -37,315 +45,130 @@
             z-index: 1000;
             background: rgba(0, 0, 0, 0.95);
             backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
         }
+
         .logo {
             font-size: 1.3rem;
             font-weight: 300;
             letter-spacing: 0.3em;
+            text-transform: uppercase;
             color: var(--text-primary);
             text-decoration: none;
         }
-        .nav-menu { display: flex; list-style: none; gap: 3rem; }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+        }
+
         .nav-menu a {
             color: var(--text-primary);
             text-decoration: none;
             font-size: 0.85rem;
             font-weight: 300;
+            letter-spacing: 0.1em;
             transition: color 0.3s ease;
         }
-        .nav-menu a:hover { color: var(--accent-purple); }
-        .homework-detail {
-            padding-top: 100px;
-            min-height: 100vh;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 100px 4rem 4rem;
-        }
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+
+        .nav-menu a:hover {
             color: var(--accent-purple);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-size: 0.9rem;
-            transition: gap 0.3s ease;
         }
-        .back-link:hover { gap: 1rem; }
-        .homework-header {
-            margin-bottom: 3rem;
+
+        /* Content */
+        .content-page {
+            padding-top: 120px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 3rem;
+            padding-right: 3rem;
+            padding-bottom: 4rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 4rem;
             padding-bottom: 2rem;
             border-bottom: 1px solid var(--border-light);
         }
-        .homework-number {
-            font-size: 0.85rem;
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 200;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        /* Content Sections */
+        .content-section {
+            margin-bottom: 3rem;
+        }
+
+        .content-section h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1.5rem;
             color: var(--accent-purple);
+        }
+
+        .content-section h3 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin: 2rem 0 1rem;
+        }
+
+        .content-section h4 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin: 1.5rem 0 0.8rem;
+        }
+
+        .content-section p {
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .content-section ul, .content-section ol {
+            margin: 1rem 0 1.5rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .content-section li {
             margin-bottom: 0.5rem;
         }
-        .homework-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-        }
-        .homework-desc {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-        /* Markdown Content Section */
-        .markdown-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-        }
-        .markdown-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--border-light);
-        }
-        .markdown-title {
-            font-size: 1.5rem;
-            font-weight: 400;
-        }
-        .btn-copy {
-            padding: 0.5rem 1.2rem;
-            background: transparent;
-            border: 1px solid var(--accent-purple);
-            color: var(--accent-purple);
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .btn-copy:hover {
-            background: var(--accent-purple);
-            color: var(--bg-primary);
-        }
-        .btn-copy.copied {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-        }
-        .markdown-content {
+
+        .content-section strong {
             color: var(--text-primary);
-            line-height: 1.8;
         }
-        .markdown-content h1, .markdown-content h2, .markdown-content h3,
-        .markdown-content h4, .markdown-content h5, .markdown-content h6 {
-            margin: 1.5rem 0 1rem;
-            font-weight: 400;
-            color: var(--accent-purple);
+
+        /* Images */
+        .image-item {
+            margin: 2rem 0;
+            text-align: center;
         }
-        .markdown-content h1 { font-size: 2rem; }
-        .markdown-content h2 { font-size: 1.75rem; }
-        .markdown-content h3 { font-size: 1.5rem; }
-        .markdown-content p {
-            margin-bottom: 1rem;
-        }
-        .markdown-content code {
-            background: rgba(184, 169, 255, 0.1);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            color: var(--accent-purple);
-            font-size: 0.9em;
-        }
-        .markdown-content pre {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 1.5rem;
+
+        .image-item img {
+            max-width: 100%;
+            height: auto;
             border-radius: 8px;
-            overflow-x: auto;
-            margin: 1rem 0;
-            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-        .markdown-content pre code {
-            background: transparent;
-            padding: 0;
-            color: var(--text-primary);
-        }
-        .markdown-content blockquote {
-            border-left: 3px solid var(--accent-purple);
-            padding-left: 1.5rem;
-            margin: 1rem 0;
+
+        .image-caption {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
             font-style: italic;
         }
-        .markdown-content ul, .markdown-content ol {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-        .markdown-content li {
-            margin-bottom: 0.5rem;
-        }
-        .markdown-content a {
-            color: var(--accent-purple);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.3s ease;
-        }
-        .markdown-content a:hover {
-            border-bottom-color: var(--accent-purple);
-        }
-        .markdown-content img {
-            max-width: 100%;
-            border-radius: 8px;
-            margin: 1rem 0;
-        }
-        .markdown-content table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
-        }
-        .markdown-content th, .markdown-content td {
-            padding: 0.75rem;
-            border: 1px solid var(--border-light);
-            text-align: left;
-        }
-        .markdown-content th {
-            background: rgba(184, 169, 255, 0.1);
-            color: var(--accent-purple);
-        }
-        .markdown-content hr {
-            border: none;
-            border-top: 1px solid var(--border-light);
-            margin: 2rem 0;
-        }
-        .section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-light);
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-        }
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 400;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        .section-title i { color: var(--accent-purple); }
-        .upload-area {
-            border: 2px dashed var(--border-light);
-            border-radius: 8px;
-            padding: 3rem 2rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .upload-area:hover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.05);
-        }
-        .upload-area.dragover {
-            border-color: var(--accent-purple);
-            background: rgba(184, 169, 255, 0.1);
-        }
-        .upload-icon {
-            font-size: 3rem;
-            color: var(--accent-purple);
-            margin-bottom: 1rem;
-        }
-        .upload-text { font-size: 1.1rem; margin-bottom: 0.5rem; }
-        .upload-hint { font-size: 0.85rem; color: var(--text-secondary); }
-        input[type="file"] { display: none; }
-        .file-list { margin-top: 2rem; }
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-light);
-            border-radius: 6px;
-            margin-bottom: 0.8rem;
-            animation: slideIn 0.3s ease;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        .file-info { display: flex; align-items: center; gap: 1rem; }
-        .file-icon { color: var(--accent-purple); font-size: 1.2rem; }
-        .file-name { font-size: 0.9rem; }
-        .file-size { font-size: 0.75rem; color: var(--text-secondary); }
-        .file-remove {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            cursor: pointer;
-            padding: 0.5rem;
-            transition: color 0.3s ease;
-        }
-        .file-remove:hover { color: #ff4757; }
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            background: var(--accent-purple);
-            color: var(--bg-primary);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(184, 169, 255, 0.3);
-        }
-        .btn-submit:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-        .submission-list { margin-top: 1.5rem; }
-        .submission-item {
-            padding: 1.2rem;
-            background: rgba(46, 213, 115, 0.05);
-            border: 1px solid rgba(46, 213, 115, 0.2);
-            border-radius: 8px;
-            margin-bottom: 0.8rem;
-        }
-        .submission-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-        .submission-name { font-size: 0.9rem; font-weight: 400; }
-        .submission-status {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.8rem;
-            color: var(--success);
-        }
-        .submission-time {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-        }
-        .empty-state {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-secondary);
-        }
-        .empty-state i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.3;
-        }
+
+        /* Footer */
         footer {
             text-align: center;
             padding: 3rem 2rem;
@@ -353,599 +176,188 @@
             color: var(--text-secondary);
             font-size: 0.85rem;
         }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .navbar { padding: 1.5rem 2rem; }
+            .navbar {
+                padding: 1.5rem 2rem;
+            }
+
             .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.98);
-                flex-direction: column;
-                padding: 2rem;
+                gap: 1.5rem;
             }
-            .nav-menu.active { display: flex; }
-            .hamburger {
-                display: flex;
-                flex-direction: column;
-                cursor: pointer;
-                gap: 5px;
+
+            .content-page {
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
-            .hamburger span {
-                width: 25px;
-                height: 2px;
-                background: var(--text-primary);
+
+            .page-title {
+                font-size: 2rem;
             }
-            .homework-detail { padding: 100px 2rem 2rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <a href="index.html" class="logo">AETHER</a>
-        <ul class="nav-menu" id="navMenu">
+        <a href="index.html" class="logo">AETHER STUDIO</a>
+        <ul class="nav-menu">
             <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About US</a></li>
-            <li><a href="homework.html">Daily homework</a></li>
-            <li><a href="final.html">Finalwork</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="homework.html">Homework</a></li>
         </ul>
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
     </nav>
 
-    <div class="homework-detail">
-        <a href="homework.html" class="back-link">
-            <i class="fas fa-arrow-left"></i>
-            Back to Homework List
-        </a>
-
-        <div class="homework-header">
-            <p class="homework-number">HOMEWORK 06</p>
-            <h1 class="homework-title">IoT Smart Fingerprint & Password Lock</h1>
-            <p class="homework-desc">
-                物联网智能指纹密码锁产品介绍 - IoT数据上报、云端交互
-            </p>
+    <!-- Content -->
+    <div class="content-page">
+        <!-- Back Button -->
+        <div style="margin-bottom: 2rem;">
+            <a href="homework.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-purple); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease;">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Homework List</span>
+            </a>
+        </div>
+        
+        <!-- Header -->
+        <div class="page-header">
+            <h1 class="page-title">HOMEWORK 6</h1>
+            <p class="page-subtitle">3D打印过程</p>
         </div>
 
-        <!-- Markdown Content Section -->
-        <div class="markdown-section">
-            <div class="markdown-header">
-                <h2 class="markdown-title">
-                    <i class="fas fa-file-alt" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
-                    Homework Content
-                </h2>
-                <button class="btn-copy" id="copyBtn" onclick="copyContent()">
-                    <i class="fas fa-copy"></i>
-                    <span>Copy</span>
-                </button>
+        <!-- Section 1: Export Modeling -->
+        <div class="content-section">
+            <h2>一、导出建模</h2>
+            
+            <p>分别导出零件两部分</p>
+            
+            <!-- 插入导出零件图片1 -->
+            <div class="image-item">
+                <img src="image/homework6/export-part-1.jpg" alt="导出零件第一部分">
+                <div class="image-caption">图1：导出零件第一部分</div>
             </div>
-            <div class="markdown-content" id="markdownContent"></div>
-            <!-- Raw markdown for copying -->
-            <textarea id="rawMarkdown" style="display: none;"></textarea>
-        </div>
-
-        <!-- Submit Section -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-upload"></i>
-                Submit Your Work
-            </h2>
-            <div class="upload-area" id="uploadArea">
-                <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                <p class="upload-text">Drag & Drop files here or click to upload</p>
-                <p class="upload-hint">Support: Code, Images, Documents, PDF (Max 10MB)</p>
-                <input type="file" id="fileInput" multiple>
+            
+            <!-- 插入导出零件图片2 -->
+            <div class="image-item">
+                <img src="image/homework6/export-part-2.jpg" alt="导出零件第二部分">
+                <div class="image-caption">图2：导出零件第二部分</div>
             </div>
-            <div class="file-list" id="fileList"></div>
-            <button class="btn-submit" id="submitBtn" disabled>
-                <i class="fas fa-paper-plane"></i> Submit Files
-            </button>
         </div>
 
-        <!-- Submitted Files Section -->
-        <div class="section">
-            <h2 class="section-title">
-                <i class="fas fa-check-circle"></i>
-                Submitted Files
-            </h2>
-            <div id="submissionList" class="submission-list">
-                <div class="empty-state">
-                    <i class="fas fa-inbox"></i>
-                    <p>No files submitted yet</p>
-                </div>
+        <!-- Section 2: Import to Bambu Studio -->
+        <div class="content-section">
+            <h2>二、将导出零件拖入Bambu Studio</h2>
+            
+            <!-- 插入Bambu Studio导入图片 -->
+            <div class="image-item">
+                <img src="image/homework6/bambu-studio-import.jpg" alt="Bambu Studio导入零件">
+                <div class="image-caption">图3：将导出零件拖入Bambu Studio</div>
+            </div>
+        </div>
+
+        <!-- Section 3: Printer Setup -->
+        <div class="content-section">
+            <h2>三、打印机设置</h2>
+            
+            <h4>1. 打开打印机电源</h4>
+            
+            <!-- 插入打开电源图片 -->
+            <div class="image-item">
+                <img src="image/homework6/power-on.jpg" alt="打开打印机电源">
+                <div class="image-caption">图4：打开打印机电源</div>
+            </div>
+            
+            <h4>2. 联网</h4>
+            
+            <!-- 插入联网图片 -->
+            <div class="image-item">
+                <img src="image/homework6/network-connect.jpg" alt="打印机联网">
+                <div class="image-caption">图5：打印机联网设置</div>
+            </div>
+            
+            <h4>3. 主页登录</h4>
+            
+            <!-- 插入主页登录图片 -->
+            <div class="image-item">
+                <img src="image/homework6/homepage-login.jpg" alt="主页登录">
+                <div class="image-caption">图6：主页登录界面</div>
+            </div>
+            
+            <h4>4. 确认、检查喷嘴</h4>
+            
+            <!-- 插入检查喷嘴图片1 -->
+            <div class="image-item">
+                <img src="image/homework6/nozzle-check-1.jpg" alt="检查喷嘴1">
+                <div class="image-caption">图7：检查喷嘴状态</div>
+            </div>
+            
+            <!-- 插入检查喷嘴图片2 -->
+            <div class="image-item">
+                <img src="image/homework6/nozzle-check-2.jpg" alt="检查喷嘴2">
+                <div class="image-caption">图8：喷嘴清洁确认</div>
+            </div>
+        </div>
+
+        <!-- Section 4: Prepare Printing -->
+        <div class="content-section">
+            <h2>四、准备打印</h2>
+            
+            <h4>1. 打印机上登录，进入主页</h4>
+            
+            <!-- 插入打印机登录图片 -->
+            <div class="image-item">
+                <img src="image/homework6/printer-login.jpg" alt="打印机登录">
+                <div class="image-caption">图9：打印机登录并进入主页</div>
+            </div>
+            
+            <h4>2. Bambu Studio同步信息</h4>
+            
+            <!-- 插入同步信息图片 -->
+            <div class="image-item">
+                <img src="image/homework6/sync-info.jpg" alt="Bambu Studio同步信息">
+                <div class="image-caption">图10：Bambu Studio同步打印信息</div>
+            </div>
+        </div>
+
+        <!-- Section 5: Start Printing -->
+        <div class="content-section">
+            <h2>五、开始打印</h2>
+            
+            <!-- 插入打印过程图片1 -->
+            <div class="image-item">
+                <img src="image/homework6/printing-1.jpg" alt="打印过程1">
+                <div class="image-caption">图11：打印开始</div>
+            </div>
+            
+            <!-- 插入打印过程图片2 -->
+            <div class="image-item">
+                <img src="image/homework6/printing-2.jpg" alt="打印过程2">
+                <div class="image-caption">图12：打印进行中</div>
+            </div>
+            
+            <!-- 插入打印过程图片3 -->
+            <div class="image-item">
+                <img src="image/homework6/printing-3.jpg" alt="打印过程3">
+                <div class="image-caption">图13：打印细节展示</div>
+            </div>
+            
+            <!-- 插入打印过程图片4 -->
+            <div class="image-item">
+                <img src="image/homework6/printing-4.jpg" alt="打印过程4">
+                <div class="image-caption">图14：打印进度监控</div>
+            </div>
+            
+            <!-- 插入打印完成图片 -->
+            <div class="image-item">
+                <img src="image/homework6/printing-complete.jpg" alt="打印完成">
+                <div class="image-caption">图15：打印完成成品展示</div>
             </div>
         </div>
     </div>
 
-    <!-- Back Button at Bottom -->
-    <div style="text-align: center; margin: 3rem 0;">
-        <a href="homework.html" style="display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2.5rem; background: var(--accent-purple); color: #000; text-decoration: none; border-radius: 8px; font-weight: 400; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(184, 169, 255, 0.3);">
-            <i class="fas fa-arrow-left"></i>
-            <span>Back to Homework List</span>
-        </a>
-    </div>
-
+    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Aether Studio. All rights reserved.</p>
     </footer>
-
-    <script>
-        // Mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => navMenu.classList.remove('active'));
-        });
-
-        // File upload
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const fileList = document.getElementById('fileList');
-        const submitBtn = document.getElementById('submitBtn');
-        const submissionList = document.getElementById('submissionList');
-        let selectedFiles = [];
-
-        uploadArea.addEventListener('click', () => fileInput.click());
-
-        fileInput.addEventListener('change', (e) => handleFiles(e.target.files));
-
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        });
-
-        function handleFiles(files) {
-            Array.from(files).forEach(file => {
-                if (file.size > 10 * 1024 * 1024) {
-                    alert(`File "${file.name}" exceeds 10MB limit`);
-                    return;
-                }
-                selectedFiles.push(file);
-                addFileToList(file);
-            });
-            updateSubmitButton();
-        }
-
-        function addFileToList(file) {
-            const fileId = `file-${Date.now()}-${Math.random()}`;
-            const fileItem = document.createElement('div');
-            fileItem.className = 'file-item';
-            fileItem.id = fileId;
-            fileItem.innerHTML = `
-                <div class="file-info">
-                    <i class="fas fa-file file-icon"></i>
-                    <div>
-                        <div class="file-name">${file.name}</div>
-                        <div class="file-size">${formatSize(file.size)}</div>
-                    </div>
-                </div>
-                <button class="file-remove" onclick="removeFile('${fileId}')">
-                    <i class="fas fa-times"></i>
-                </button>
-            `;
-            fileList.appendChild(fileItem);
-        }
-
-        function removeFile(fileId) {
-            const fileItem = document.getElementById(fileId);
-            if (fileItem) {
-                fileItem.remove();
-                selectedFiles = selectedFiles.filter(f => f.name !== fileItem.querySelector('.file-name').textContent);
-                updateSubmitButton();
-            }
-        }
-
-        function updateSubmitButton() {
-            submitBtn.disabled = selectedFiles.length === 0;
-        }
-
-        function formatSize(bytes) {
-            if (bytes === 0) return '0 Bytes';
-            const k = 1024;
-            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-        }
-
-        submitBtn.addEventListener('click', () => {
-            if (selectedFiles.length === 0) return;
-
-            // Simulate submission
-            selectedFiles.forEach(file => {
-                const submission = document.createElement('div');
-                submission.className = 'submission-item';
-                const now = new Date();
-                submission.innerHTML = `
-                    <div class="submission-header">
-                        <span class="submission-name">
-                            <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
-                            ${file.name}
-                        </span>
-                        <span class="submission-status">
-                            <i class="fas fa-check"></i>
-                            Submitted
-                        </span>
-                    </div>
-                    <p class="submission-time">${now.toLocaleString()}</p>
-                `;
-
-                // Remove empty state if exists
-                const emptyState = submissionList.querySelector('.empty-state');
-                if (emptyState) emptyState.remove();
-
-                submissionList.insertBefore(submission, submissionList.firstChild);
-            });
-
-            // Clear selected files
-            selectedFiles = [];
-            fileList.innerHTML = '';
-            updateSubmitButton();
-            fileInput.value = '';
-
-            // Show success message
-            submitBtn.innerHTML = '<i class="fas fa-check"></i> Submitted Successfully!';
-            submitBtn.style.background = 'var(--success)';
-            setTimeout(() => {
-                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Files';
-                submitBtn.style.background = '';
-            }, 3000);
-        });
-
-        // Load submitted files from localStorage
-        function loadSubmissions() {
-            const key = 'homework6_submissions';
-            const submissions = JSON.parse(localStorage.getItem(key) || '[]');
-            
-            if (submissions.length > 0) {
-                submissionList.innerHTML = '';
-                submissions.forEach(sub => {
-                    const item = document.createElement('div');
-                    item.className = 'submission-item';
-                    item.innerHTML = `
-                        <div class="submission-header">
-                            <span class="submission-name">
-                                <i class="fas fa-file" style="color: var(--accent-purple); margin-right: 0.5rem;"></i>
-                                ${sub.name}
-                            </span>
-                            <span class="submission-status">
-                                <i class="fas fa-check"></i>
-                                Submitted
-                            </span>
-                        </div>
-                        <p class="submission-time">${sub.time}</p>
-                    `;
-                    submissionList.appendChild(item);
-                });
-            }
-        }
-
-        // Save submission to localStorage
-        function saveSubmission(fileName) {
-            const key = 'homework6_submissions';
-            const submissions = JSON.parse(localStorage.getItem(key) || '[]');
-            submissions.unshift({
-                name: fileName,
-                time: new Date().toLocaleString()
-            });
-            localStorage.setItem(key, JSON.stringify(submissions));
-        }
-
-        // Override submit to save to localStorage
-        const originalSubmit = submitBtn.onclick;
-        submitBtn.addEventListener('click', () => {
-            selectedFiles.forEach(file => saveSubmission(file.name));
-        }, true);
-
-        loadSubmissions();
-
-        // Markdown Content - Edit your homework content here
-        const homeworkContent = `
-# IoT Smart Fingerprint & Password Lock
-
-## 物联网概念与核心流程
-
-### 1. 物联网(IoT)概念
-
-物联网的全称是 Internet of Things。基于互联网和电信网络,将所有独立的物理设备连接在一起。结合传感器技术、无线通信、云计算和嵌入式开发,赋予传统设备信息感知、数据采集、网络传输、智能分析、远程交互和自动控制等能力。
-
-物联网实现了人与设备、设备与设备之间的互联互通。其一般工作流程为:**数据采集 → 网络传输 → 云端处理 → 终端应用 → 设备执行**。智能锁是最成熟且广泛应用的民用物联网产品之一。
-
-### 2. 核心流程
-
-物联网系统由五层组成,智能锁严格遵循此框架运行:
-
-#### (1) 感知层
-作为系统的感官部分。配备指纹模块、触摸键盘、NFC传感器、红外人体传感器、防撬振动传感器和摄像头,采集指纹、密码、振动信号和剩余电量等原始数据。是所有功能的基础。
-
-![IoT系统架构图](image/homework6/iot-architecture.png)
-*图1: 物联网五层架构示意图*
-
-#### (2) 网络层
-作为数据传输通道。内置通信模块使用 Wi-Fi 2.4G、BLE蓝牙和NB-IoT将加密数据上传至云服务器,并接收来自云端的控制指令,完成双向数据交互。
-
-#### (3) 平台层(云端)
-是整个系统的大脑和数据仓库。由专业云平台、服务器和数据库组成,管理海量连接设备,存储和分析数据,转发指令,维护用户账户和访问权限。
-
-#### (4) 应用层
-是终端用户的操作入口,包括移动App、微信小程序和后台管理系统。用户可以在此绑定设备、设置参数、查看访问记录和接收报警通知。
-
-#### (5) 控制层
-是最终执行部分。接收指令后,主控芯片驱动电机和锁舌完成锁定和解锁。同时触发声光报警和摄像头抓拍,实现联动安防功能。
-
----
-
-## 产品详情:物联网智能指纹密码锁
-
-### 1. 基本产品信息
-
-- **官方名称**: IoT Smart Fingerprint & Password Lock for Home Security
-- **别名**: 智能锁、物联网电子锁、防盗智能锁
-- **产品定位**: 替代传统机械锁的新一代安全设备。集成生物识别、物联网通信、云管理和安全预警,专注于便捷出入、远程控制和家庭安全防护。
-
-#### 产品分类
-
-1. **按外观**: 把手式锁、推拉式锁、全自动锁
-2. **按功能**: 基础指纹密码锁、NFC锁、视频锁、人脸识别旗舰锁
-3. **按用途**: 家用门锁、室内门锁、商用门禁锁
-
-#### 价格范围
-
-- **入门级**: 500–1000元,支持指纹、密码和蓝牙解锁
-- **主流家用型号**: 1000–3000元,具备Wi-Fi、临时密码和报警功能
-- **高端旗舰**: 3000元以上,配备人脸识别、视频对讲和智能家居联动
-
-**主要品牌**: Kaadas、小米、Lockin、Dessmann、TCL
-
-**兼容性**: 适用于大多数标准防盗门、木门、公寓门和办公室门。
-
----
-
-### 2. 详细硬件组成
-
-整个锁具分为六大主要部分:室外面板、室内面板、锁体、主控与通信模块、电源模块和安全传感器。
-
-![智能锁整体外观](image/homework6/smart-lock-overview.jpg)
-*图2: 物联网智能指纹密码锁整体外观*
-
-#### (1) 室外交互面板
-- **半导体指纹模块**: 具备活体检测,防伪指纹功能
-- **背光触摸键盘**: 支持虚位密码防止偷窥
-- **NFC感应区**: 可与手机、门禁卡和智能手环配合使用
-- **广角摄像头**(可选): 带夜视功能,用于抓拍和视频对讲
-- **指示灯和蜂鸣器**: 状态提示和报警提醒
-
-![室外面板细节](image/homework6/outdoor-panel.jpg)
-*图3: 室外交互面板细节展示*
-
-#### (2) 室内面板
-- **手动旋转旋钮**: 断电时紧急机械解锁
-- **内部反锁按钮**: 一键安全锁定
-- **隐藏式机械钥匙孔**: 终极应急解决方案
-
-![室内面板细节](image/homework6/indoor-panel.jpg)
-*图4: 室内面板及机械钥匙孔*
-
-#### (3) 机械锁体
-- **直流减速电机**: 低噪音高扭矩,驱动锁舌
-- **多点锁舌和防撬钩**: 符合国家防盗标准
-- **机电分离结构**: 电路故障时机械部分独立工作
-
-![机械锁体结构](image/homework6/lock-body.jpg)
-*图5: 机械锁体内部结构*
-
-#### (4) 主控与通信模块
-- **主控电路板**: 嵌入式MCU芯片,进行数据计算和逻辑判断
-- **无线通信模块**: Wi-Fi + BLE组合模块(ESP8266/ESP32);商用采用NB-IoT模块
-- **存储芯片**: 本地保存加密指纹数据和临时密码
-
-![主控电路板](image/homework6/mainboard.jpg)
-*图6: 主控电路板与通信模块*
-
-#### (5) 电源模块
-- **可充电锂电池组**: 可拆卸充电
-- **外部USB应急供电口**: 电池耗尽时临时供电
-
-#### (6) 安全传感器模块
-- **防撬振动传感器**: 检测暴力撬动和破坏
-- **错误尝试锁定模块**: 多次验证失败后锁定面板
-- **高温传感器**(高端型号): 与火灾报警系统联动
-
----
-
-### 3. 工作原理与实现
-
-产品支持离线本地模式和在线物联网模式。即使没有网络,基本功能也能正常工作。
-
-![工作流程图](image/homework6/workflow-diagram.png)
-*图7: 智能锁工作流程示意图*
-
-#### (1) 离线本地模式
-
-采集指纹、密码或NFC信号后,主控芯片通过边缘计算将数据与本地存储的加密信息进行比对。
-
-- **验证通过**: 电机收回锁舌,解锁门
-- **验证失败**: 蜂鸣器和指示灯发出提醒。连续错误尝试后面板将被暂时锁定
-
-手动旋钮和机械钥匙为电路故障或电量耗尽做好准备。
-
-#### (2) 在线物联网模式
-
-连接Wi-Fi后,锁具与云平台建立加密连接,实现双向数据交互:
-
-1. **数据上传**: 访问记录、设备电量、撬动警报和错误日志实时上传到云端
-2. **命令接收**: 用户通过移动App发送命令,如远程解锁和生成临时密码。云端将命令转发到目标锁具
-3. **命令执行**: 锁具执行相应操作并将结果反馈给App
-
-BLE蓝牙主要用于短距离配对和低功耗快速解锁。
-
-![云端交互流程](image/homework6/cloud-interaction.png)
-*图8: IoT云端数据交互流程*
-
----
-
-### 4. 解决的问题
-
-#### 传统机械锁的缺陷
-
-1. 完全依赖物理钥匙,容易丢失、被盗或复制,造成安全风险
-2. 无远程管理功能。用户在外时无法确认锁的状态或为访客开门
-3. 安全性能差。锁被撬或损坏时用户无法收到警报
-4. 对老人和儿童不便。可能丢失钥匙或被锁在室内后被困
-5. 出租房、民宿和办公室管理成本高。员工需要频繁更换锁和回收钥匙
-
-#### 物联网智能锁的解决方案
-
-1. **无钥匙进入**: 多种解锁方式消除了物理钥匙带来的麻烦
-2. **远程授权**: 可为快递员、清洁人员和客人创建限时临时密码,自动过期
-3. **全天候安全防护**: 所有出入活动均有记录。发生异常损坏时,锁具将触发本地警报并推送手机通知,摄像头会抓拍现场图像
-4. **适合各类人群**: 老人和儿童无需携带钥匙。远程解锁帮助被困室内的人员
-5. **低成本商业管理**: 管理员可在线分配和取消访问权限,无需现场工作。所有记录可长期追踪
-
----
-
-### 5. 应用场景
-
-1. **家庭入户门**: 日常使用和临时访客访问的最常见场景
-2. **出租公寓**: 远程管理租户的访问权限,退房后取消权限
-3. **民宿和经济型酒店**: 使用临时密码实现自助入住,无需值班人员
-4. **办公室和宿舍**: 按职位分级访问权限,保留访问记录用于安全管理
-5. **商店和仓库**: 远程监控锁的状态,非法入侵时接收警报
-6. **老年住宅**: 操作简单和无钥匙设计更适合老年用户
-
-![应用场景展示](image/homework6/application-scenarios.jpg)
-*图9: 多场景应用示例*
-
----
-
-### 6. 关键技术
-
-1. **生物识别技术**: 半导体活体指纹识别广泛应用以抵抗假指纹。高端型号采用3D人脸识别以提高安全性
-2. **无线通信技术**:
-   - Wi-Fi 2.4G: 长距离网络连接和大容量数据传输
-   - BLE蓝牙: 低功耗短距离配对和解锁
-   - NB-IoT: 信号覆盖广,适用于无家庭宽带的商用设备
-3. **云平台技术**: 支持海量设备接入、数据存储、命令转发、OTA固件升级和用户管理
-4. **数据加密技术**: 本地数据采用AES加密算法。网络传输使用TLS安全协议。每个设备具有唯一的硬件ID进行身份认证
-5. **低功耗技术**: 设备空闲时进入深度睡眠,触发时快速唤醒。正常使用下电池寿命可达10至18个月
-6. **边缘计算技术**: 核心验证工作在锁具本地完成。网络断开时基本功能仍可用
-7. **机电分离技术**: 电路系统和机械锁体物理分离。电路损坏不会导致锁具失效
-
----
-
-### 7. 数据安全与隐私保护
-
-从设备、传输、云和用户隐私方面构建全链路保护体系:
-
-#### (1) 本地设备安全
-- 每把锁都有专属硬件ID
-- 固件加密防止非法刷写和篡改
-- 防拆解电路一旦被破坏将锁定系统并触发警报
-
-#### (2) 传输安全
-- 所有传输数据均加密,防止网络嗅探和数据篡改
-
-#### (3) 云安全
-- 用户数据脱敏并分区存储
-- 严格的权限隔离确保数据独立性
-- 云服务器配备防火墙抵御网络攻击
-
-#### (4) 个人隐私保护
-- **不上传原始指纹图像到云端**。仅本地保存加密的指纹特征
-- 抓拍的图片和视频仅账户所有者可访问
-- 用户可随时删除记录、解绑设备和注销账户
-- 临时密码可设置限制次数和有效期,避免滥用
-
----
-
-### 8. 优缺点分析
-
-#### 优点
-
-1. 集解锁、安全防护和远程管理功能于一体
-2. 双离线和在线模式确保高稳定性
-3. 各年龄段人群操作简单
-4. 可连接全屋智能设备进行联动控制
-
-#### 缺点
-
-1. 依靠电池运行,需要定期充电(有应急供电口作为备份)
-2. 价格高于传统机械锁
-3. 强电磁干扰下可能出现信号波动
-
-![产品对比图](image/homework6/product-comparison.png)
-*图10: 智能锁与传统机械锁对比*
-
----
-
-**截止日期**: 第6周结束
-        `;
-
-        // Render markdown content
-        const markdownContent = document.getElementById('markdownContent');
-        const rawMarkdown = document.getElementById('rawMarkdown');
-        
-        if (marked) {
-            // Configure marked options
-            marked.setOptions({
-                breaks: true,
-                gfm: true
-            });
-            
-            // Render markdown to HTML
-            markdownContent.innerHTML = marked.parse(homeworkContent);
-        } else {
-            // Fallback if marked.js fails to load
-            markdownContent.innerHTML = '<p style="color: var(--text-secondary);">Content loading...</p>';
-        }
-        
-        // Store raw markdown for copying
-        rawMarkdown.value = homeworkContent.trim();
-
-        // Copy content function
-        function copyContent() {
-            const copyBtn = document.getElementById('copyBtn');
-            const textToCopy = rawMarkdown.value;
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                copyBtn.classList.add('copied');
-                copyBtn.querySelector('span').textContent = 'Copied!';
-                copyBtn.querySelector('i').className = 'fas fa-check';
-                
-                setTimeout(() => {
-                    copyBtn.classList.remove('copied');
-                    copyBtn.querySelector('span').textContent = 'Copy';
-                    copyBtn.querySelector('i').className = 'fas fa-copy';
-                }, 2000);
-            }).catch(err => {
-                // Fallback for older browsers
-                const textarea = document.createElement('textarea');
-                textarea.value = textToCopy;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                
-                copyBtn.classList.add('copied');
-                copyBtn.querySelector('span').textContent = 'Copied!';
-                setTimeout(() => {
-                    copyBtn.classList.remove('copied');
-                    copyBtn.querySelector('span').textContent = 'Copy';
-                }, 2000);
-            });
-        }
-    </script>
 </body>
 </html>
