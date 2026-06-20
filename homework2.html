@@ -163,6 +163,22 @@
             margin: 2rem 0;
         }
 
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid .image-item {
+            margin: 0;
+        }
+
+        .image-grid .image-item img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+
         .image-item {
             border-radius: 12px;
             overflow: hidden;
