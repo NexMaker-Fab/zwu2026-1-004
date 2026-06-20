@@ -168,6 +168,23 @@
             font-style: italic;
         }
 
+        /* Image Grid for small images */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .image-grid .image-item {
+            margin: 0;
+        }
+
+        .image-grid .image-item img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -237,24 +254,28 @@
                 <div class="image-caption">图1：导出零件总览</div>
             </div>
             
-            <div class="image-item">
-                <img src="image/homework6/export-part-1.png" alt="导出零件第一部分">
-                <div class="image-caption">图2：导出零件第一部分</div>
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="image/homework6/export-part-1.png" alt="导出零件第一部分">
+                    <div class="image-caption">图2：导出零件第一部分</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="image/homework6/export-part-2.png" alt="导出零件第二部分">
+                    <div class="image-caption">图3：导出零件第二部分</div>
+                </div>
             </div>
             
-            <div class="image-item">
-                <img src="image/homework6/export-part-2.png" alt="导出零件第二部分">
-                <div class="image-caption">图3：导出零件第二部分</div>
-            </div>
-            
-            <div class="image-item">
-                <img src="image/homework6/export-part-3.png" alt="导出零件第三部分">
-                <div class="image-caption">图4：导出零件第三部分</div>
-            </div>
-            
-            <div class="image-item">
-                <img src="image/homework6/export-part-4.png" alt="导出零件第四部分">
-                <div class="image-caption">图5：导出零件第四部分</div>
+            <div class="image-grid">
+                <div class="image-item">
+                    <img src="image/homework6/export-part-3.png" alt="导出零件第三部分">
+                    <div class="image-caption">图4：导出零件第三部分</div>
+                </div>
+                
+                <div class="image-item">
+                    <img src="image/homework6/export-part-4.png" alt="导出零件第四部分">
+                    <div class="image-caption">图5：导出零件第四部分</div>
+                </div>
             </div>
         </div>
 
@@ -283,16 +304,18 @@
             
             <h4>2. 联网</h4>
             
-            <!-- 插入联网图片1 -->
-            <div class="image-item">
-                <img src="image/homework6/network-connect.jpg" alt="打印机联网">
-                <div class="image-caption">图8：打印机联网设置</div>
-            </div>
-            
-            <!-- 插入联网图片2 -->
-            <div class="image-item">
-                <img src="image/homework6/network-connect1.jpg" alt="打印机联网确认">
-                <div class="image-caption">图9：联网确认</div>
+            <div class="image-grid">
+                <!-- 插入联网图片1 -->
+                <div class="image-item">
+                    <img src="image/homework6/network-connect.jpg" alt="打印机联网">
+                    <div class="image-caption">图8：打印机联网设置</div>
+                </div>
+                
+                <!-- 插入联网图片2 -->
+                <div class="image-item">
+                    <img src="image/homework6/network-connect1.jpg" alt="打印机联网确认">
+                    <div class="image-caption">图9：联网确认</div>
+                </div>
             </div>
             
             <h4>3. 主页登录</h4>
@@ -305,16 +328,18 @@
             
             <h4>4. 确认、检查喷嘴</h4>
             
-            <!-- 插入检查喷嘴图片1 -->
-            <div class="image-item">
-                <img src="image/homework6/nozzle-check-1.jpg" alt="检查喷嘴1">
-                <div class="image-caption">图11：检查喷嘴状态</div>
-            </div>
-            
-            <!-- 插入检查喷嘴图片2 -->
-            <div class="image-item">
-                <img src="image/homework6/nozzle-check-2.jpg" alt="检查喷嘴2">
-                <div class="image-caption">图12：喷嘴清洁确认</div>
+            <div class="image-grid">
+                <!-- 插入检查喷嘴图片1 -->
+                <div class="image-item">
+                    <img src="image/homework6/nozzle-check-1.jpg" alt="检查喷嘴1">
+                    <div class="image-caption">图11：检查喷嘴状态</div>
+                </div>
+                
+                <!-- 插入检查喷嘴图片2 -->
+                <div class="image-item">
+                    <img src="image/homework6/nozzle-check-2.jpg" alt="检查喷嘴2">
+                    <div class="image-caption">图12：喷嘴清洁确认</div>
+                </div>
             </div>
         </div>
 
