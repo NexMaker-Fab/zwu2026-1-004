@@ -239,42 +239,107 @@
         <!-- Header -->
         <div class="page-header">
             <h1 class="page-title">HOMEWORK 6</h1>
-            <p class="page-subtitle">3D打印过程</p>
+            <p class="page-subtitle">3D打印：材料、技术与应用</p>
+        </div>
+
+        <!-- Section 0: Introduction - New Materials, Technologies and Applications -->
+        <div class="content-section">
+            <h2>3D打印前沿技术概览</h2>
+            
+            <h3>一、材料：液晶弹性体 LCE 冷场打印材料</h3>
+            
+            <p><strong>来源：</strong>中科大 ACS Nano</p>
+            
+            <p><strong>特性：</strong>常温附近（25–35℃）形变，冷热刺激自动变形，用于软体机器人、可穿戴心率传感腕带；传统 LCE 需 70℃以上触发，冷场改性后实现室温驱动。</p>
+            
+            <!-- 插入LCE材料图片 -->
+            <div class="image-item">
+                <img src="image/homework6/lce-material.jpg" alt="液晶弹性体LCE材料">
+                <div class="image-caption">图1：液晶弹性体LCE冷场打印材料</div>
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid var(--border-light); margin: 3rem 0;">
+            
+            <h3>二、技术：DISH 计算全息光场 3D 打印技术</h3>
+            
+            <p><strong>研发团队：</strong>清华戴琼海院士团队</p>
+            <p><strong>发表期刊：</strong>《Nature》</p>
+            
+            <p><strong>技术特点：</strong></p>
+            <ul>
+                <li>颠覆传统逐层固化思路</li>
+                <li>依托全息算法搭配高速多角度光路投影</li>
+                <li>在树脂内部全域叠加光场实现一体成型</li>
+                <li>毫米级零件仅 0.6 秒即可完成打印</li>
+                <li>成型精度可达十余微米</li>
+                <li>成型景深拓展至 1 厘米</li>
+                <li>兼容从低粘水溶液到高粘工程树脂的全品类耗材</li>
+            </ul>
+            
+            <p><strong>优势：</strong>解决了传统光固化打印速度、精度、材料难以兼顾的难题，在生物支架、微纳元器件、精密模具制造领域具备广阔落地前景。</p>
+            
+            <!-- 插入DISH技术图片 -->
+            <div class="image-item">
+                <img src="image/homework6/dish-technology.jpg" alt="DISH计算全息光场3D打印技术">
+                <div class="image-caption">图2：DISH计算全息光场3D打印技术原理</div>
+            </div>
+            
+            <hr style="border: none; border-top: 1px solid var(--border-light); margin: 3rem 0;">
+            
+            <h3>三、应用：全 3D 打印涡喷发动机</h3>
+            
+            <p><strong>国产成果：</strong>2026 试飞成功</p>
+            
+            <p><strong>技术突破：</strong></p>
+            <ul>
+                <li>75% 零件一体化打印</li>
+                <li>零件数量减少 60%</li>
+                <li>研发周期从半年缩至 45 天</li>
+                <li>无人机装机试飞达标</li>
+            </ul>
+            
+            <p><strong>国际案例：</strong>SpaceX 火箭发动机燃烧室批量 SLM 打印</p>
+            
+            <!-- 插入3D打印发动机图片 -->
+            <div class="image-item">
+                <img src="image/homework6/3d-printed-engine.jpg" alt="全3D打印涡喷发动机">
+                <div class="image-caption">图3：全3D打印涡喷发动机</div>
+            </div>
         </div>
 
         <!-- Section 1: Export Modeling -->
         <div class="content-section">
-            <h2>一、导出建模</h2>
+            <h2>四、导出建模</h2>
             
             <p>分别导出零件两部分</p>
             
             <!-- 插入导出零件图片 -->
             <div class="image-item">
                 <img src="image/homework6/export-part-0.png" alt="导出零件总览">
-                <div class="image-caption">图1：导出零件总览</div>
+                <div class="image-caption">图4：导出零件总览</div>
             </div>
             
             <div class="image-grid">
                 <div class="image-item">
                     <img src="image/homework6/export-part-1.png" alt="导出零件第一部分">
-                    <div class="image-caption">图2：导出零件第一部分</div>
+                    <div class="image-caption">图5：导出零件第一部分</div>
                 </div>
                 
                 <div class="image-item">
                     <img src="image/homework6/export-part-2.png" alt="导出零件第二部分">
-                    <div class="image-caption">图3：导出零件第二部分</div>
+                    <div class="image-caption">图6：导出零件第二部分</div>
                 </div>
             </div>
             
             <div class="image-grid">
                 <div class="image-item">
                     <img src="image/homework6/export-part-3.png" alt="导出零件第三部分">
-                    <div class="image-caption">图4：导出零件第三部分</div>
+                    <div class="image-caption">图7：导出零件第三部分</div>
                 </div>
                 
                 <div class="image-item">
                     <img src="image/homework6/export-part-4.png" alt="导出零件第四部分">
-                    <div class="image-caption">图5：导出零件第四部分</div>
+                    <div class="image-caption">图8：导出零件第四部分</div>
                 </div>
             </div>
         </div>
@@ -286,20 +351,20 @@
             <!-- 插入Bambu Studio导入图片 -->
             <div class="image-item">
                 <img src="image/homework6/bambu-studio-import.png" alt="Bambu Studio导入零件">
-                <div class="image-caption">图6：将导出零件拖入Bambu Studio</div>
+                <div class="image-caption">图9：将导出零件拖入Bambu Studio</div>
             </div>
         </div>
 
         <!-- Section 3: Printer Setup -->
         <div class="content-section">
-            <h2>三、打印机设置</h2>
+            <h2>五、打印机设置</h2>
             
             <h4>1. 打开打印机电源</h4>
             
             <!-- 插入打开电源图片 -->
             <div class="image-item">
                 <img src="image/homework6/power-on.jpg" alt="打开打印机电源">
-                <div class="image-caption">图4：打开打印机电源</div>
+                <div class="image-caption">图10：打开打印机电源</div>
             </div>
             
             <h4>2. 联网</h4>
@@ -308,13 +373,13 @@
                 <!-- 插入联网图片1 -->
                 <div class="image-item">
                     <img src="image/homework6/network-connect.jpg" alt="打印机联网">
-                    <div class="image-caption">图8：打印机联网设置</div>
+                    <div class="image-caption">图11：打印机联网设置</div>
                 </div>
                 
                 <!-- 插入联网图片2 -->
                 <div class="image-item">
                     <img src="image/homework6/network-connect1.jpg" alt="打印机联网确认">
-                    <div class="image-caption">图9：联网确认</div>
+                    <div class="image-caption">图12：联网确认</div>
                 </div>
             </div>
             
@@ -323,7 +388,7 @@
             <!-- 插入主页登录图片 -->
             <div class="image-item">
                 <img src="image/homework6/homepage-login.jpg" alt="主页登录">
-                <div class="image-caption">图10：主页登录界面</div>
+                <div class="image-caption">图13：主页登录界面</div>
             </div>
             
             <h4>4. 确认、检查喷嘴</h4>
@@ -332,27 +397,27 @@
                 <!-- 插入检查喷嘴图片1 -->
                 <div class="image-item">
                     <img src="image/homework6/nozzle-check-1.jpg" alt="检查喷嘴1">
-                    <div class="image-caption">图11：检查喷嘴状态</div>
+                    <div class="image-caption">图14：检查喷嘴状态</div>
                 </div>
                 
                 <!-- 插入检查喷嘴图片2 -->
                 <div class="image-item">
                     <img src="image/homework6/nozzle-check-2.jpg" alt="检查喷嘴2">
-                    <div class="image-caption">图12：喷嘴清洁确认</div>
+                    <div class="image-caption">图15：喷嘴清洁确认</div>
                 </div>
             </div>
         </div>
 
         <!-- Section 4: Prepare Printing -->
         <div class="content-section">
-            <h2>四、准备打印</h2>
+            <h2>六、准备打印</h2>
             
             <h4>1. 打印机上登录，进入主页</h4>
             
             <!-- 插入打印机登录图片 -->
             <div class="image-item">
                 <img src="image/homework6/printer-login.jpg" alt="打印机登录">
-                <div class="image-caption">图13：打印机登录并进入主页</div>
+                <div class="image-caption">图16：打印机登录并进入主页</div>
             </div>
             
             <h4>2. Bambu Studio同步信息</h4>
@@ -360,7 +425,7 @@
             <!-- 插入同步信息图片 -->
             <div class="image-item">
                 <img src="image/homework6/sync-info.jpg" alt="Bambu Studio同步信息">
-                <div class="image-caption">图14：Bambu Studio同步打印信息</div>
+                <div class="image-caption">图17：Bambu Studio同步打印信息</div>
             </div>
             
             <h4>3. 选择要打印的东西</h4>
@@ -368,7 +433,7 @@
             <!-- 插入选择打印内容图片 -->
             <div class="image-item">
                 <img src="image/homework6/选择要打印的东西.jpg" alt="选择要打印的内容">
-                <div class="image-caption">图15：选择要打印的模型</div>
+                <div class="image-caption">图18：选择要打印的模型</div>
             </div>
             
             <h4>4. 选择打印单盒</h4>
@@ -376,7 +441,7 @@
             <!-- 插入选择单盒图片 -->
             <div class="image-item">
                 <img src="image/homework6/选择打印单盒.jpg" alt="选择打印单盒">
-                <div class="image-caption">图16：选择打印单盒</div>
+                <div class="image-caption">图19：选择打印单盒</div>
             </div>
             
             <h4>5. 点击下一步</h4>
@@ -384,42 +449,42 @@
             <!-- 插入点击下一步图片 -->
             <div class="image-item">
                 <img src="image/homework6/点击下一步.jpg" alt="点击下一步">
-                <div class="image-caption">图17：点击下一步开始打印</div>
+                <div class="image-caption">图20：点击下一步开始打印</div>
             </div>
         </div>
 
         <!-- Section 5: Start Printing -->
         <div class="content-section">
-            <h2>五、开始打印</h2>
+            <h2>七、开始打印</h2>
             
             <!-- 插入打印过程图片1 -->
             <div class="image-item">
                 <img src="image/homework6/printing-1.jpg" alt="打印过程1">
-                <div class="image-caption">图11：打印开始</div>
+                <div class="image-caption">图21：打印开始</div>
             </div>
             
             <!-- 插入打印过程图片2 -->
             <div class="image-item">
                 <img src="image/homework6/printing-2.jpg" alt="打印过程2">
-                <div class="image-caption">图12：打印进行中</div>
+                <div class="image-caption">图22：打印进行中</div>
             </div>
             
             <!-- 插入打印过程图片3 -->
             <div class="image-item">
                 <img src="image/homework6/printing-3.jpg" alt="打印过程3">
-                <div class="image-caption">图13：打印细节展示</div>
+                <div class="image-caption">图23：打印细节展示</div>
             </div>
             
             <!-- 插入打印过程图片4 -->
             <div class="image-item">
                 <img src="image/homework6/printing-4.jpg" alt="打印过程4">
-                <div class="image-caption">图14：打印进度监控</div>
+                <div class="image-caption">图24：打印进度监控</div>
             </div>
             
             <!-- 插入打印过程图片5 -->
             <div class="image-item">
                 <img src="image/homework6/printing-5.jpg" alt="打印完成">
-                <div class="image-caption">图22：打印完成成品展示</div>
+                <div class="image-caption">图25：打印完成成品展示</div>
             </div>
         </div>
     </div>
