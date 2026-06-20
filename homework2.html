@@ -210,12 +210,23 @@
         }
 
         /* Videos */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
         .video-container {
-            margin: 2rem auto;
-            max-width: 800px;
             border-radius: 12px;
             overflow: hidden;
             border: 1px solid var(--border-light);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.05);
         }
 
         .video-container video {
@@ -224,11 +235,61 @@
         }
 
         .video-caption {
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--bg-secondary);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--text-secondary);
             text-align: center;
+        }
+
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .video-modal video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 12px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            outline: none;
+        }
+
+        .video-modal-caption {
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 1rem;
         }
 
         /* Code Blocks */
@@ -641,36 +702,45 @@ void loop() {
 }</code></pre>
             
             <h3>Demo Videos</h3>
+            <p>Click on any video to view it in full screen. Double-click to enlarge.</p>
             
-            <h4>Running Light Mode (No Sound)</h4>
-            <p>When no sound is detected, the LEDs operate in running light mode.</p>
-            <div class="video-container">
-                <video controls>
-                    <source src="videos/homework2/silent-running-light.mp4" type="video/mp4">
-                    Your browser does not support video playback.
-                </video>
-                <div class="video-caption">Silent mode - Running light effect</div>
+            <div class="video-grid">
+                <!-- Video 1 -->
+                <div class="video-container" onclick="openVideoModal('videos/homework2/silent-running-light.mp4', 'Silent mode - Running light effect')">
+                    <video controls>
+                        <source src="videos/homework2/silent-running-light.mp4" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                    <div class="video-caption">Silent mode - Running light effect</div>
+                </div>
+                
+                <!-- Video 2 -->
+                <div class="video-container" onclick="openVideoModal('videos/homework2/normal-green-led.mp4', 'Normal volume - Green LED constant on')">
+                    <video controls>
+                        <source src="videos/homework2/normal-green-led.mp4" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                    <div class="video-caption">Normal volume - Green LED constant on</div>
+                </div>
+                
+                <!-- Video 3 -->
+                <div class="video-container" onclick="openVideoModal('videos/homework2/loud-breathing-yellow.mp4', 'Loud sound - Yellow LED breathing mode')">
+                    <video controls>
+                        <source src="videos/homework2/loud-breathing-yellow.mp4" type="video/mp4">
+                        Your browser does not support video playback.
+                    </video>
+                    <div class="video-caption">Loud sound - Yellow LED breathing mode</div>
+                </div>
             </div>
-            
-            <h4>Green LED On (Normal Volume)</h4>
-            <p>The green LED stays on under normal volume.</p>
-            <div class="video-container">
-                <video controls>
-                    <source src="videos/homework2/normal-green-led.mp4" type="video/mp4">
-                    Your browser does not support video playback.
-                </video>
-                <div class="video-caption">Normal volume - Green LED constant on</div>
-            </div>
-            
-            <h4>Breathing Yellow LED (Loud Sound)</h4>
-            <p>The yellow LED flickers in breathing mode when speaking loudly.</p>
-            <div class="video-container">
-                <video controls>
-                    <source src="videos/homework2/loud-breathing-yellow.mp4" type="video/mp4">
-                    Your browser does not support video playback.
-                </video>
-                <div class="video-caption">Loud sound - Yellow LED breathing mode</div>
-            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+            <video id="modalVideo" controls></video>
+            <div id="modalCaption" class="video-modal-caption"></div>
         </div>
     </div>
 
@@ -678,5 +748,42 @@ void loop() {
     <footer>
         <p>&copy; 2026 Aether Studio. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript for Video Modal -->
+    <script>
+        function openVideoModal(videoSrc, caption) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            const captionEl = document.getElementById('modalCaption');
+            
+            video.src = videoSrc;
+            captionEl.textContent = caption;
+            modal.classList.add('active');
+            video.play();
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            
+            video.pause();
+            video.src = '';
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside the video
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
+    </script>
 </body>
 </html>
