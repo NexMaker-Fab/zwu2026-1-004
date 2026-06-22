@@ -578,37 +578,33 @@
             </div>
             
             <h3>操作代码</h3>
-            <pre><code class="language-cpp">/*
- * 声音控制三色灯 - 取峰值，绿灯范围可调
- * 安静 (&lt;60)     : 流水灯 (绿-&gt;红-&gt;黄)
- * 正常 (60~350)  : 绿灯常亮
- * 大声 (&gt;350)    : 黄灯呼吸灯
- */
-
-const int PIN_LED_GREEN = A0;
-const int PIN_LED_RED   = A1;
-const int PIN_LED_YELLOW = 9;
+            <pre><code class="language-cpp">/* 声音控制三色灯 - 修复无明暗变化、中途黑屏、闪烁断点
+* 安静 (&lt;60)     : 流水灯 (绿-&gt;红-&gt;黄)
+* 正常 (60~350)  : 绿灯常亮
+* 大声 (&gt;350)    : 黄灯平滑呼吸，无黑屏、明暗变化清晰
+*/
+const int PIN_LED_GREEN = 11;
+const int PIN_LED_RED   = 12;
+const int PIN_LED_YELLOW = 9;  // 黄灯改为D9引脚
 const int SOUND_SENSOR = A3;
 
-// ========== 可调整的阈值 ==========
-const int SILENT_THRESHOLD = 60;    // 小于此值 → 安静模式
-const int LOUD_THRESHOLD   = 350;   // 大于此值 → 大声模式 (调高此值可让绿灯范围更大)
-// =================================
+// 可调阈值
+const int SILENT_THRESHOLD = 60;
+const int LOUD_THRESHOLD   = 350;
 
-const unsigned long INTERVAL = 300;      // 流水灯切换间隔(ms)
-const unsigned long BREATHE_CYCLE = 2000; // 呼吸周期(ms)
-
-const int NUM_SAMPLES = 10;        // 每次采样次数
-const int REQUIRED_STABLE = 3;     // 连续稳定次数
+const unsigned long INTERVAL = 300;
+const unsigned long BREATHE_CYCLE = 1000; // 1秒一轮呼吸，变化更快
+const int NUM_SAMPLES = 10;
+const int REQUIRED_STABLE = 3;
+const int MIN_YELLOW_BRIGHT = 30; // 最低微光，不会完全熄灭
 
 unsigned long lastChange = 0;
 int step = 0;
 unsigned long breatheStart = 0;
-
 int lastMode = -1;
 int stableCount = 0;
 
-// 读取峰值（最大值）
+// 读取音量峰值
 int readMaxVolume() {
   int maxVal = 0;
   for (int i = 0; i &lt; NUM_SAMPLES; i++) {
@@ -624,7 +620,6 @@ void setup() {
   pinMode(PIN_LED_RED, OUTPUT);
   pinMode(PIN_LED_YELLOW, OUTPUT);
   Serial.begin(9600);
-  Serial.println("Ready - Peak detection, LOUD_THRESHOLD=350");
   digitalWrite(PIN_LED_GREEN, LOW);
   digitalWrite(PIN_LED_RED, LOW);
   analogWrite(PIN_LED_YELLOW, 0);
@@ -642,6 +637,7 @@ void loop() {
   else
     mode = 2;
 
+  // 模式防抖
   if (mode == lastMode) {
     stableCount++;
   } else {
@@ -650,13 +646,14 @@ void loop() {
   }
 
   if (stableCount &gt;= REQUIRED_STABLE) {
-    // 熄灭所有灯
+    // 只关闭红绿，删除全局黄灯清零，杜绝瞬间黑屏
     digitalWrite(PIN_LED_GREEN, LOW);
     digitalWrite(PIN_LED_RED, LOW);
-    analogWrite(PIN_LED_YELLOW, 0);
 
     if (mode == 0) {
-      // 安静模式：流水灯
+      // 安静流水模式，仅此处关闭黄灯
+      analogWrite(PIN_LED_YELLOW, 0);
+      breatheStart = 0;
       unsigned long now = millis();
       if (now - lastChange &gt;= INTERVAL) {
         lastChange = now;
@@ -667,20 +664,20 @@ void loop() {
       }
     }
     else if (mode == 1) {
-      // 正常模式：绿灯常亮
+      // 正常音量：绿灯常亮，黄灯关闭
       digitalWrite(PIN_LED_GREEN, HIGH);
+      analogWrite(PIN_LED_YELLOW, 0);
+      breatheStart = 0;
     }
     else {
-      // 大声模式：黄灯呼吸灯
-      if (breatheStart == 0) breatheStart = millis();
+      // 大声模式：平滑呼吸渐变
+      if (breatheStart == 0) {
+        breatheStart = millis();
+      }
       unsigned long elapsed = millis() - breatheStart;
       float t = (float)(elapsed % BREATHE_CYCLE) / BREATHE_CYCLE;
-      int brightness;
-      if (t &lt; 0.5) {
-        brightness = (int)(t * 2 * 255);
-      } else {
-        brightness = (int)((1 - t) * 2 * 255);
-      }
+      float scale = (t &lt; 0.5) ? t * 2 : (1 - t) * 2;
+      int brightness = MIN_YELLOW_BRIGHT + scale * (255 - MIN_YELLOW_BRIGHT);
       analogWrite(PIN_LED_YELLOW, brightness);
     }
   }
