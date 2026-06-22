@@ -9,6 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Prism.js for code highlighting -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -458,8 +460,10 @@
             
             <!-- 插入Arduino UNO Q图片 -->
             <div class="image-item">
-                <img src="image/homework2/arduino-uno-q.jpg" alt="Arduino UNO Q Board">
-                <div class="image-caption">图1：Arduino UNO Q开发板</div>
+                <a href="https://docs.arduino.cc/hardware/uno-q/" target="_blank" rel="noopener noreferrer">
+                    <img src="image/homework2/arduino-uno-q.jpg" alt="Arduino UNO Q Board">
+                </a>
+                <div class="image-caption">图1：Arduino UNO Q开发板 (<a href="https://docs.arduino.cc/hardware/uno-q/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-purple);">查看官方文档</a>)</div>
             </div>
             
             <h3>1. 核心结构</h3>
@@ -574,7 +578,7 @@
             </div>
             
             <h3>操作代码</h3>
-            <pre><code>/*
+            <pre><code class="language-cpp">/*
  * 声音控制三色灯 - 取峰值，绿灯范围可调
  * 安静 (&lt;60)     : 流水灯 (绿-&gt;红-&gt;黄)
  * 正常 (60~350)  : 绿灯常亮
@@ -775,5 +779,10 @@ void loop() {
             }
         });
     </script>
+    
+    <!-- Prism.js for code highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
 </body>
 </html>
