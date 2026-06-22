@@ -481,6 +481,164 @@
                 <li><strong>PROFILE_LINK_DEBUG.md, FIX_DEPLOYMENT.md</strong> - 问题修复和调试文档</li>
             </ul>
         </div>
+
+        <!-- Section 8: Mouse Cursor Effect -->
+        <div class="content-section">
+            <h3>8. 主页鼠标动态效果实现原理</h3>
+            
+            <p>网站主页(index.html)实现了精美的自定义鼠标光标和交互效果,主要通过以下技术实现:</p>
+            
+            <h4>核心技术组成</h4>
+            <ul>
+                <li><strong>自定义光标系统:</strong> 隐藏默认鼠标,创建两个自定义元素(外圈圆环 + 中心点)</li>
+                <li><strong>平滑跟随动画:</strong> 使用requestAnimationFrame实现流畅的60fps动画</li>
+                <li><strong>悬停交互:</strong> 检测可点击元素的hover状态,改变光标样式</li>
+                <li><strong>浮动粒子背景:</strong> 随机生成的半透明粒子营造空灵氛围</li>
+            </ul>
+            
+            <h4>实现步骤详解</h4>
+            
+            <h5>步骤1: CSS样式定义</h5>
+            <pre><code>/* 隐藏默认鼠标 */
+body {
+    cursor: none;
+}
+
+/* 外层圆环 - 紫色边框,混合模式 */
+.cursor {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-purple);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease, background 0.15s ease;
+    mix-blend-mode: difference; /* 差值混合模式 */
+}
+
+/* 中心小点 - 实心紫色 */
+.cursor-dot {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-purple);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* 悬停时的放大效果 */
+.cursor.hover {
+    transform: scale(1.5);
+    background: rgba(184, 169, 255, 0.2);
+}</code></pre>
+            
+            <h5>步骤2: JavaScript动态创建光标元素</h5>
+            <pre><code>// 创建外层圆环
+const cursor = document.createElement('div');
+cursor.className = 'cursor';
+
+// 创建中心小点
+const cursorDot = document.createElement('div');
+cursorDot.className = 'cursor-dot';
+
+// 添加到页面
+document.body.appendChild(cursor);
+document.body.appendChild(cursorDot);</code></pre>
+            
+            <h5>步骤3: 监听鼠标移动事件</h5>
+            <pre><code>let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+// 实时更新鼠标位置
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    
+    // 中心小点立即跟随鼠标
+    cursorDot.style.left = mouseX - 3 + 'px';
+    cursorDot.style.top = mouseY - 3 + 'px';
+});</code></pre>
+            
+            <h5>步骤4: 平滑跟随动画(关键!)</h5>
+            <pre><code>// 使用requestAnimationFrame实现60fps流畅动画
+function animateCursor() {
+    // 缓动公式: 当前位置 += (目标位置 - 当前位置) * 缓动系数
+    cursorX += (mouseX - cursorX) * 0.15;  // 0.15是延迟系数
+    cursorY += (mouseY - cursorY) * 0.15;
+    
+    // 更新外层圆环位置
+    cursor.style.left = cursorX - 10 + 'px';
+    cursor.style.top = cursorY - 10 + 'px';
+    
+    // 循环调用,形成动画
+    requestAnimationFrame(animateCursor);
+}
+
+// 启动动画
+animateCursor();</code></pre>
+            
+            <h5>步骤5: 悬停交互效果</h5>
+            <pre><code>// 为所有可点击元素添加悬停效果
+document.querySelectorAll('a, button, .team-member, .homework-item').forEach(el => {
+    // 鼠标进入时添加hover类
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    
+    // 鼠标离开时移除hover类
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+});</code></pre>
+            
+            <h5>步骤6: 浮动粒子背景(可选装饰)</h5>
+            <pre><code>function createParticles() {
+    const particlesContainer = document.createElement('div');
+    particlesContainer.className = 'particles';
+    document.body.appendChild(particlesContainer);
+
+    // 生成20个随机粒子
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        // 随机位置和大小
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.width = particle.style.height = (Math.random() * 3 + 2) + 'px';
+        
+        // 随机动画时长和延迟
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        particle.style.animationDelay = Math.random() * 10 + 's';
+        
+        particlesContainer.appendChild(particle);
+    }
+}
+createParticles();</code></pre>
+            
+            <h4>关键技术要点</h4>
+            <ul>
+                <li><strong>pointer-events: none:</strong> 防止自定义光标阻挡下方元素的点击事件</li>
+                <li><strong>mix-blend-mode: difference:</strong> 差值混合模式使光标在任何背景下都清晰可见</li>
+                <li><strong>requestAnimationFrame:</strong> 比setInterval更高效的动画API,自动匹配屏幕刷新率</li>
+                <li><strong>缓动算法:</strong> 使用线性插值(Lerp)实现平滑跟随,系数0.15控制延迟程度</li>
+                <li><strong>CSS transition:</strong> 配合JavaScript实现悬停时的缩放和透明度变化</li>
+            </ul>
+            
+            <h4>性能优化建议</h4>
+            <ul>
+                <li>使用<strong>transform</strong>而非left/top进行动画(启用GPU加速)</li>
+                <li>限制requestAnimationFrame的调用频率</li>
+                <li>避免在动画中使用昂贵的CSS属性(如box-shadow、filter)</li>
+                <li>使用will-change提示浏览器优化渲染</li>
+            </ul>
+            
+            <h4>扩展应用</h4>
+            <p>这种自定义光标技术可以应用于:</p>
+            <ul>
+                <li>品牌官网的高端交互设计</li>
+                <li>作品集网站的个性化展示</li>
+                <li>游戏化网页的沉浸式体验</li>
+                <li>创意团队的独特视觉标识</li>
+            </ul>
+        </div>
         
         <!-- Bottom Back Button -->
         <div style="margin-top: 3rem; text-align: center;">
