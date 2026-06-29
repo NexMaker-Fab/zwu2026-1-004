@@ -635,6 +635,32 @@
                 <li>完成一轮陪伴对话，持续待机等待下一次唤醒。</li>
             </ol>
             
+            <h3>遇到的困难与解决方案</h3>
+            
+            <h4>困难描述</h4>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                在初期开发阶段，我们遇到了马达控制异常的问题：
+            </p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                <li><strong>问题现象：</strong>将马达接在 PB0、PA2 等引脚，代码设置输出低电平，但马达仍然不停震动；</li>
+                <li><strong>原因分析：</strong>PA2 为串口复用引脚，串口运行会覆盖电平指令，无法彻底切断马达供电；</li>
+                <li><strong>根本原因：</strong>单片机 IO 口驱动能力弱，直连马达容易出现关不断的情况。</li>
+            </ul>
+            
+            <h4>解决方案</h4>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                针对上述问题，我们采取了以下解决措施：
+            </p>
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                <li><strong>更换引脚：</strong>选用无复用冲突的 PA3 作为马达控制引脚，避开串口、I2C 占用引脚；</li>
+                <li><strong>完善初始化配置：</strong>在上电初始化时完整配置引脚功能：设为数字引脚→输出模式→开机默认低电平，确保上电直接关闭马达；</li>
+                <li><strong>明确引脚功能划分：</strong>人体传感器使用 PA2 用作输入读取信号，马达使用 PA3 用作输出控制，功能不混淆。</li>
+            </ol>
+            
+            <p style="color: var(--accent-purple); font-weight: 500; margin-top: 1rem; padding: 1rem; background: rgba(184, 169, 255, 0.05); border-left: 4px solid var(--accent-purple); border-radius: 0 8px 8px 0;">
+                <strong>经验总结：</strong>通过合理选择引脚、规范初始化流程和明确功能划分，成功解决了马达控制异常问题，确保了系统的稳定运行。
+            </p>
+            
             <!-- 请在此处放置软件实现代码图片 -->
             <!-- 图片: 软件实现代码流程图 -->
             <!-- 建议文件名: software-code-flowchart.jpg -->
