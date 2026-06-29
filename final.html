@@ -728,6 +728,38 @@
                 <li>无人时屏幕自动熄灭，兼顾省电与夜间不刺眼。</li>
             </ol>
 
+            <!-- 代码积木分块讲解图片展示 -->
+            <h3 style="margin-top: 2rem;">代码积木分块详解图示</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0;">
+                <!-- 图片1：系统应用初始化 -->
+                <div style="background: rgba(184, 169, 255, 0.05); border-radius: 8px; padding: 1rem; text-align: center;">
+                    <img src="image/final/29df72fcc6cf936482b0264b265ca97d.jpg" alt="系统应用初始化代码积木" style="width: 100%; max-width: 400px; height: auto; border-radius: 8px; margin-bottom: 0.75rem;">
+                    <p style="font-size: 0.9rem; font-weight: 600; color: var(--accent-purple);">图1：系统应用初始化（左上角）</p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">设置串口、初始化OLED屏幕、显示欢迎文字</p>
+                </div>
+                
+                <!-- 图片2：上电初始化 -->
+                <div style="background: rgba(184, 169, 255, 0.05); border-radius: 8px; padding: 1rem; text-align: center;">
+                    <img src="image/final/3cb42f219fcc7c53735c02eb62708443.jpg" alt="上电初始化代码积木" style="width: 100%; max-width: 400px; height: auto; border-radius: 8px; margin-bottom: 0.75rem;">
+                    <p style="font-size: 0.9rem; font-weight: 600; color: var(--accent-purple);">图2：上电初始化（右上角）</p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">配置ASR语音模块、录入指令、硬件引脚初始化</p>
+                </div>
+                
+                <!-- 图片3：独立线程检测人体传感器 -->
+                <div style="background: rgba(184, 169, 255, 0.05); border-radius: 8px; padding: 1rem; text-align: center;">
+                    <img src="image/final/d8fd0002fe616ec90ff5c825630b29be.jpg" alt="独立线程检测代码积木" style="width: 100%; max-width: 400px; height: auto; border-radius: 8px; margin-bottom: 0.75rem;">
+                    <p style="font-size: 0.9rem; font-weight: 600; color: var(--accent-purple);">图3：独立线程检测（左下角）</p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">持续读取PA2人体传感器，控制马达和OLED显示</p>
+                </div>
+                
+                <!-- 图片4：ASR语音识别回调 -->
+                <div style="background: rgba(184, 169, 255, 0.05); border-radius: 8px; padding: 1rem; text-align: center;">
+                    <img src="image/final/ed90989c321ded708b8705ae81771e45.jpg" alt="ASR语音识别回调代码积木" style="width: 100%; max-width: 400px; height: auto; border-radius: 8px; margin-bottom: 0.75rem;">
+                    <p style="font-size: 0.9rem; font-weight: 600; color: var(--accent-purple);">图4：ASR语音识别回调（右下角）</p>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">语音指令识别后执行对应动作（早上好、报警等）</p>
+                </div>
+            </div>
+
         </div>
 
         <!-- Section 6: Key Tech Analysis - Hardware Product -->
