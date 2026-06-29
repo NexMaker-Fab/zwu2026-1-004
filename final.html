@@ -148,24 +148,6 @@
             color: var(--text-primary);
         }
 
-        /* Tables */
-        .content-section table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
-        }
-
-        .content-section th, .content-section td {
-            border: 1px solid var(--border-light);
-            padding: 0.8rem;
-            text-align: left;
-        }
-
-        .content-section th {
-            background: var(--bg-secondary);
-            color: var(--accent-purple);
-        }
-
         /* Images */
         .image-item {
             margin: 2rem 0;
@@ -242,20 +224,225 @@
         <!-- Header -->
         <div class="page-header">
             <h1 class="page-title">FINAL PROJECT</h1>
-            <p class="page-subtitle">基于ESP32-S3的老年人智能健康手表</p>
+            <p class="page-subtitle">小智 —— 老年人情感陪护机器人</p>
         </div>
 
-        <!-- Section 1: Project Overview -->
+        <!-- Section 1: Introduction -->
         <div class="content-section">
-            <h2>一、项目概述</h2>
+            <h2>一、项目设计简介</h2>
             
-            <h3>1.1 项目名称</h3>
+            <h3>1. 适用人群</h3>
+            <p>本产品小智专为独居、空巢老年人设计。当下老龄化加剧，大量老年人独自居家生活，普遍存在情感孤独、突发状况无人知晓、缺少陪伴倾诉渠道等问题；子女日常工作无法时刻陪伴老人，难以实时掌握老人居家状态，本机器人针对该群体的情感陪伴与安全监护双重需求开发。</p>
+            
+            <h3>2. 项目核心用途</h3>
+            <ul>
+                <li><strong>近距离感应安全提醒：</strong>老人靠近机器人时，红外传感器检测到人体信号，触发内置马达震动，温和提醒老人设备已识别到使用者，避免老人忽略设备；同时起到唤醒整机交互系统的作用。</li>
+                <li><strong>AI 语音对话情感陪护：</strong>搭载语音交互模块，老人可直接呼叫机器人 "小智" 开启对话，支持日常聊天、解闷谈心、问询天气、播报时间，缓解独居老人孤独感，提供情绪陪伴。</li>
+                <li><strong>居家安全监测：</strong>配套人体感应、震动、语音报警功能，若长时间未检测到人体活动，可自动触发提醒，同步给到远程子女；支持紧急语音呼救、一键求助。</li>
+                <li><strong>简易交互操作：</strong>全语音 + 近距离感应触发，无需复杂触屏操作，适配老年人老花、操作电子产品困难的使用痛点。</li>
+            </ul>
+            
+            <!-- 请在此处放置项目介绍相关图片 -->
+            <!-- 图片1: 小智机器人整体外观展示 -->
+            <!-- 建议文件名: xiaozhi-robot-overview.jpg -->
+            <!-- 建议尺寸: 1200x800px -->
+            <!-- 存放位置: image/final/xiaozhi-robot-overview.jpg -->
+            <div class="image-item">
+                <img src="image/final/xiaozhi-robot-overview.jpg" alt="小智机器人整体外观">
+                <div class="image-caption">图1：小智机器人整体外观展示</div>
+            </div>
+        </div>
+
+        <!-- Section 2: Hardware Components -->
+        <div class="content-section">
+            <h2>二、硬件传感器与元器件清单</h2>
+            
+            <ol>
+                <li>
+                    <strong>ESP32-S3 主控开发板</strong>
+                    <p>整机核心控制器，统一接收红外传感器信号、驱动震动马达、处理 AI 语音识别、控制 OLED 屏幕显示，自带 WiFi 联网功能，实现语音 AI 云端交互。</p>
+                </li>
+                
+                <li>
+                    <strong>人体红外感应传感器</strong>
+                    <p>核心功能：实时检测前方人体，当老人走入感应范围、遮挡红外区域，向主控传输高电平触发信号，作为震动马达启动的触发源。</p>
+                </li>
+                
+                <li>
+                    <strong>微型震动马达</strong>
+                    <p>执行感应提醒功能：收到红外人体检测信号后自动震动，温和唤醒老人，无刺耳噪音，适配居家安静环境。</p>
+                    
+                    <!-- 请在此处放置震动马达图片 -->
+                    <!-- 图片5: 微型震动马达 -->
+                    <!-- 建议文件名: vibration-motor.jpg -->
+                    <!-- 建议尺寸: 800x600px -->
+                    <!-- 存放位置: image/final/vibration-motor.jpg -->
+                    <div class="image-item">
+                        <img src="image/final/vibration-motor.jpg" alt="微型震动马达">
+                        <div class="image-caption">图5：微型震动马达</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <strong>AI 语音识别 & 合成模块</strong>
+                    <p>负责语音采集、唤醒词 "小智" 识别、云端 AI 对话交互，将文字回复转化为人声语音输出。</p>
+                    
+                    <!-- 请在此处放置AI语音模块图片 -->
+                    <!-- 图片6: AI语音识别与合成模块 -->
+                    <!-- 建议文件名: ai-voice-module.jpg -->
+                    <!-- 建议尺寸: 800x600px -->
+                    <!-- 存放位置: image/final/ai-voice-module.jpg -->
+                    <div class="image-item">
+                        <img src="image/final/ai-voice-module.jpg" alt="AI语音识别与合成模块">
+                        <div class="image-caption">图6：AI语音识别与合成模块</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <strong>扬声器喇叭</strong>
+                    <p>播放 AI 对话语音、设备提示音，音量柔和可调，适配老年人听力。</p>
+                    
+                    <!-- 请在此处放置扬声器喇叭图片 -->
+                    <!-- 图片7: 扬声器喇叭 -->
+                    <!-- 建议文件名: speaker.jpg -->
+                    <!-- 建议尺寸: 800x600px -->
+                    <!-- 存放位置: image/final/speaker.jpg -->
+                    <div class="image-item">
+                        <img src="image/final/speaker.jpg" alt="扬声器喇叭">
+                        <div class="image-caption">图7：扬声器喇叭</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <strong>0.96 寸 OLED 显示屏</strong>
+                    <p>实时可视化展示：人体感应触发提示、对话文字、设备待机状态，白底黑字大字体，方便老花老人看清。</p>
+                </li>
+                
+                <li>
+                    <strong>USB 供电模块</strong>
+                    <p>整机持续供电，适配家用普通充电头，使用便捷。</p>
+                </li>
+                
+                <li>
+                    <strong>面包板 + 杜邦连接线</strong>
+                    <p>搭建硬件电路，实现各传感器、模块与主控之间的信号、电源传输。</p>
+                    
+                    <!-- 请在此处放置面包板和杜邦线图片 -->
+                    <!-- 图片8: 面包板与杜邦连接线 -->
+                    <!-- 建议文件名: breadboard-jumper-wires.jpg -->
+                    <!-- 建议尺寸: 800x600px -->
+                    <!-- 存放位置: image/final/breadboard-jumper-wires.jpg -->
+                    <div class="image-item">
+                        <img src="image/final/breadboard-jumper-wires.jpg" alt="面包板与杜邦连接线">
+                        <div class="image-caption">图8：面包板与杜邦连接线</div>
+                    </div>
+                </li>
+            </ol>
+            
+            <!-- 请在此处放置硬件元器件清单相关图片 -->
+            <!-- 图片2: ESP32-S3主控开发板特写 -->
+            <!-- 建议文件名: esp32-s3-board.jpg -->
+            <!-- 建议尺寸: 800x600px -->
+            <!-- 存放位置: image/final/esp32-s3-board.jpg -->
+            <div class="image-item">
+                <img src="image/final/esp32-s3-board.jpg" alt="ESP32-S3主控开发板">
+                <div class="image-caption">图2：ESP32-S3主控开发板</div>
+            </div>
+            
+            <!-- 图片3: 人体红外感应传感器 -->
+            <!-- 建议文件名: ir-sensor.jpg -->
+            <!-- 建议尺寸: 800x600px -->
+            <!-- 存放位置: image/final/ir-sensor.jpg -->
+            <div class="image-item">
+                <img src="image/final/ir-sensor.jpg" alt="人体红外感应传感器">
+                <div class="image-caption">图3：人体红外感应传感器</div>
+            </div>
+            
+            <!-- 图片4: OLED显示屏模块 -->
+            <!-- 建议文件名: oled-display.jpg -->
+            <!-- 建议尺寸: 800x600px -->
+            <!-- 存放位置: image/final/oled-display.jpg -->
+            <div class="image-item">
+                <img src="image/final/oled-display.jpg" alt="OLED显示屏模块">
+                <div class="image-caption">图4：0.96寸OLED显示屏模块</div>
+            </div>
+        </div>
+
+        <!-- Section 3: Core Interaction Logic -->
+        <div class="content-section">
+            <h2>三、核心交互逻辑说明</h2>
+            
+            <h3>流程 1：红外人体感应→马达震动唤醒</h3>
+            <ol>
+                <li>老人靠近机器人，进入人体红外传感器感应范围；</li>
+                <li>红外模块检测到人体热源，向 ESP32 主控发送检测信号；</li>
+                <li>主控接收信号后，驱动微型震动马达工作，机身产生轻微震动；</li>
+                <li>同时 OLED 屏幕弹出文字提示 "已检测到您，请呼叫小智对话"；</li>
+                <li>老人感受到震动提醒后，即可开口唤醒机器人。</li>
+            </ol>
+            
+            <h3>流程 2：AI 语音对话交互</h3>
+            <ol>
+                <li>老人说出唤醒词 "小智"，语音模块拾取人声；</li>
+                <li>模块将语音信号传输至 ESP32，联网识别语音内容；</li>
+                <li>云端 AI 匹配对应回答，下发文字数据至主控；</li>
+                <li>主控一方面将文字推送至 OLED 屏幕显示，一方面驱动扬声器播放语音回复；</li>
+                <li>完成一轮陪伴对话，持续待机等待下一次唤醒。</li>
+            </ol>
+            
+
+        </div>
+
+        <!-- Section 4: Hardware Finished Product -->
+        <div class="content-section">
+            <h2>四、硬件成品实物说明</h2>
+            
+            <h3>整机接线电路成品</h3>
+            <p>画面展示完整硬件接线搭建效果：左侧半球形探头为人体红外传感器，通过杜邦线接入面包板与 ESP32 主控；下方分布震动马达、USB 供电模块、语音喇叭，全部线路分区规整排布，主控统筹所有元件信号交互，是机器人完整电路原型。</p>
+            
+            <!-- 请在此处放置整机接线电路成品图片 -->
+            <!-- 图片9: 整机接线电路成品 -->
+            <!-- 建议文件名: circuit-wiring-complete.jpg -->
+            <!-- 建议尺寸: 1200x800px -->
+            <!-- 存放位置: image/final/circuit-wiring-complete.jpg -->
+            <div class="image-item">
+                <img src="image/final/circuit-wiring-complete.jpg" alt="整机接线电路成品">
+                <div class="image-caption">图9：整机接线电路成品展示</div>
+            </div>
+            
+            <h3>OLED 显示屏幕模块成品</h3>
+            <p>独立展示机器人显示组件，0.96 寸 OLED 屏幕为交互可视化载体，搭配语音拾音麦克风，安装在白色设备外壳上，用于直观展示感应状态、对话文字，降低老人信息读取难度。</p>
+            
+
+        </div>
+
+        <!-- Section 5: Innovation and Advantages -->
+        <div class="content-section">
+            <h2>五、项目创新与设计优势</h2>
+            
+            <ul>
+                <li><strong>低门槛交互逻辑：</strong>无需按键、触屏操作，靠近机身即可震动提醒，全程语音操控，适配老年人不擅长电子产品的特点；</li>
+                <li><strong>情感 + 安全双重设计：</strong>AI 语音聊天缓解孤独，人体感应实时监测老人活动，兼顾情绪陪伴与居家安全；</li>
+                <li><strong>视觉友好设计：</strong>OLED 大屏大字显示交互信息，柔和震动 + 人声语音双重提示，适配老人视力、听力退化问题；</li>
+                <li><strong>简易硬件落地：</strong>基于 ESP32 开源主控搭建，元器件成本低、接线简洁，实物原型可稳定实现全部预设交互功能。</li>
+            </ul>
+            
+
+        </div>
+
+        <!-- Section 6: Elderly Smart Watch Project -->
+        <div class="content-section">
+            <h2>六、面向老年人的智能健康手表——大作业计划书</h2>
+            
+            <h3>一、项目概述</h3>
+            
+            <h4>1.1 项目名称</h4>
             <p>基于ESP32-S3的老年人智能健康手表</p>
             
-            <h3>1.2 项目定位</h3>
+            <h4>1.2 项目定位</h4>
             <p>本作品是一款专为独居、空巢老人设计的智能健康手表，以ESP32-S3为主控核心，集成心率监测、异常报警、震动提醒、WiFi网页数据查看等功能，旨在解决老年人突发健康风险无人知晓、子女无法远程监护的核心痛点。</p>
             
-            <h3>1.3 设计理念</h3>
+            <h4>1.3 设计理念</h4>
             <ul>
                 <li><strong>适老性优先：</strong>遵循适老化设计原则，外形简单易懂，采用大按键、圆角设计、高对比度显示</li>
                 <li><strong>轻量化穿戴：</strong>参考成熟老年手表产品设计经验，表盘厚度控制在13-15mm，减轻长时间佩戴负担</li>
@@ -263,367 +450,138 @@
                 <li><strong>远程守护：</strong>子女通过手机浏览器即可实时查看老人心率数据，实现远程监护</li>
             </ul>
             
-            <!-- 请在此处放置项目整体展示图片 -->
-            <!-- 图片1: 智能手表整体外观 -->
-            <!-- 建议文件名: smartwatch-overview.jpg -->
-            <!-- 建议尺寸: 1200x800px -->
-            <!-- 存放位置: image/final/smartwatch-overview.jpg -->
-            <div class="image-item">
-                <img src="image/final/smartwatch-overview.jpg" alt="老年人智能健康手表整体外观">
-                <div class="image-caption">图1：老年人智能健康手表整体外观</div>
-            </div>
-        </div>
-
-        <!-- Section 2: Background and Significance -->
-        <div class="content-section">
-            <h2>二、项目背景与意义</h2>
+            <h3>二、项目背景与意义</h3>
             
-            <h3>2.1 社会背景</h3>
+            <h4>2.1 社会背景</h4>
             <p>我国老龄化进程加快。据《2023年度国家老龄事业发展公报》，2023年末我国60周岁及以上老年人口达2.97亿，占总人口的21.1%。与此同时，独居老人数量持续增加，因突发疾病或意外无人及时发现导致的悲剧时有发生。</p>
             
-            <h3>2.2 市场痛点</h3>
+            <h4>2.2 市场痛点</h4>
             <p>当前智能手表市场主流产品功能设计多倾向于年轻消费群体，对高龄用户而言，时尚外观与复杂操作界面往往成为使用障碍，诸多冗余功能反而降低了产品的使用价值。专门面向老年人的健康监测手表存在显著市场空白。</p>
             
-            <h3>2.3 项目意义</h3>
+            <h4>2.3 项目意义</h4>
             <p>本作品以低成本的硬件方案（总预算约250元），实现心率实时监测、异常报警、远程数据查看等核心功能，为老年人提供一种便携、易用、可靠的健康监护方案，同时为子女提供远程关怀的窗口。</p>
             
-            <!-- 请在此处放置老龄化数据图表或市场分析图片 -->
-            <!-- 图片2: 老龄化趋势数据图表 -->
-            <!-- 建议文件名: aging-population-chart.png -->
-            <!-- 建议尺寸: 1200x800px -->
-            <!-- 存放位置: image/final/aging-population-chart.png -->
-            <div class="image-item">
-                <img src="image/final/aging-population-chart.png" alt="中国老龄化趋势数据">
-                <div class="image-caption">图2：中国老龄化趋势数据</div>
-            </div>
-        </div>
-
-        <!-- Section 3: System Design -->
-        <div class="content-section">
-            <h2>三、系统总体设计</h2>
+            <h3>三、系统总体设计</h3>
             
-            <h3>3.1 功能需求</h3>
+            <h4>3.1 功能需求</h4>
             <p>基于对独居老人生活场景的分析，本手表设定以下核心功能模块：</p>
             
-            <table>
+            <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border-light);">
                 <thead>
-                    <tr>
-                        <th>功能模块</th>
-                        <th>具体功能</th>
-                        <th>优先级</th>
+                    <tr style="background: rgba(184, 169, 255, 0.1);">
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">功能模块</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">具体功能</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">优先级</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>心率监测</td>
-                        <td>MAX30102传感器实时检测心率，屏幕显示数值</td>
-                        <td>核心</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>心率监测</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">MAX30102传感器实时检测心率，屏幕显示数值</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
                     </tr>
                     <tr>
-                        <td>异常报警</td>
-                        <td>心率>100或<60时触发蜂鸣器+震动</td>
-                        <td>核心</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>异常报警</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">心率&gt;100或&lt;60时触发蜂鸣器+震动</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
                     </tr>
                     <tr>
-                        <td>远程查看</td>
-                        <td>ESP32-S3开WiFi热点，手机浏览网页查看数据</td>
-                        <td>核心</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>远程查看</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">ESP32-S3开WiFi热点，手机浏览网页查看数据</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
                     </tr>
                     <tr>
-                        <td>一键SOS</td>
-                        <td>物理按键触发紧急求助（蜂鸣器+震动）</td>
-                        <td>重要</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>一键SOS</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">物理按键触发紧急求助（蜂鸣器+震动）</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">重要</td>
                     </tr>
                     <tr>
-                        <td>用药提醒</td>
-                        <td>定时震动提醒（软件定时）</td>
-                        <td>扩展</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>用药提醒</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">定时震动提醒（软件定时）</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">扩展</td>
                     </tr>
                     <tr>
-                        <td>时间显示</td>
-                        <td>OLED屏幕显示当前时间</td>
-                        <td>基础</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>时间显示</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">OLED屏幕显示当前时间</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">基础</td>
                     </tr>
                 </tbody>
             </table>
             
-            <!-- 请在此处放置系统架构图或功能模块图 -->
-            <!-- 图片3: 系统功能架构图 -->
-            <!-- 建议文件名: system-architecture.png -->
-            <!-- 建议尺寸: 1200x800px -->
-            <!-- 存放位置: image/final/system-architecture.png -->
-            <div class="image-item">
-                <img src="image/final/system-architecture.png" alt="系统功能架构">
-                <div class="image-caption">图3：系统功能架构图</div>
-            </div>
-        </div>
-
-        <!-- Section 4: AI Features -->
-        <div class="content-section">
-            <h2>四、AI功能方向</h2>
+            <h3>四、AI功能方向建议</h3>
             
-            <h3>方向1：AI语音助手（最适合老年人）</h3>
+            <h4>方向1：AI语音助手（最适合老年人）</h4>
             <p><strong>核心场景：</strong>老人直接说话，手表听懂并回应。</p>
             
-            <table>
+            <p><strong>具体功能：</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border-light);">
                 <thead>
-                    <tr>
-                        <th>老人说</th>
-                        <th>手表回应</th>
+                    <tr style="background: rgba(184, 169, 255, 0.1);">
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">老人说</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">手表回应</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>"今天天气怎么样？"</td>
-                        <td>播报天气（通过WiFi获取）</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“今天天气怎么样？”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">播报天气（通过WiFi获取）</td>
                     </tr>
                     <tr>
-                        <td>"现在几点了？"</td>
-                        <td>语音报时</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“现在几点了？”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">语音报时</td>
                     </tr>
                     <tr>
-                        <td>"提醒我吃药"</td>
-                        <td>"好的，几点吃？"→设定定时提醒</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“提醒我吃药”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“好的，几点吃？”→设定定时提醒</td>
                     </tr>
                     <tr>
-                        <td>"我儿子电话多少？"</td>
-                        <td>显示/播报紧急联系人号码</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“我儿子电话多少？”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">显示/播报紧急联系人号码</td>
                     </tr>
                     <tr>
-                        <td>"我有点不舒服"</td>
-                        <td>自动触发报警+震动，并语音安慰</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“我有点不舒服”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">自动触发报警+震动，并语音安慰</td>
                     </tr>
                 </tbody>
             </table>
             
-            <p><strong>用户价值：</strong>老人不需要学习任何操作，直接说话就能用。完美解决"操作零门槛"的设计理念。</p>
+            <p><strong>用户价值：</strong>老人不需要学习任何操作，直接说话就能用。完美解决“操作零门槛”的设计理念。</p>
             
-            <h3>方向2：AI摔倒检测（独居老人最需要）</h3>
+            <h4>方向2：AI摔倒检测（独居老人最需要）</h4>
             <p><strong>核心场景：</strong>老人摔倒后无法起身，手表自动识别并报警。</p>
+            
             <p><strong>实现方式：</strong></p>
             <ul>
                 <li>利用ESP32-S3内置的加速度传感器（MPU6050，外接）</li>
-                <li>检测到"突然跌落+静止不动"模式 → 自动触发蜂鸣器+震动+WiFi通知</li>
+                <li>检测到“突然跌落+静止不动”模式 → 自动触发蜂鸣器+震动+WiFi通知</li>
             </ul>
+            
             <p><strong>用户价值：</strong>即使老人说不出话，手表也能主动求救。</p>
             
-            <h3>方向3：AI情绪识别与安慰</h3>
+            <h4>方向3：AI情绪识别与安慰</h4>
             <p><strong>核心场景：</strong>老人长时间不说话或心率异常波动，手表主动关怀。</p>
+            
             <p><strong>实现方式：</strong></p>
             <ul>
                 <li>心率变异性（HRV）分析 → 判断情绪状态</li>
                 <li>长时间无交互（2小时无按键+无人靠近）→ 主动播放语音安慰或亮灯提示</li>
             </ul>
-            <p><strong>用户价值：</strong>缓解独居老人的孤独感，实现"情感陪伴"理念。</p>
             
-            <!-- 请在此处放置AI功能演示图片或流程图 -->
-            <!-- 图片4: AI语音助手交互流程 -->
-            <!-- 建议文件名: ai-voice-assistant-flow.png -->
-            <!-- 建议尺寸: 1200x800px -->
-            <!-- 存放位置: image/final/ai-voice-assistant-flow.png -->
-            <div class="image-item">
-                <img src="image/final/ai-voice-assistant-flow.png" alt="AI语音助手交互流程">
-                <div class="image-caption">图4：AI语音助手交互流程</div>
-            </div>
+            <p><strong>用户价值：</strong>缓解独居老人的孤独感，实现“情感陪伴”理念。</p>
         </div>
 
-        <!-- Section 5: Hardware Components -->
+        <!-- Section 7: Exhibition Board -->
         <div class="content-section">
-            <h2>五、硬件组件清单</h2>
+            <h2>七、展板</h2>
             
-            <ol>
-                <li>
-                    <strong>ESP32-S3 主控开发板</strong>
-                    <p>整机核心控制器，集成WiFi+蓝牙，支持AI加速，负责数据采集、处理、通信。</p>
-                    
-                    <!-- 请在此处放置ESP32-S3主控板图片 -->
-                    <!-- 图片5: ESP32-S3主控开发板 -->
-                    <!-- 建议文件名: esp32-s3-board.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/esp32-s3-board.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/esp32-s3-board.jpg" alt="ESP32-S3主控开发板">
-                        <div class="image-caption">图5：ESP32-S3主控开发板</div>
-                    </div>
-                </li>
-                
-                <li>
-                    <strong>MAX30102 心率传感器</strong>
-                    <p>高精度光学心率传感器，实时监测心率数据，支持血氧检测。</p>
-                    
-                    <!-- 请在此处放置MAX30102传感器图片 -->
-                    <!-- 图片6: MAX30102心率传感器 -->
-                    <!-- 建议文件名: max30102-sensor.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/max30102-sensor.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/max30102-sensor.jpg" alt="MAX30102心率传感器">
-                        <div class="image-caption">图6：MAX30102心率传感器</div>
-                    </div>
-                </li>
-                
-                <li>
-                    <strong>OLED 显示屏</strong>
-                    <p>0.96寸OLED屏幕，高对比度显示，适合老年人阅读。</p>
-                    
-                    <!-- 请在此处放置OLED显示屏图片 -->
-                    <!-- 图片7: OLED显示屏模块 -->
-                    <!-- 建议文件名: oled-display.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/oled-display.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/oled-display.jpg" alt="OLED显示屏">
-                        <div class="image-caption">图7：OLED显示屏模块</div>
-                    </div>
-                </li>
-                
-                <li>
-                    <strong>蜂鸣器 + 震动马达</strong>
-                    <p>异常报警和提醒功能执行器，声音+震动双重提示。</p>
-                    
-                    <!-- 请在此处放置蜂鸣器和震动马达图片 -->
-                    <!-- 图片8: 蜂鸣器与震动马达 -->
-                    <!-- 建议文件名: buzzer-vibration-motor.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/buzzer-vibration-motor.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/buzzer-vibration-motor.jpg" alt="蜂鸣器与震动马达">
-                        <div class="image-caption">图8：蜂鸣器与震动马达</div>
-                    </div>
-                </li>
-                
-                <li>
-                    <strong>MPU6050 加速度传感器</strong>
-                    <p>用于摔倒检测，实时监测运动状态。</p>
-                    
-                    <!-- 请在此处放置MPU6050传感器图片 -->
-                    <!-- 图片9: MPU6050加速度传感器 -->
-                    <!-- 建议文件名: mpu6050-sensor.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/mpu6050-sensor.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/mpu6050-sensor.jpg" alt="MPU6050加速度传感器">
-                        <div class="image-caption">图9：MPU6050加速度传感器</div>
-                    </div>
-                </li>
-                
-                <li>
-                    <strong>锂电池 + 充电模块</strong>
-                    <p>3.7V锂电池供电，TP4056充电管理，续航可达3-5天。</p>
-                    
-                    <!-- 请在此处放置锂电池和充电模块图片 -->
-                    <!-- 图片10: 锂电池与充电模块 -->
-                    <!-- 建议文件名: battery-charging-module.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/battery-charging-module.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/battery-charging-module.jpg" alt="锂电池与充电模块">
-                        <div class="image-caption">图10：锂电池与充电模块</div>
-                    </div>
-                </li>
-                
-                <li>
-                    <strong>物理按键</strong>
-                    <p>一键SOS紧急求助按钮，大按键设计，方便老人操作。</p>
-                    
-                    <!-- 请在此处放置物理按键图片 -->
-                    <!-- 图片11: SOS物理按键 -->
-                    <!-- 建议文件名: sos-button.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/sos-button.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/sos-button.jpg" alt="SOS物理按键">
-                        <div class="image-caption">图11：SOS物理按键</div>
-                    </div>
-                </li>
-            </ol>
-            
-            <!-- 请在此处放置硬件组装实物图 -->
-            <!-- 图片12: 硬件组装实物图 -->
-            <!-- 建议文件名: hardware-assembly.jpg -->
-            <!-- 建议尺寸: 1200x800px -->
-            <!-- 存放位置: image/final/hardware-assembly.jpg -->
-            <div class="image-item">
-                <img src="image/final/hardware-assembly.jpg" alt="硬件组装实物">
-                <div class="image-caption">图12：硬件组装实物图</div>
-            </div>
-        </div>
-
-        <!-- Section 6: Technical Implementation -->
-        <div class="content-section">
-            <h2>六、技术实现</h2>
-            
-            <h3>6.1 心率监测实现</h3>
-            <ol>
-                <li>MAX30102传感器通过I2C接口与ESP32-S3通信</li>
-                <li>采集原始光电信号，滤波处理后计算心率值</li>
-                <li>实时显示在OLED屏幕上</li>
-                <li>数据存储至内存，供远程查看</li>
-            </ol>
-            
-            <h3>6.2 异常报警机制</h3>
-            <ol>
-                <li>设定心率阈值：正常范围60-100次/分钟</li>
-                <li>超出阈值时，同时触发蜂鸣器和震动马达</li>
-                <li>通过WiFi发送报警信息到云端</li>
-                <li>子女端网页实时接收报警通知</li>
-            </ol>
-            
-            <h3>6.3 WiFi远程查看</h3>
-            <ol>
-                <li>ESP32-S3开启AP模式，创建WiFi热点</li>
-                <li>搭建简易Web服务器，托管HTML页面</li>
-                <li>手机连接热点后，浏览器访问指定IP</li>
-                <li>网页实时显示心率曲线和历史数据</li>
-            </ol>
-            
-            <!-- 请在此处放置网页数据查看界面截图 -->
-            <!-- 图片13: 远程数据查看网页界面 -->
-            <!-- 建议文件名: web-dashboard.jpg -->
-            <!-- 建议尺寸: 1200x800px -->
-            <!-- 存放位置: image/final/web-dashboard.jpg -->
-            <div class="image-item">
-                <img src="image/final/web-dashboard.jpg" alt="远程数据查看网页">
-                <div class="image-caption">图13：远程数据查看网页界面</div>
-            </div>
-        </div>
-
-        <!-- Section 7: Project Advantages -->
-        <div class="content-section">
-            <h2>七、项目优势</h2>
-            
-            <ul>
-                <li><strong>低成本高价值：</strong>总预算约250元，实现专业级健康监测功能</li>
-                <li><strong>适老化设计：</strong>大按键、高对比度显示、语音交互，零学习成本</li>
-                <li><strong>远程监护：</strong>子女随时随地查看老人健康数据，及时响应异常</li>
-                <li><strong>主动安全：</strong>摔倒检测、心率异常报警，24小时守护老人安全</li>
-                <li><strong>情感陪伴：</strong>AI语音助手、情绪识别，缓解独居老人孤独感</li>
-                <li><strong>开源可扩展：</strong>基于ESP32-S3开源平台，功能可无限扩展</li>
-            </ul>
-            
-            <!-- 请在此处放置项目应用场景图 -->
-            <!-- 图片14: 老人佩戴使用场景 -->
-            <!-- 建议文件名: usage-scenario.jpg -->
-            <!-- 建议尺寸: 1200x800px -->
-            <!-- 存放位置: image/final/usage-scenario.jpg -->
-            <div class="image-item">
-                <img src="image/final/usage-scenario.jpg" alt="老人佩戴使用场景">
-                <div class="image-caption">图14：老人佩戴使用场景</div>
-            </div>
-        </div>
-
-        <!-- Section 8: Exhibition Board -->
-        <div class="content-section">
-            <h2>八、展板</h2>
-            
-            <!-- 请在此处放置项目展板 -->
-            <!-- 图片15: 项目展板 -->
+            <!-- 请在此处放置展板图片 -->
+            <!-- 图片11: 项目展板 -->
             <!-- 建议文件名: exhibition-board.jpg -->
             <!-- 建议尺寸: 1920x1080px (高清展板) -->
             <!-- 存放位置: image/final/exhibition-board.jpg -->
             <div class="image-item">
                 <img src="image/final/exhibition-board.jpg" alt="项目展板">
-                <div class="image-caption">图15：项目展板</div>
+                <div class="image-caption">图11：项目展板展示</div>
             </div>
         </div>
         
