@@ -224,10 +224,150 @@
         <!-- Header -->
         <div class="page-header">
             <h1 class="page-title">FINAL PROJECT</h1>
-            <p class="page-subtitle">小智 —— 老年人情感陪护机器人</p>
+            <p class="page-subtitle">期末综合项目展示</p>
         </div>
 
-        <!-- Section 1: Introduction -->
+        <!-- Section 1: Elderly Smart Watch Project -->
+        <div class="content-section">
+            <h2>一、面向老年人的智能健康手表——大作业计划书</h2>
+            
+            <h3>（一）项目概述</h3>
+            
+            <h4>1. 项目名称</h4>
+            <p>基于ESP32-S3的老年人智能健康手表</p>
+            
+            <h4>2. 项目定位</h4>
+            <p>本作品是一款专为独居、空巢老人设计的智能健康手表，以ESP32-S3为主控核心，集成心率监测、异常报警、震动提醒、WiFi网页数据查看等功能，旨在解决老年人突发健康风险无人知晓、子女无法远程监护的核心痛点。</p>
+            
+            <h4>3. 设计理念</h4>
+            <ul>
+                <li><strong>适老性优先：</strong>遵循适老化设计原则，外形简单易懂，采用大按键、圆角设计、高对比度显示</li>
+                <li><strong>轻量化穿戴：</strong>参考成熟老年手表产品设计经验，表盘厚度控制在13-15mm，减轻长时间佩戴负担</li>
+                <li><strong>操作零门槛：</strong>触屏交互为主，一键SOS为辅，无需复杂设置即可使用</li>
+                <li><strong>远程守护：</strong>子女通过手机浏览器即可实时查看老人心率数据，实现远程监护</li>
+            </ul>
+            
+            <h3>（二）项目背景与意义</h3>
+            
+            <h4>1. 社会背景</h4>
+            <p>我国老龄化进程加快。据《2023年度国家老龄事业发展公报》，2023年末我国60周岁及以上老年人口达2.97亿，占总人口的21.1%。与此同时，独居老人数量持续增加，因突发疾病或意外无人及时发现导致的悲剧时有发生。</p>
+            
+            <h4>2. 市场痛点</h4>
+            <p>当前智能手表市场主流产品功能设计多倾向于年轻消费群体，对高龄用户而言，时尚外观与复杂操作界面往往成为使用障碍，诸多冗余功能反而降低了产品的使用价值。专门面向老年人的健康监测手表存在显著市场空白。</p>
+            
+            <h4>3. 项目意义</h4>
+            <p>本作品以低成本的硬件方案（总预算约250元），实现心率实时监测、异常报警、远程数据查看等核心功能，为老年人提供一种便携、易用、可靠的健康监护方案，同时为子女提供远程关怀的窗口。</p>
+            
+            <h3>（三）系统总体设计</h3>
+            
+            <h4>1. 功能需求</h4>
+            <p>基于对独居老人生活场景的分析，本手表设定以下核心功能模块：</p>
+            
+            <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border-light);">
+                <thead>
+                    <tr style="background: rgba(184, 169, 255, 0.1);">
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">功能模块</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">具体功能</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">优先级</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>心率监测</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">MAX30102传感器实时检测心率，屏幕显示数值</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>异常报警</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">心率&gt;100或&lt;60时触发蜂鸣器+震动</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>远程查看</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">ESP32-S3开WiFi热点，手机浏览网页查看数据</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>一键SOS</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">物理按键触发紧急求助（蜂鸣器+震动）</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">重要</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>用药提醒</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">定时震动提醒（软件定时）</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>时间显示</strong></td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">OLED屏幕显示当前时间</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">基础</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>（四）AI功能方向建议</h3>
+            
+            <h4>方向1：AI语音助手（最适合老年人）</h4>
+            <p><strong>核心场景：</strong>老人直接说话，手表听懂并回应。</p>
+            
+            <p><strong>具体功能：</strong></p>
+            <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border-light);">
+                <thead>
+                    <tr style="background: rgba(184, 169, 255, 0.1);">
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">老人说</th>
+                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">手表回应</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“今天天气怎么样？”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">播报天气（通过WiFi获取）</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“现在几点了？”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">语音报时</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“提醒我吃药”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“好的，几点吃？”→设定定时提醒</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“我儿子电话多少？”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">显示/播报紧急联系人号码</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“我有点不舒服”</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">自动触发报警+震动，并语音安慰</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <p><strong>用户价值：</strong>老人不需要学习任何操作，直接说话就能用。完美解决“操作零门槛”的设计理念。</p>
+            
+            <h4>方向2：AI摔倒检测（独居老人最需要）</h4>
+            <p><strong>核心场景：</strong>老人摔倒后无法起身，手表自动识别并报警。</p>
+            
+            <p><strong>实现方式：</strong></p>
+            <ul>
+                <li>利用ESP32-S3内置的加速度传感器（MPU6050，外接）</li>
+                <li>检测到“突然跌落+静止不动”模式 → 自动触发蜂鸣器+震动+WiFi通知</li>
+            </ul>
+            
+            <p><strong>用户价值：</strong>即使老人说不出话，手表也能主动求救。</p>
+            
+            <h4>方向3：AI情绪识别与安慰</h4>
+            <p><strong>核心场景：</strong>老人长时间不说话或心率异常波动，手表主动关怀。</p>
+            
+            <p><strong>实现方式：</strong></p>
+            <ul>
+                <li>心率变异性（HRV）分析 → 判断情绪状态</li>
+                <li>长时间无交互（2小时无按键+无人靠近）→ 主动播放语音安慰或亮灯提示</li>
+            </ul>
+            
+            <p><strong>用户价值：</strong>缓解独居老人的孤独感，实现“情感陪伴”理念。</p>
+        </div>
+
+        <!-- Section 2: Introduction -->
         <div class="content-section">
             <h2>一、项目设计简介</h2>
             
@@ -253,7 +393,7 @@
             </div>
         </div>
 
-        <!-- Section 2: Hardware Components -->
+        <!-- Section 3: Hardware Components -->
         <div class="content-section">
             <h2>二、硬件传感器与元器件清单</h2>
             
@@ -368,7 +508,7 @@
             </div>
         </div>
 
-        <!-- Section 3: Core Interaction Logic -->
+        <!-- Section 4: Core Interaction Logic -->
         <div class="content-section">
             <h2>三、核心交互逻辑说明</h2>
             
@@ -393,7 +533,7 @@
 
         </div>
 
-        <!-- Section 4: Hardware Finished Product -->
+        <!-- Section 5: Hardware Finished Product -->
         <div class="content-section">
             <h2>四、硬件成品实物说明</h2>
             
@@ -416,7 +556,7 @@
 
         </div>
 
-        <!-- Section 5: Innovation and Advantages -->
+        <!-- Section 6: Innovation and Advantages -->
         <div class="content-section">
             <h2>五、项目创新与设计优势</h2>
             
@@ -430,158 +570,18 @@
 
         </div>
 
-        <!-- Section 6: Elderly Smart Watch Project -->
-        <div class="content-section">
-            <h2>六、面向老年人的智能健康手表——大作业计划书</h2>
-            
-            <h3>一、项目概述</h3>
-            
-            <h4>1.1 项目名称</h4>
-            <p>基于ESP32-S3的老年人智能健康手表</p>
-            
-            <h4>1.2 项目定位</h4>
-            <p>本作品是一款专为独居、空巢老人设计的智能健康手表，以ESP32-S3为主控核心，集成心率监测、异常报警、震动提醒、WiFi网页数据查看等功能，旨在解决老年人突发健康风险无人知晓、子女无法远程监护的核心痛点。</p>
-            
-            <h4>1.3 设计理念</h4>
-            <ul>
-                <li><strong>适老性优先：</strong>遵循适老化设计原则，外形简单易懂，采用大按键、圆角设计、高对比度显示</li>
-                <li><strong>轻量化穿戴：</strong>参考成熟老年手表产品设计经验，表盘厚度控制在13-15mm，减轻长时间佩戴负担</li>
-                <li><strong>操作零门槛：</strong>触屏交互为主，一键SOS为辅，无需复杂设置即可使用</li>
-                <li><strong>远程守护：</strong>子女通过手机浏览器即可实时查看老人心率数据，实现远程监护</li>
-            </ul>
-            
-            <h3>二、项目背景与意义</h3>
-            
-            <h4>2.1 社会背景</h4>
-            <p>我国老龄化进程加快。据《2023年度国家老龄事业发展公报》，2023年末我国60周岁及以上老年人口达2.97亿，占总人口的21.1%。与此同时，独居老人数量持续增加，因突发疾病或意外无人及时发现导致的悲剧时有发生。</p>
-            
-            <h4>2.2 市场痛点</h4>
-            <p>当前智能手表市场主流产品功能设计多倾向于年轻消费群体，对高龄用户而言，时尚外观与复杂操作界面往往成为使用障碍，诸多冗余功能反而降低了产品的使用价值。专门面向老年人的健康监测手表存在显著市场空白。</p>
-            
-            <h4>2.3 项目意义</h4>
-            <p>本作品以低成本的硬件方案（总预算约250元），实现心率实时监测、异常报警、远程数据查看等核心功能，为老年人提供一种便携、易用、可靠的健康监护方案，同时为子女提供远程关怀的窗口。</p>
-            
-            <h3>三、系统总体设计</h3>
-            
-            <h4>3.1 功能需求</h4>
-            <p>基于对独居老人生活场景的分析，本手表设定以下核心功能模块：</p>
-            
-            <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border-light);">
-                <thead>
-                    <tr style="background: rgba(184, 169, 255, 0.1);">
-                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">功能模块</th>
-                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">具体功能</th>
-                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">优先级</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>心率监测</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">MAX30102传感器实时检测心率，屏幕显示数值</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>异常报警</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">心率&gt;100或&lt;60时触发蜂鸣器+震动</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>远程查看</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">ESP32-S3开WiFi热点，手机浏览网页查看数据</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>一键SOS</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">物理按键触发紧急求助（蜂鸣器+震动）</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">重要</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>用药提醒</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">定时震动提醒（软件定时）</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">扩展</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>时间显示</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">OLED屏幕显示当前时间</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">基础</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <h3>四、AI功能方向建议</h3>
-            
-            <h4>方向1：AI语音助手（最适合老年人）</h4>
-            <p><strong>核心场景：</strong>老人直接说话，手表听懂并回应。</p>
-            
-            <p><strong>具体功能：</strong></p>
-            <table style="width: 100%; border-collapse: collapse; margin: 1.5rem 0; border: 1px solid var(--border-light);">
-                <thead>
-                    <tr style="background: rgba(184, 169, 255, 0.1);">
-                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">老人说</th>
-                        <th style="padding: 0.75rem; border: 1px solid var(--border-light); text-align: left;">手表回应</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“今天天气怎么样？”</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">播报天气（通过WiFi获取）</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“现在几点了？”</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">语音报时</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“提醒我吃药”</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“好的，几点吃？”→设定定时提醒</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“我儿子电话多少？”</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">显示/播报紧急联系人号码</td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">“我有点不舒服”</td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">自动触发报警+震动，并语音安慰</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <p><strong>用户价值：</strong>老人不需要学习任何操作，直接说话就能用。完美解决“操作零门槛”的设计理念。</p>
-            
-            <h4>方向2：AI摔倒检测（独居老人最需要）</h4>
-            <p><strong>核心场景：</strong>老人摔倒后无法起身，手表自动识别并报警。</p>
-            
-            <p><strong>实现方式：</strong></p>
-            <ul>
-                <li>利用ESP32-S3内置的加速度传感器（MPU6050，外接）</li>
-                <li>检测到“突然跌落+静止不动”模式 → 自动触发蜂鸣器+震动+WiFi通知</li>
-            </ul>
-            
-            <p><strong>用户价值：</strong>即使老人说不出话，手表也能主动求救。</p>
-            
-            <h4>方向3：AI情绪识别与安慰</h4>
-            <p><strong>核心场景：</strong>老人长时间不说话或心率异常波动，手表主动关怀。</p>
-            
-            <p><strong>实现方式：</strong></p>
-            <ul>
-                <li>心率变异性（HRV）分析 → 判断情绪状态</li>
-                <li>长时间无交互（2小时无按键+无人靠近）→ 主动播放语音安慰或亮灯提示</li>
-            </ul>
-            
-            <p><strong>用户价值：</strong>缓解独居老人的孤独感，实现“情感陪伴”理念。</p>
-        </div>
-
         <!-- Section 7: Exhibition Board -->
         <div class="content-section">
-            <h2>七、展板</h2>
+            <h2>六、展板</h2>
             
             <!-- 请在此处放置展板图片 -->
-            <!-- 图片11: 项目展板 -->
+            <!-- 图片10: 项目展板 -->
             <!-- 建议文件名: exhibition-board.jpg -->
             <!-- 建议尺寸: 1920x1080px (高清展板) -->
             <!-- 存放位置: image/final/exhibition-board.jpg -->
             <div class="image-item">
                 <img src="image/final/exhibition-board.jpg" alt="项目展板">
-                <div class="image-caption">图11：项目展板展示</div>
+                <div class="image-caption">图10：项目展板展示</div>
             </div>
         </div>
         
