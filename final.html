@@ -169,6 +169,23 @@
             height: auto;
         }
 
+        .image-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .image-row .image-item {
+            flex: 1;
+            margin: 0;
+        }
+
+        .image-row .image-item img {
+            width: 100%;
+            height: auto;
+        }
+
         .image-caption {
             margin-top: 0.8rem;
             font-size: 0.9rem;
@@ -576,46 +593,16 @@
                 <li>
                     <strong>微型震动马达</strong>
                     <p>执行感应提醒功能：收到红外人体检测信号后自动震动，温和唤醒老人，无刺耳噪音，适配居家安静环境。</p>
-                    
-                    <!-- 请在此处放置震动马达图片 -->
-                    <!-- 图片5: 微型震动马达 -->
-                    <!-- 建议文件名: vibration-motor.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/vibration-motor.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/vibration-motor.jpg" alt="微型震动马达">
-                        <div class="image-caption">图5：微型震动马达</div>
-                    </div>
                 </li>
                 
                 <li>
                     <strong>AI 语音识别 & 合成模块</strong>
                     <p>负责语音采集、唤醒词 "小智" 识别、云端 AI 对话交互，将文字回复转化为人声语音输出。</p>
-                    
-                    <!-- 请在此处放置AI语音模块图片 -->
-                    <!-- 图片6: AI语音识别与合成模块 -->
-                    <!-- 建议文件名: ai-voice-module.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/ai-voice-module.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/ai-voice-module.jpg" alt="AI语音识别与合成模块">
-                        <div class="image-caption">图6：AI语音识别与合成模块</div>
-                    </div>
                 </li>
                 
                 <li>
                     <strong>扬声器喇叭</strong>
                     <p>播放 AI 对话语音、设备提示音，音量柔和可调，适配老年人听力。</p>
-                    
-                    <!-- 请在此处放置扬声器喇叭图片 -->
-                    <!-- 图片7: 扬声器喇叭 -->
-                    <!-- 建议文件名: speaker.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/speaker.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/speaker.jpg" alt="扬声器喇叭">
-                        <div class="image-caption">图7：扬声器喇叭</div>
-                    </div>
                 </li>
                 
                 <li>
@@ -631,18 +618,53 @@
                 <li>
                     <strong>面包板 + 杜邦连接线</strong>
                     <p>搭建硬件电路，实现各传感器、模块与主控之间的信号、电源传输。</p>
-                    
-                    <!-- 请在此处放置面包板和杜邦线图片 -->
-                    <!-- 图片8: 面包板与杜邦连接线 -->
-                    <!-- 建议文件名: breadboard-jumper-wires.jpg -->
-                    <!-- 建议尺寸: 800x600px -->
-                    <!-- 存放位置: image/final/breadboard-jumper-wires.jpg -->
-                    <div class="image-item">
-                        <img src="image/final/breadboard-jumper-wires.jpg" alt="面包板与杜邦连接线">
-                        <div class="image-caption">图8：面包板与杜邦连接线</div>
-                    </div>
                 </li>
             </ol>
+            
+            <!-- 硬件元器件图片 - 并排显示 -->
+            <div class="image-row">
+                <!-- 请在此处放置震动马达图片 -->
+                <!-- 图片5: 微型震动马达 -->
+                <!-- 建议文件名: vibration-motor.jpg -->
+                <!-- 建议尺寸: 800x600px -->
+                <!-- 存放位置: image/final/vibration-motor.jpg -->
+                <div class="image-item">
+                    <img src="image/final/vibration-motor.jpg" alt="微型震动马达">
+                    <div class="image-caption">图5：微型震动马达</div>
+                </div>
+                
+                <!-- 请在此处放置AI语音模块图片 -->
+                <!-- 图片6: AI语音识别与合成模块 -->
+                <!-- 建议文件名: ai-voice-module.jpg -->
+                <!-- 建议尺寸: 800x600px -->
+                <!-- 存放位置: image/final/ai-voice-module.jpg -->
+                <div class="image-item">
+                    <img src="image/final/ai-voice-module.jpg" alt="AI语音识别与合成模块">
+                    <div class="image-caption">图6：AI语音识别与合成模块</div>
+                </div>
+                
+                <!-- 请在此处放置扬声器喇叭图片 -->
+                <!-- 图片7: 扬声器喇叭 -->
+                <!-- 建议文件名: speaker.jpg -->
+                <!-- 建议尺寸: 800x600px -->
+                <!-- 存放位置: image/final/speaker.jpg -->
+                <div class="image-item">
+                    <img src="image/final/speaker.jpg" alt="扬声器喇叭">
+                    <div class="image-caption">图7：扬声器喇叭</div>
+                </div>
+            </div>
+            
+            <div class="image-row">
+                <!-- 请在此处放置面包板和杜邦线图片 -->
+                <!-- 图片8: 面包板与杜邦连接线 -->
+                <!-- 建议文件名: breadboard-jumper-wires.jpg -->
+                <!-- 建议尺寸: 800x600px -->
+                <!-- 存放位置: image/final/breadboard-jumper-wires.jpg -->
+                <div class="image-item">
+                    <img src="image/final/breadboard-jumper-wires.jpg" alt="面包板与杜邦连接线">
+                    <div class="image-caption">图8：面包板与杜邦连接线</div>
+                </div>
+            </div>
             
             <!-- 请在此处放置硬件元器件清单相关图片 -->
             <!-- 图片2: ESP32-S3主控开发板特写 -->
