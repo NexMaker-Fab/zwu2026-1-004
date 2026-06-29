@@ -671,6 +671,63 @@
                 <div class="image-caption">图：软件实现代码流程图（系统初始化、上电初始化、主程序执行、ASR CODE）</div>
             </div>
 
+            <h3>代码积木简易分块讲解（全程仅天问Block）</h3>
+            
+            <h4>1. 左上角：系统应用初始化（程序开机最先运行）</h4>
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                <li>设置串口打印；</li>
+                <li>初始化OLED屏幕（128×64，IIC引脚PA5、PA6）；</li>
+                <li>开机屏幕亮屏，显示欢迎文字「欢迎使用智能管家」。</li>
+            </ol>
+
+            <h4>2. 右上角：上电初始化（硬件+语音基础配置）</h4>
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                <li>配置ASR语音模块音量、音色；</li>
+                <li>批量录入13条语音指令（早上好、报警、出门慢走等），绑定对应识别ID；</li>
+                <li>硬件引脚初始化：
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>PA2设为<strong>输入</strong>：读取人体红外传感器信号；</li>
+                        <li>PA3设为<strong>输出</strong>：控制震动马达；</li>
+                        <li>开机默认PA3输出低电平，马达不震动。</li>
+                    </ul>
+                </li>
+            </ol>
+
+            <h4>3. 左下角：独立线程（持续检测人体传感器）</h4>
+            <p style="color: var(--text-secondary); line-height: 1.8;">循环不停读取PA2人体传感器电平：</p>
+            <ul style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                <li><strong>如果读到PA2=1（检测到人）</strong>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>PA3拉高，马达震动；</li>
+                        <li>OLED点亮，显示文字「有人」；</li>
+                        <li>播放语音问候「你好呀」；</li>
+                        <li>延时5秒（马达持续震动5秒）。</li>
+                    </ol>
+                </li>
+                <li><strong>否则（无人）</strong>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.5rem;">
+                        <li>PA3拉低，马达停止；</li>
+                        <li>OLED屏幕熄灭，省电护眼。</li>
+                    </ol>
+                </li>
+            </ul>
+
+            <h4>4. 右下角：ASR语音识别回调（喊出指令后自动执行）</h4>
+            <p style="color: var(--text-secondary); line-height: 1.8;">语音识别成功后进入这个分支，用switch判断指令ID：</p>
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                <li><strong>case1（识别到"早上好"）：</strong>屏幕亮屏，显示文字「早上好」；</li>
+                <li><strong>case4（识别到"报警"）：</strong>播放警报语音，马达震动5秒，屏幕显示「警报」；</li>
+                <li>其余语音指令预留扩展空间，可继续添加对应屏幕、马达动作。</li>
+            </ol>
+
+            <h4>整体功能总结</h4>
+            <p style="color: var(--text-secondary); line-height: 1.8;">这是一套老年人智能陪护装置程序：</p>
+            <ol style="margin-left: 1.5rem; color: var(--text-secondary); line-height: 2;">
+                <li>人靠近设备自动震动+说你好；</li>
+                <li>语音喊话触发对应提醒、紧急报警震动；</li>
+                <li>无人时屏幕自动熄灭，兼顾省电与夜间不刺眼。</li>
+            </ol>
+
         </div>
 
         <!-- Section 6: Key Tech Analysis - Hardware Product -->
