@@ -192,28 +192,6 @@
             font-style: italic;
         }
 
-        /* Video */
-        .video-item {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        .video-item video {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            display: block;
-            margin: 0 auto;
-        }
-
-        .video-caption {
-            margin-top: 0.8rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
         /* Footer */
         footer {
             text-align: center;
@@ -775,26 +753,23 @@
 
         </div>
 
-        <!-- Section 7: Video Demo -->
+        <!-- Section 7: Exhibition Board -->
         <div class="content-section">
-            <h2>六、项目演示视频</h2>
+            <h2>六、展板</h2>
             
-            <!-- 请在此处放置项目演示视频 -->
-            <!-- 视频文件: project-demo.mp4 -->
-            <!-- 建议尺寸: 1920x1080px (高清) -->
+            <!-- 请在此处放置项目展示视频 -->
+            <!-- 视频1: 项目功能演示视频 -->
+            <!-- 建议文件名: project-demo.mp4 -->
+            <!-- 建议格式: MP4 (H.264编码) -->
+            <!-- 建议尺寸: 1920x1080px 或 1280x720px -->
             <!-- 存放位置: videos/final/project-demo.mp4 -->
-            <div class="video-item">
-                <video controls autoplay muted loop>
-                    <source src="videos/hero-video.mp4" type="video/mp4">
+            <div class="image-item large" style="margin-bottom: 2rem;">
+                <video controls style="max-width: 100%; width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); display: block; margin: 0 auto;">
+                    <source src="videos/final/project-demo.mp4" type="video/mp4">
                     您的浏览器不支持视频播放。
                 </video>
-                <div class="video-caption">项目功能演示视频</div>
+                <div class="image-caption">视频1：项目功能演示</div>
             </div>
-        </div>
-
-        <!-- Section 8: Exhibition Board -->
-        <div class="content-section">
-            <h2>七、展板</h2>
             
             <!-- 请在此处放置展板图片 -->
             <!-- 图片10: 项目展板 -->
