@@ -425,7 +425,7 @@
                 <tbody>
                     <tr>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>异常报警</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">检测到异常情况时触发蜂鸣器+震动</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">检测到异常情况时触发震动提醒</td>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-light);">核心</td>
                     </tr>
                     <tr>
@@ -435,7 +435,7 @@
                     </tr>
                     <tr>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-light);"><strong>一键SOS</strong></td>
-                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">物理按键触发紧急求助（蜂鸣器+震动）</td>
+                        <td style="padding: 0.75rem; border: 1px solid var(--border-light);">物理按键触发紧急求助（震动）</td>
                         <td style="padding: 0.75rem; border: 1px solid var(--border-light);">重要</td>
                     </tr>
                     <tr>
@@ -496,7 +496,7 @@
             <p><strong>实现方式：</strong></p>
             <ul>
                 <li>利用ESP32-S3内置的加速度传感器（MPU6050，外接）</li>
-                <li>检测到“突然跌落+静止不动”模式 → 自动触发蜂鸣器+震动+WiFi通知</li>
+                <li>检测到“突然跌落+静止不动”模式 → 自动触发震动+WiFi通知</li>
             </ul>
             
             <p><strong>用户价值：</strong>即使老人说不出话，手表也能主动求救。</p>
@@ -521,7 +521,7 @@
                         <li>采用MAX30102光电传感器，基于PPG（光电容积脉搏波描记法）原理实现非侵入式心率检测</li>
                         <li>设计信号滤波算法，消除运动伪影和环境光干扰，提高数据采集精度</li>
                         <li>实现实时心率显示功能，OLED屏幕以大字体清晰展示当前心率数值</li>
-                        <li>设置心率阈值报警机制：当心率超过100次/分或低于60次/分时，自动触发蜂鸣器+震动双重提醒</li>
+                        <li>设置心率阈值报警机制：当心率超过100次/分或低于60次/分时，自动触发震动提醒</li>
                         <li>开发心率数据存储功能，记录历史心率变化趋势，支持子女远程查看长期健康数据</li>
                         <li>预留HRV（心率变异性）分析接口，为后续AI情绪识别功能提供数据基础</li>
                     </ul>
